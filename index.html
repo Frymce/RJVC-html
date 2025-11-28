@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>RJVC - Mouvement de Jeunesse Chrétienne</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;900&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+      rel="stylesheet"
+    />
+    <style>
+      .material-symbols-outlined {
+        font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
+      }
+    </style>
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              primary: "#f9d406",
+              "background-light": "#f8f8f5",
+              "background-dark": "#111111",
+              accent: "#FFA500",
+              "neutral-text": "#F0F0F0",
+            },
+            fontFamily: {
+              display: ["Poppins", "sans-serif"],
+            },
+            borderRadius: {
+              DEFAULT: "0.25rem",
+              lg: "0.5rem",
+              xl: "0.75rem",
+              full: "9999px",
+            },
+          },
+        },
+      };
+    </script>
+  </head>
+  <body
+    class="bg-background-light dark:bg-background-dark font-display text-neutral-text"
+  >
+    <div class="relative flex min-h-screen w-full flex-col">
+      <!-- TopNavBar -->
+      <header
+        class="sticky top-0 z-50 flex items-center justify-center border-b border-solid border-white/10 bg-background-dark/80 px-4 py-3 backdrop-blur-sm sm:px-10"
+      >
+        <div
+          class="flex w-full max-w-7xl items-center justify-between whitespace-nowrap"
+        >
+          <div class="flex items-center gap-3">
+            <div class="size-6 text-primary">
+              <svg
+                fill="none"
+                viewbox="0 0 48 48"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M4 4H17.3334V17.3334H30.6666V30.6666H44V44H4V4Z"
+                  fill="currentColor"
+                ></path>
+              </svg>
+            </div>
+            <h2 class="text-neutral-text text-xl font-bold tracking-tight">
+              RJVC
+            </h2>
+          </div>
+          <nav class="hidden items-center gap-8 md:flex">
+            <a
+              class="text-neutral-text text-sm font-medium leading-normal transition-colors hover:text-primary"
+              href="index.html"
+              >Accueil</a
+            >
+            <a
+              class="text-neutral-text text-sm font-medium leading-normal transition-colors hover:text-primary"
+              href="./about.html"
+              >À propos</a
+            >
+            <a
+              class="text-neutral-text text-sm font-medium leading-normal transition-colors hover:text-primary"
+              href="./communaut.html"
+              >Nos Communautés</a
+            >
+            <a
+              class="text-neutral-text text-sm font-medium leading-normal transition-colors hover:text-primary"
+              href="./evenemetavenir.html"
+              >Événements</a
+            >
+            <a
+              class="text-neutral-text text-sm font-medium leading-normal transition-colors hover:text-primary"
+              href="./valeur.html"
+              >Témoignages</a
+            >
+            <a
+              class="text-neutral-text text-sm font-medium leading-normal transition-colors hover:text-primary"
+              href="./contact.html"
+              >Contact</a
+            >
+          </nav>
+          <button class="md:hidden text-neutral-text">
+            <span class="material-symbols-outlined">menu</span>
+          </button>
+        </div>
+      </header>
+      <main class="flex flex-1 flex-col items-center">
+        <div class="w-full max-w-7xl px-4 sm:px-10">
+          <!-- HeadlineText -->
+          <div class="border-b border-solid border-white/10 py-4 text-center">
+            <h3
+              class="text-lg font-semibold italic leading-tight tracking-wide text-neutral-text/80"
+            >
+              Réjouissez-vous toujours dans le Seigneur
+            </h3>
+          </div>
+          <!-- HeroSection -->
+          <div class="py-20 sm:py-28">
+            <div class="@container">
+              <div
+                class="flex min-h-[480px] flex-col items-center justify-center gap-6 rounded-xl bg-cover bg-center bg-no-repeat p-6 text-center shadow-lg"
+                data-alt="Abstract dark blue background with hints of golden light rays."
+                style="
+                  background-image: linear-gradient(
+                      rgba(10, 25, 47, 0.8) 0%,
+                      rgba(17, 17, 17, 0.9) 100%
+                    ),
+                    url('https://lh3.googleusercontent.com/aida-public/AB6AXuDQ5oeEtmRtoqcDJQXJSKd4g3o6FfcTPKzlmpPKK-2K0F4kYuhqu67k33T9ex0VSOFfQzuzwa26bfrLs7F_UVG9X5FN1PPc3isEgKwG1gggUu810wTxlWgwlKuIgvzlJf0G3krDlgblodC1X_R3pAQ4gqP7Ub5UYDvidzazIrpzWAv3qH0Uw_l4B4K2_BSEKXcWwR3M4y0AMFAObsvJ6ONq6nHojad_0Dy0xRiU3QN9HfjjU5hl3MOH5js2wQzY4f2BcbdXGawmFjg');
+                "
+              >
+                <div class="flex max-w-3xl flex-col gap-4">
+                  <h1
+                    class="text-4xl font-black leading-tight tracking-tighter text-neutral-text @[480px]:text-6xl"
+                  >
+                    Bienvenue dans le mouvement RJVC - Unis en Christ pour une
+                    joie commune.
+                  </h1>
+                  <h2
+                    class="text-base font-normal leading-normal text-neutral-text/80 @[480px]:text-lg"
+                  >
+                    Découvrez une communauté fondée sur la foi, l'unité, le
+                    service et la joie. Rejoignez-nous pour grandir ensemble et
+                    partager des moments inoubliables.
+                  </h2>
+                </div>
+                <div class="flex flex-wrap items-center justify-center gap-4">
+                  <button
+                    class="flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-6 bg-primary text-background-dark text-base font-bold leading-normal tracking-wide transition-transform hover:scale-105"
+                  >
+                    <span class="truncate">Rejoindre le mouvement</span>
+                  </button>
+                  <button
+                    class="flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-lg border-2 border-primary/50 bg-transparent h-12 px-6 text-primary text-base font-bold leading-normal tracking-wide transition-colors hover:border-primary hover:bg-primary/10"
+                  >
+                    <span class="truncate">Participer à nos événements</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Introduction Section with Cards -->
+          <section class="py-16 sm:py-24">
+            <div class="text-center">
+              <h2
+                class="text-3xl font-bold leading-tight tracking-tighter text-neutral-text sm:text-4xl"
+              >
+                Notre mission, notre vision
+              </h2>
+              <p
+                class="mx-auto mt-4 max-w-2xl text-base font-normal leading-normal text-neutral-text/70 sm:text-lg"
+              >
+                Le RJVC est une organisation de jeunesse chrétienne dédiée à
+                cultiver la foi, l'unité, le service et la joie parmi les
+                jeunes.
+              </p>
+            </div>
+            <div class="mt-12 grid grid-cols-1 gap-8 md:grid-cols-3">
+              <div
+                class="flex flex-col items-center rounded-xl border border-white/10 bg-white/5 p-8 text-center transition-all hover:border-primary/50 hover:bg-primary/5"
+              >
+                <div
+                  class="mb-4 flex size-16 items-center justify-center rounded-full bg-primary/10 text-primary"
+                >
+                  <span class="material-symbols-outlined text-4xl">school</span>
+                </div>
+                <h3 class="text-xl font-bold text-neutral-text">L'Académie</h3>
+                <p class="mt-2 text-sm text-neutral-text/70">
+                  Des formations pour approfondir votre foi et développer vos
+                  dons au service de l'Église et du monde.
+                </p>
+              </div>
+              <div
+                class="flex flex-col items-center rounded-xl border border-white/10 bg-white/5 p-8 text-center transition-all hover:border-primary/50 hover:bg-primary/5"
+              >
+                <div
+                  class="mb-4 flex size-16 items-center justify-center rounded-full bg-primary/10 text-primary"
+                >
+                  <span class="material-symbols-outlined text-4xl"
+                    >celebration</span
+                  >
+                </div>
+                <h3 class="text-xl font-bold text-neutral-text">
+                  Les Événements
+                </h3>
+                <p class="mt-2 text-sm text-neutral-text/70">
+                  Des rassemblements, des concerts et des retraites pour
+                  célébrer, partager et vivre des moments forts en communauté.
+                </p>
+              </div>
+              <div
+                class="flex flex-col items-center rounded-xl border border-white/10 bg-white/5 p-8 text-center transition-all hover:border-primary/50 hover:bg-primary/5"
+              >
+                <div
+                  class="mb-4 flex size-16 items-center justify-center rounded-full bg-primary/10 text-primary"
+                >
+                  <span class="material-symbols-outlined text-4xl">groups</span>
+                </div>
+                <h3 class="text-xl font-bold text-neutral-text">
+                  Le Mouvement Annuel
+                </h3>
+                <p class="mt-2 text-sm text-neutral-text/70">
+                  Notre programme principal qui rythme l'année, centré sur un
+                  thème spirituel pour grandir ensemble dans l'unité.
+                </p>
+              </div>
+            </div>
+          </section>
+          <!-- Upcoming Events Section -->
+          <section class="py-16 sm:py-24">
+            <div class="text-center">
+              <h2
+                class="text-3xl font-bold leading-tight tracking-tighter text-neutral-text sm:text-4xl"
+              >
+                Événements à venir
+              </h2>
+              <p
+                class="mx-auto mt-4 max-w-2xl text-base font-normal leading-normal text-neutral-text/70 sm:text-lg"
+              >
+                Ne manquez pas nos prochains grands rassemblements. Soyez des
+                nôtres !
+              </p>
+            </div>
+            <div
+              class="mt-12 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3"
+            >
+              <div
+                class="group overflow-hidden rounded-xl border border-white/10 bg-white/5 transition-shadow hover:shadow-2xl hover:shadow-primary/10"
+              >
+                <img
+                  class="h-56 w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                  data-alt="A large crowd at a music festival with colorful lights."
+                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuCDl3LVWLfbd67P8NHvhe7obdJkEFAKCNrC0u7qnFP3A34-vrcYfV69J-04_sQ_CTblWhVCx4aoJNDy6vdNKpTAVw1a73q8RteH2HTj6p15Pz0z7p-bnZbOgAI2qcs8Qs-pMwm9DOd2A9Qc8AXBbKDMC2um4yISQ8zhbY_gqkeFGaK9cenGpoYLEiX2jt4r9q4Xou8cr7UodgrVoutWgNQ2UvLG3MhbSs54hJB-xBsqbR46nhlpFx5zF1g-1t8_mtGDTP_pib0MFA4"
+                />
+                <div class="p-6">
+                  <p class="text-sm font-semibold text-primary">
+                    24-26 AOÛT 2024
+                  </p>
+                  <h3 class="mt-2 text-xl font-bold text-neutral-text">
+                    Festival de la Joie
+                  </h3>
+                  <p class="mt-2 text-sm text-neutral-text/70">
+                    Trois jours de louange, de musique et de partage. Un moment
+                    inoubliable pour célébrer notre foi ensemble.
+                  </p>
+                  <button
+                    class="mt-4 flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-lg border-2 border-primary/50 bg-transparent h-10 px-4 text-primary text-sm font-bold transition-colors hover:border-primary hover:bg-primary/10"
+                  >
+                    <span>En savoir plus</span>
+                  </button>
+                </div>
+              </div>
+              <div
+                class="group overflow-hidden rounded-xl border border-white/10 bg-white/5 transition-shadow hover:shadow-2xl hover:shadow-primary/10"
+              >
+                <img
+                  class="h-56 w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                  data-alt="A group of young people sitting around a table, studying and collaborating."
+                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuAsW0Wy4bnP_FsRnBtRY9qZ_rOMGuNKTYQd30HYb6NP6ONZBamQqb5MNpcoBOFpCc_GsLOmDx9qKLlUn3OU9ycPjqRzugPf7xkRMhxlh2hVmbZbkqfNXBUmhl-OTmngGcwYkP94X4R1Um6JpvsLM184NvOJCq--UhAUz12eMe1E6qqtJHu4LcdF4jPhrO0R4IlW4OmS-Bmi5OhfnBgJVXlJ86_rdjGCC2Z9ipRNK8hKVqKbBuROC_WRf5K1BZri868Z7I7LM4411xg"
+                />
+                <div class="p-6">
+                  <p class="text-sm font-semibold text-primary">
+                    15 SEPTEMBRE 2024
+                  </p>
+                  <h3 class="mt-2 text-xl font-bold text-neutral-text">
+                    Week-end Leadership
+                  </h3>
+                  <p class="mt-2 text-sm text-neutral-text/70">
+                    Une formation intensive pour les jeunes leaders et ceux qui
+                    aspirent à servir avec excellence.
+                  </p>
+                  <button
+                    class="mt-4 flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-lg border-2 border-primary/50 bg-transparent h-10 px-4 text-primary text-sm font-bold transition-colors hover:border-primary hover:bg-primary/10"
+                  >
+                    <span>Participer</span>
+                  </button>
+                </div>
+              </div>
+              <div
+                class="group overflow-hidden rounded-xl border border-white/10 bg-white/5 transition-shadow hover:shadow-2xl hover:shadow-primary/10"
+              >
+                <img
+                  class="h-56 w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                  data-alt="An auditorium filled with people listening to a speaker on stage."
+                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuD7UZknp-1nSOpHq406m9emTC35a28r3t0eCdPUzZO6MrayLQqy8pCFAgWT6ndDH9k8CV8XjVAezNa9iNlnj3-qzmfaS6mmvaY26Z1CaflaanF7niUPjuvI-g4t7HCW4rSIqwNhaaDzJHm4WIJUBjFpUFojzWxbtRITBaq8NgL1HkPvo6ySMcFxSO0uVZlbaGAintMgcnwhHsiVCXEpn4BAzYBdCiHdxx-4lrFCOg4JYD0xgikZ11U-pu7qhEPM7gC2Heu2UF0jJGM"
+                />
+                <div class="p-6">
+                  <p class="text-sm font-semibold text-primary">
+                    18-20 OCTOBRE 2024
+                  </p>
+                  <h3 class="mt-2 text-xl font-bold text-neutral-text">
+                    Convention Annuelle
+                  </h3>
+                  <p class="mt-2 text-sm text-neutral-text/70">
+                    Le point culminant de notre année. Un rassemblement national
+                    pour tous les membres du mouvement RJVC.
+                  </p>
+                  <button
+                    class="mt-4 flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-lg border-2 border-primary/50 bg-transparent h-10 px-4 text-primary text-sm font-bold transition-colors hover:border-primary hover:bg-primary/10"
+                  >
+                    <span>En savoir plus</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </section>
+          <!-- Testimonials Section -->
+          <section class="py-16 sm:py-24">
+            <div class="text-center">
+              <h2
+                class="text-3xl font-bold leading-tight tracking-tighter text-neutral-text sm:text-4xl"
+              >
+                Paroles de notre communauté
+              </h2>
+              <p
+                class="mx-auto mt-4 max-w-2xl text-base font-normal leading-normal text-neutral-text/70 sm:text-lg"
+              >
+                Ils ont vécu l'expérience RJVC. Découvrez ce qu'ils en disent.
+              </p>
+            </div>
+            <div class="relative mt-12">
+              <div class="grid grid-cols-1 gap-8 lg:grid-cols-2">
+                <div
+                  class="flex flex-col rounded-xl border border-white/10 bg-white/5 p-8"
+                >
+                  <p class="flex-grow text-neutral-text/80">
+                    "RJVC a transformé ma foi. J'ai trouvé ici une vraie
+                    famille, un lieu où je peux être moi-même et grandir
+                    spirituellement aux côtés d'autres jeunes qui partagent les
+                    mêmes valeurs."
+                  </p>
+                  <div class="mt-6 flex items-center gap-4">
+                    <img
+                      class="size-12 rounded-full object-cover"
+                      data-alt="Portrait of a smiling young man."
+                      src="https://lh3.googleusercontent.com/aida-public/AB6AXuDkKquEaEon9QhjAXjRseSvJ6T8K3njuzJOYRsc7dpJjMXRBYXufNHGyPF4UBrGfg5X5gSV6M3hcTTN6q-7nTK0L8ZJiFCQw5dczmxCf1r_JJedrdRe2NrxpyNTwDKVCkDMl4Ul3qh5BzvoO-0LzoY6DVA7u0_3Tulk2Gekv54EwrnXqrXD5keGVRqWL8NwD1YqOA1-9a3uRADGFhiJhxW5QRkY6vBH3jKjlMurmHACv-0v1ZCvdF4hHpqew1SOUcfP4fbinFXELKk"
+                    />
+                    <div>
+                      <p class="font-bold text-neutral-text">Jean D.</p>
+                      <p class="text-sm text-neutral-text/60">Étudiant</p>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="flex flex-col rounded-xl border border-white/10 bg-white/5 p-8"
+                >
+                  <p class="flex-grow text-neutral-text/80">
+                    "Les événements sont toujours incroyables ! La qualité de la
+                    louange, la profondeur des enseignements... Chaque
+                    rassemblement est une source de renouvellement et de joie
+                    intense."
+                  </p>
+                  <div class="mt-6 flex items-center gap-4">
+                    <img
+                      class="size-12 rounded-full object-cover"
+                      data-alt="Portrait of a smiling young woman."
+                      src="https://lh3.googleusercontent.com/aida-public/AB6AXuAR-poKMKNc2t-w_Kk-m5zqa1_QpygFwrVrevXEa8Y7MnPZqTwPFWZIo-83ti05hToSnblE9-nW17ftizFS6_RjDJ_6Z-bM8mfGfL-W481rGvNEBmcxBGLn_ZeoNv1VKtqSkmN4ia4RqNumhcfsayAP7-2QkwRAt5nsSSGrRbPc463mj3_o73f6_5Nw9Yec2J7XXS-35eG0BFCiLSEW0YCbcPNFjc3cZTZmpAqrGkogJslFieDa4rt2rAnYaqJ4_4ZHpB4D80uOB44"
+                    />
+                    <div>
+                      <p class="font-bold text-neutral-text">Marie L.</p>
+                      <p class="text-sm text-neutral-text/60">
+                        Jeune professionnelle
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="absolute -left-12 top-1/2 hidden -translate-y-1/2 transform lg:block"
+              >
+                <button
+                  class="flex size-10 items-center justify-center rounded-full border border-white/20 bg-white/10 text-white transition-colors hover:bg-white/20"
+                >
+                  <span class="material-symbols-outlined">arrow_back</span>
+                </button>
+              </div>
+              <div
+                class="absolute -right-12 top-1/2 hidden -translate-y-1/2 transform lg:block"
+              >
+                <button
+                  class="flex size-10 items-center justify-center rounded-full border border-white/20 bg-white/10 text-white transition-colors hover:bg-white/20"
+                >
+                  <span class="material-symbols-outlined">arrow_forward</span>
+                </button>
+              </div>
+            </div>
+          </section>
+        </div>
+      </main>
+    </div>
+  </body>
+</html>

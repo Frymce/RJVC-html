@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>RJVC Events Calendar</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+      rel="stylesheet"
+    />
+    <style>
+      .material-symbols-outlined {
+        font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
+      }
+    </style>
+    <script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              primary: "#FFD700",
+              "background-dark": "#0A192F",
+              "background-light": "#F0F0F0",
+              "card-dark": "#172A45",
+              "text-light": "#F0F0F0",
+            },
+            fontFamily: {
+              display: ["Poppins", "sans-serif"],
+            },
+            borderRadius: {
+              DEFAULT: "0.5rem",
+              lg: "0.75rem",
+              xl: "1rem",
+              full: "9999px",
+            },
+          },
+        },
+      };
+    </script>
+  </head>
+  <body
+    class="font-display bg-background-light dark:bg-background-dark text-text-light antialiased"
+  >
+    <div
+      class="relative flex h-auto min-h-screen w-full flex-col group/design-root overflow-x-hidden"
+    >
+      <div class="layout-container flex h-full grow flex-col">
+        <header
+          class="flex items-center justify-between whitespace-nowrap border-b border-solid border-white/10 px-6 sm:px-10 lg:px-20 py-4"
+        >
+          <div class="flex items-center gap-4">
+            <div class="size-6 text-primary">
+              <svg
+                fill="none"
+                viewbox="0 0 48 48"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M4 4H17.3334V17.3334H30.6666V30.6666H44V44H4V4Z"
+                  fill="currentColor"
+                ></path>
+              </svg>
+            </div>
+            <h2 class="text-white text-xl font-bold tracking-[-0.015em]">
+              RJVC
+            </h2>
+          </div>
+          <nav class="hidden md:flex items-center gap-8">
+            <a
+              class="text-text-light/80 hover:text-white text-sm font-medium transition-colors"
+              href="./index.html"
+              >Home</a
+            >
+            <a
+              class="text-text-light/80 hover:text-white text-sm font-medium transition-colors"
+              href="about.html"
+              >About Us</a
+            >
+            <a class="text-white text-sm font-bold" href="#">Events</a>
+            <a
+              class="text-text-light/80 hover:text-white text-sm font-medium transition-colors"
+              href="#"
+              >Join Us</a
+            >
+            <a
+              class="text-text-light/80 hover:text-white text-sm font-medium transition-colors"
+              href="#"
+              >Contact</a
+            >
+          </nav>
+          <div class="flex items-center gap-4">
+            <button
+              class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-10 px-5 bg-primary text-[#0A192F] text-sm font-bold tracking-wide hover:opacity-90 transition-opacity"
+            >
+              <span class="truncate">Login</span>
+            </button>
+            <div
+              class="hidden sm:block bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10"
+              data-alt="User profile picture"
+              style="
+                background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuD9wlbh8fcOWd05BGYznu9-LMf-m_VwTJrqHBjGRFWnnvWSGbtvLrqUNX4gWVqoQCtfhmreRDW6mylTZPQRoAPth3x15wDuAQS2wuxiIeTaOBB5xQspSTuPq-nbZbk0kNVZXf_1hUnmGg0tw2GB1G54sZL-7Q9vUsmb46USOVCo6oR1CzxAJXA1J-RFIMUSOZ20nxQtXQ9r1r8zhuKnmEhw5Mkx83vBBpCzIyPgKr46CyTuY74c4BYtcW_tqPM70ezjPemEIBQ3itE');
+              "
+            ></div>
+          </div>
+        </header>
+        <main class="px-4 sm:px-6 lg:px-8 py-10 flex-1">
+          <div class="max-w-7xl mx-auto">
+            <div class="flex flex-col gap-4 mb-8">
+              <h1
+                class="text-white text-4xl md:text-5xl font-bold tracking-tight"
+              >
+                Upcoming Events
+              </h1>
+              <p class="text-text-light/70 text-lg">
+                Join us for faith, unity, service, and joy. Find an event that
+                speaks to you.
+              </p>
+            </div>
+            <div class="flex flex-col md:flex-row gap-8">
+              <div class="w-full md:w-2/3 lg:w-3/4">
+                <div class="bg-card-dark p-4 sm:p-6 rounded-xl shadow-lg">
+                  <div class="flex items-center justify-between mb-4">
+                    <div class="flex items-center gap-4">
+                      <h3 class="text-white text-xl font-bold">October 2024</h3>
+                      <button
+                        class="text-text-light/80 hover:text-white transition-colors"
+                      >
+                        <span class="material-symbols-outlined text-2xl"
+                          >expand_more</span
+                        >
+                      </button>
+                    </div>
+                    <div class="flex items-center gap-2">
+                      <button
+                        class="flex size-9 items-center justify-center rounded-full hover:bg-white/10 transition-colors"
+                      >
+                        <span class="material-symbols-outlined text-xl"
+                          >chevron_left</span
+                        >
+                      </button>
+                      <button
+                        class="h-9 px-4 rounded-full text-sm font-semibold border border-white/20 hover:bg-white/10 transition-colors"
+                      >
+                        Today
+                      </button>
+                      <button
+                        class="flex size-9 items-center justify-center rounded-full hover:bg-white/10 transition-colors"
+                      >
+                        <span class="material-symbols-outlined text-xl"
+                          >chevron_right</span
+                        >
+                      </button>
+                    </div>
+                  </div>
+                  <div class="grid grid-cols-7 gap-1 text-center text-sm">
+                    <p class="text-text-light/60 font-semibold py-2">SUN</p>
+                    <p class="text-text-light/60 font-semibold py-2">MON</p>
+                    <p class="text-text-light/60 font-semibold py-2">TUE</p>
+                    <p class="text-text-light/60 font-semibold py-2">WED</p>
+                    <p class="text-text-light/60 font-semibold py-2">THU</p>
+                    <p class="text-text-light/60 font-semibold py-2">FRI</p>
+                    <p class="text-text-light/60 font-semibold py-2">SAT</p>
+                    <!-- Calendar Days -->
+                    <div class="aspect-square text-text-light/40"></div>
+                    <div class="aspect-square text-text-light/40"></div>
+                    <button
+                      class="aspect-square flex flex-col items-center justify-center rounded-lg hover:bg-white/5 transition-colors p-1"
+                    >
+                      <span class="font-medium">1</span>
+                    </button>
+                    <button
+                      class="aspect-square flex flex-col items-center justify-center rounded-lg hover:bg-white/5 transition-colors p-1"
+                    >
+                      <span class="font-medium">2</span>
+                    </button>
+                    <button
+                      class="aspect-square flex flex-col items-center justify-center rounded-lg hover:bg-white/5 transition-colors p-1"
+                    >
+                      <span class="font-medium">3</span>
+                    </button>
+                    <button
+                      class="aspect-square flex flex-col items-center justify-center rounded-lg hover:bg-white/5 transition-colors p-1"
+                    >
+                      <span class="font-medium">4</span>
+                    </button>
+                    <button
+                      class="aspect-square flex flex-col items-center justify-center rounded-lg hover:bg-white/5 transition-colors p-1"
+                    >
+                      <span class="font-medium">5</span>
+                      <div class="flex gap-1 mt-1">
+                        <div class="size-1.5 rounded-full bg-primary"></div>
+                      </div>
+                    </button>
+                    <button
+                      class="aspect-square flex flex-col items-center justify-center rounded-lg hover:bg-white/5 transition-colors p-1"
+                    >
+                      <span class="font-medium">6</span>
+                    </button>
+                    <button
+                      class="aspect-square flex flex-col items-center justify-center rounded-lg hover:bg-white/5 transition-colors p-1"
+                    >
+                      <span class="font-medium">7</span>
+                    </button>
+                    <button
+                      class="aspect-square flex flex-col items-center justify-center rounded-lg hover:bg-white/5 transition-colors p-1"
+                    >
+                      <span class="font-medium">8</span>
+                    </button>
+                    <button
+                      class="aspect-square flex flex-col items-center justify-center rounded-lg hover:bg-white/5 transition-colors p-1"
+                    >
+                      <span class="font-medium">9</span>
+                    </button>
+                    <button
+                      class="aspect-square flex flex-col items-center justify-center rounded-lg bg-primary/20 ring-2 ring-primary p-1"
+                    >
+                      <span class="font-bold text-primary">10</span>
+                      <div class="flex gap-1 mt-1">
+                        <div class="size-1.5 rounded-full bg-primary"></div>
+                        <div class="size-1.5 rounded-full bg-white"></div>
+                      </div>
+                    </button>
+                    <button
+                      class="aspect-square flex flex-col items-center justify-center rounded-lg hover:bg-white/5 transition-colors p-1"
+                    >
+                      <span class="font-medium">11</span>
+                    </button>
+                    <button
+                      class="aspect-square flex flex-col items-center justify-center rounded-lg hover:bg-white/5 transition-colors p-1"
+                    >
+                      <span class="font-medium">12</span>
+                    </button>
+                    <button
+                      class="aspect-square flex flex-col items-center justify-center rounded-lg hover:bg-white/5 transition-colors p-1"
+                    >
+                      <span class="font-medium">13</span>
+                    </button>
+                    <button
+                      class="aspect-square flex flex-col items-center justify-center rounded-lg hover:bg-white/5 transition-colors p-1"
+                    >
+                      <span class="font-medium">14</span>
+                    </button>
+                    <button
+                      class="aspect-square flex flex-col items-center justify-center rounded-lg hover:bg-white/5 transition-colors p-1"
+                    >
+                      <span class="font-medium">15</span>
+                    </button>
+                    <button
+                      class="aspect-square flex flex-col items-center justify-center rounded-lg hover:bg-white/5 transition-colors p-1"
+                    >
+                      <span class="font-medium">16</span>
+                    </button>
+                    <button
+                      class="aspect-square flex flex-col items-center justify-center rounded-lg hover:bg-white/5 transition-colors p-1"
+                    >
+                      <span class="font-medium">17</span>
+                    </button>
+                    <button
+                      class="aspect-square flex flex-col items-center justify-center rounded-lg hover:bg-white/5 transition-colors p-1"
+                    >
+                      <span class="font-medium">18</span>
+                    </button>
+                    <button
+                      class="aspect-square flex flex-col items-center justify-center rounded-lg hover:bg-white/5 transition-colors p-1"
+                    >
+                      <span class="font-medium">19</span>
+                      <div class="flex gap-1 mt-1">
+                        <div class="size-1.5 rounded-full bg-white"></div>
+                      </div>
+                    </button>
+                    <button
+                      class="aspect-square flex flex-col items-center justify-center rounded-lg hover:bg-white/5 transition-colors p-1"
+                    >
+                      <span class="font-medium">20</span>
+                    </button>
+                    <button
+                      class="aspect-square flex flex-col items-center justify-center rounded-lg hover:bg-white/5 transition-colors p-1"
+                    >
+                      <span class="font-medium">21</span>
+                    </button>
+                    <button
+                      class="aspect-square flex flex-col items-center justify-center rounded-lg hover:bg-white/5 transition-colors p-1"
+                    >
+                      <span class="font-medium">22</span>
+                    </button>
+                    <button
+                      class="aspect-square flex flex-col items-center justify-center rounded-lg hover:bg-white/5 transition-colors p-1"
+                    >
+                      <span class="font-medium">23</span>
+                    </button>
+                    <button
+                      class="aspect-square flex flex-col items-center justify-center rounded-lg hover:bg-white/5 transition-colors p-1"
+                    >
+                      <span class="font-medium">24</span>
+                    </button>
+                    <button
+                      class="aspect-square flex flex-col items-center justify-center rounded-lg hover:bg-white/5 transition-colors p-1"
+                    >
+                      <span class="font-medium">25</span>
+                    </button>
+                    <button
+                      class="aspect-square flex flex-col items-center justify-center rounded-lg hover:bg-white/5 transition-colors p-1"
+                    >
+                      <span class="font-medium">26</span>
+                    </button>
+                    <button
+                      class="aspect-square flex flex-col items-center justify-center rounded-lg hover:bg-white/5 transition-colors p-1"
+                    >
+                      <span class="font-medium">27</span>
+                    </button>
+                    <button
+                      class="aspect-square flex flex-col items-center justify-center rounded-lg hover:bg-white/5 transition-colors p-1"
+                    >
+                      <span class="font-medium">28</span>
+                    </button>
+                    <button
+                      class="aspect-square flex flex-col items-center justify-center rounded-lg hover:bg-white/5 transition-colors p-1"
+                    >
+                      <span class="font-medium">29</span>
+                    </button>
+                    <button
+                      class="aspect-square flex flex-col items-center justify-center rounded-lg hover:bg-white/5 transition-colors p-1"
+                    >
+                      <span class="font-medium">30</span>
+                    </button>
+                    <button
+                      class="aspect-square flex flex-col items-center justify-center rounded-lg hover:bg-white/5 transition-colors p-1"
+                    >
+                      <span class="font-medium">31</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div class="w-full md:w-1/3 lg:w-1/4">
+                <div class="flex flex-col gap-6">
+                  <label class="relative flex flex-col min-w-40 w-full">
+                    <div
+                      class="flex w-full flex-1 items-stretch rounded-full h-12"
+                    >
+                      <div
+                        class="text-text-light/50 flex bg-card-dark items-center justify-center pl-4 rounded-l-full"
+                      >
+                        <span class="material-symbols-outlined text-xl"
+                          >search</span
+                        >
+                      </div>
+                      <input
+                        class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-r-full text-white focus:outline-0 focus:ring-2 focus:ring-primary/50 border-none bg-card-dark h-full placeholder:text-text-light/50 px-4 text-sm"
+                        placeholder="Search events..."
+                        value=""
+                      />
+                    </div>
+                  </label>
+                  <div class="flex flex-wrap gap-2">
+                    <button
+                      class="flex h-8 shrink-0 items-center justify-center gap-x-2 rounded-full bg-card-dark px-4 hover:bg-white/10 transition-colors"
+                    >
+                      <p class="text-text-light text-sm font-medium">All</p>
+                    </button>
+                    <button
+                      class="flex h-8 shrink-0 items-center justify-center gap-x-2 rounded-full bg-card-dark px-4 hover:bg-white/10 transition-colors"
+                    >
+                      <p class="text-text-light text-sm font-medium">Service</p>
+                    </button>
+                    <button
+                      class="flex h-8 shrink-0 items-center justify-center gap-x-2 rounded-full bg-card-dark px-4 hover:bg-white/10 transition-colors"
+                    >
+                      <p class="text-text-light text-sm font-medium">
+                        Training
+                      </p>
+                    </button>
+                    <button
+                      class="flex h-8 shrink-0 items-center justify-center gap-x-2 rounded-full bg-card-dark px-4 hover:bg-white/10 transition-colors"
+                    >
+                      <p class="text-text-light text-sm font-medium">Social</p>
+                    </button>
+                  </div>
+                  <div class="border-t border-white/10"></div>
+                  <div class="flex flex-col gap-4">
+                    <h4 class="text-lg font-bold text-white">
+                      Events on October 10
+                    </h4>
+                    <div class="flex flex-col gap-4">
+                      <!-- Event Card 1 -->
+                      <div
+                        class="bg-card-dark p-4 rounded-lg border-l-4 border-primary"
+                      >
+                        <div class="flex flex-col gap-2">
+                          <p
+                            class="text-xs font-semibold uppercase tracking-wider text-primary"
+                          >
+                            Faith
+                          </p>
+                          <h5 class="font-bold text-white">
+                            Youth Worship Night
+                          </h5>
+                          <p class="text-sm text-text-light/70">
+                            7:00 PM - 9:00 PM
+                          </p>
+                          <p class="text-sm text-text-light/70">
+                            An evening of praise, worship, and fellowship for
+                            all youth.
+                          </p>
+                          <div class="flex gap-2 mt-2">
+                            <button
+                              class="flex-1 text-center text-sm font-semibold rounded-full py-2 bg-primary/20 text-primary hover:bg-primary/30 transition-colors"
+                            >
+                              View Details
+                            </button>
+                            <button
+                              class="flex-1 text-center text-sm font-bold rounded-full py-2 bg-primary text-[#0A192F] hover:opacity-90 transition-opacity"
+                            >
+                              Register Now
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                      <!-- Event Card 2 -->
+                      <div
+                        class="bg-card-dark p-4 rounded-lg border-l-4 border-text-light"
+                      >
+                        <div class="flex flex-col gap-2">
+                          <p
+                            class="text-xs font-semibold uppercase tracking-wider text-text-light/80"
+                          >
+                            Service
+                          </p>
+                          <h5 class="font-bold text-white">
+                            Community Clean-Up
+                          </h5>
+                          <p class="text-sm text-text-light/70">
+                            9:00 AM - 12:00 PM
+                          </p>
+                          <p class="text-sm text-text-light/70">
+                            Join us as we serve our local community by cleaning
+                            up the park.
+                          </p>
+                          <div class="flex gap-2 mt-2">
+                            <button
+                              class="flex-1 text-center text-sm font-semibold rounded-full py-2 bg-white/10 text-white hover:bg-white/20 transition-colors"
+                            >
+                              View Details
+                            </button>
+                            <button
+                              class="flex-1 text-center text-sm font-bold rounded-full py-2 bg-primary text-[#0A192F] hover:opacity-90 transition-opacity"
+                            >
+                              Register Now
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </main>
+      </div>
+    </div>
+  </body>
+</html>
