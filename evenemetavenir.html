@@ -20,6 +20,31 @@
       .material-symbols-outlined {
         font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
       }
+      
+      /* Mobile menu styles */
+      .mobile-menu {
+        transform: translateX(100%);
+        transition: transform 0.3s ease-out;
+        width: 85%;
+        max-width: 320px;
+      }
+
+      .mobile-menu.open {
+        transform: translateX(0);
+      }
+
+      .overlay {
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.3s ease-out;
+        background: rgba(0, 0, 0, 0.8);
+        z-index: 49;
+      }
+
+      .overlay.open {
+        opacity: 1;
+        visibility: visible;
+      }
     </style>
     <script>
       tailwind.config = {
@@ -50,6 +75,47 @@
   <body
     class="font-display bg-background-light dark:bg-background-dark text-text-light antialiased"
   >
+    <!-- Mobile Menu Overlay -->
+    <div id="mobile-menu-overlay" class="overlay fixed inset-0 md:hidden"></div>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="mobile-menu fixed right-0 top-0 z-50 h-full bg-card-dark shadow-xl">
+      <div class="p-6 h-full flex flex-col">
+        <!-- Header with close button -->
+        <div class="flex items-center justify-between mb-8 pb-4 border-b border-white/10">
+          <div class="flex items-center gap-4">
+            <div class="size-6 text-primary">
+              <svg fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+                <path d="M4 4H17.3334V17.3334H30.6666V30.6666H44V44H4V4Z" fill="currentColor"></path>
+              </svg>
+            </div>
+            <h2 class="text-white text-xl font-bold tracking-[-0.015em]">RJVC</h2>
+          </div>
+          <button id="close-menu-button" class="text-white hover:text-primary transition-colors p-2">
+            <span class="material-symbols-outlined text-3xl">close</span>
+          </button>
+        </div>
+        
+        <!-- Navigation -->
+        <nav class="flex-1">
+          <div class="flex flex-col gap-1">
+            <a class="text-lg font-medium text-text-light/80 hover:text-white transition-colors hover:bg-white/5 py-4 px-4 rounded-lg" href="./index.html">Home</a>
+            <a class="text-lg font-medium text-text-light/80 hover:text-white transition-colors hover:bg-white/5 py-4 px-4 rounded-lg" href="about.html">About Us</a>
+            <a class="text-lg font-medium text-white hover:bg-white/5 py-4 px-4 rounded-lg" href="#">Events</a>
+            <a class="text-lg font-medium text-text-light/80 hover:text-white transition-colors hover:bg-white/5 py-4 px-4 rounded-lg" href="./">Join Us</a>
+            <a class="text-lg font-medium text-text-light/80 hover:text-white transition-colors hover:bg-white/5 py-4 px-4 rounded-lg" href="./contact.html">Contact</a>
+          </div>
+        </nav>
+        
+        <!-- Donation Button -->
+        <div class="mt-auto pt-6 border-t border-white/10">
+          <button class="flex w-full items-center justify-center rounded-lg h-12 bg-primary text-background-dark text-base font-bold hover:bg-primary/90 transition-colors">
+            Donate
+          </button>
+        </div>
+      </div>
+    </div>
+
     <div
       class="relative flex h-auto min-h-screen w-full flex-col group/design-root overflow-x-hidden"
     >
@@ -74,64 +140,71 @@
               RJVC
             </h2>
           </div>
+          
+          <!-- Desktop Navigation -->
           <nav class="hidden md:flex items-center gap-8">
             <a
               class="text-text-light/80 hover:text-white text-sm font-medium transition-colors"
               href="./index.html"
-              >Home</a
-            >
+              >Accueil
+            </a>
             <a
               class="text-text-light/80 hover:text-white text-sm font-medium transition-colors"
               href="about.html"
-              >About Us</a
+              >A propos</a
+            >
+            <a
+              class="text-neutral-text text-sm font-medium leading-normal transition-colors hover:text-primary"
+              href="./communaut.html"
+              >Nos Communautés</a
             >
             <a class="text-white text-sm font-bold" href="#">Events</a>
             <a
               class="text-text-light/80 hover:text-white text-sm font-medium transition-colors"
-              href="#"
+              href="./"
               >Join Us</a
             >
             <a
               class="text-text-light/80 hover:text-white text-sm font-medium transition-colors"
-              href="#"
+              href="./contact.html"
               >Contact</a
             >
-          </nav>
-          <div class="flex items-center gap-4">
             <button
-              class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-10 px-5 bg-primary text-[#0A192F] text-sm font-bold tracking-wide hover:opacity-90 transition-opacity"
+              class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-primary text-background-dark text-sm font-bold leading-normal tracking-[0.015em] hover:bg-primary/90 transition-colors"
             >
-              <span class="truncate">Login</span>
+              <span class="truncate">Donate</span>
             </button>
-            <div
-              class="hidden sm:block bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10"
-              data-alt="User profile picture"
-              style="
-                background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuD9wlbh8fcOWd05BGYznu9-LMf-m_VwTJrqHBjGRFWnnvWSGbtvLrqUNX4gWVqoQCtfhmreRDW6mylTZPQRoAPth3x15wDuAQS2wuxiIeTaOBB5xQspSTuPq-nbZbk0kNVZXf_1hUnmGg0tw2GB1G54sZL-7Q9vUsmb46USOVCo6oR1CzxAJXA1J-RFIMUSOZ20nxQtXQ9r1r8zhuKnmEhw5Mkx83vBBpCzIyPgKr46CyTuY74c4BYtcW_tqPM70ezjPemEIBQ3itE');
-              "
-            ></div>
-          </div>
+          </nav>
+          
+          <!-- Mobile Menu Button -->
+          <button id="mobile-menu-button" class="md:hidden text-white p-2">
+            <span class="material-symbols-outlined text-3xl">menu</span>
+          </button>
         </header>
-        <main class="px-4 sm:px-6 lg:px-8 py-10 flex-1">
+        
+        <main class="px-4 sm:px-6 lg:px-8 py-8 md:py-10 flex-1">
           <div class="max-w-7xl mx-auto">
-            <div class="flex flex-col gap-4 mb-8">
+            <div class="flex flex-col gap-4 mb-6 md:mb-8">
               <h1
-                class="text-white text-4xl md:text-5xl font-bold tracking-tight"
+                class="text-white text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight"
               >
                 Upcoming Events
               </h1>
-              <p class="text-text-light/70 text-lg">
+              <p class="text-text-light/70 text-base md:text-lg">
                 Join us for faith, unity, service, and joy. Find an event that
                 speaks to you.
               </p>
             </div>
-            <div class="flex flex-col md:flex-row gap-8">
+            
+            <div class="flex flex-col md:flex-row gap-6 md:gap-8">
+              <!-- Calendar Section -->
               <div class="w-full md:w-2/3 lg:w-3/4">
                 <div class="bg-card-dark p-4 sm:p-6 rounded-xl shadow-lg">
-                  <div class="flex items-center justify-between mb-4">
+                  <!-- Calendar Header -->
+                  <div class="flex flex-col sm:flex-row items-center justify-between gap-4 mb-4">
                     <div class="flex items-center gap-4">
-                      <h3 class="text-white text-xl font-bold">October 2024</h3>
-                      <button
+                      <h3 id="current-month-year" class="text-white text-xl font-bold">October 2024</h3>
+                      <button id="month-selector"
                         class="text-text-light/80 hover:text-white transition-colors"
                       >
                         <span class="material-symbols-outlined text-2xl"
@@ -140,19 +213,19 @@
                       </button>
                     </div>
                     <div class="flex items-center gap-2">
-                      <button
+                      <button id="prev-month"
                         class="flex size-9 items-center justify-center rounded-full hover:bg-white/10 transition-colors"
                       >
                         <span class="material-symbols-outlined text-xl"
                           >chevron_left</span
                         >
                       </button>
-                      <button
+                      <button id="today-btn"
                         class="h-9 px-4 rounded-full text-sm font-semibold border border-white/20 hover:bg-white/10 transition-colors"
                       >
                         Today
                       </button>
-                      <button
+                      <button id="next-month"
                         class="flex size-9 items-center justify-center rounded-full hover:bg-white/10 transition-colors"
                       >
                         <span class="material-symbols-outlined text-xl"
@@ -161,6 +234,8 @@
                       </button>
                     </div>
                   </div>
+                  
+                  <!-- Calendar Grid -->
                   <div class="grid grid-cols-7 gap-1 text-center text-sm">
                     <p class="text-text-light/60 font-semibold py-2">SUN</p>
                     <p class="text-text-light/60 font-semibold py-2">MON</p>
@@ -169,179 +244,19 @@
                     <p class="text-text-light/60 font-semibold py-2">THU</p>
                     <p class="text-text-light/60 font-semibold py-2">FRI</p>
                     <p class="text-text-light/60 font-semibold py-2">SAT</p>
-                    <!-- Calendar Days -->
-                    <div class="aspect-square text-text-light/40"></div>
-                    <div class="aspect-square text-text-light/40"></div>
-                    <button
-                      class="aspect-square flex flex-col items-center justify-center rounded-lg hover:bg-white/5 transition-colors p-1"
-                    >
-                      <span class="font-medium">1</span>
-                    </button>
-                    <button
-                      class="aspect-square flex flex-col items-center justify-center rounded-lg hover:bg-white/5 transition-colors p-1"
-                    >
-                      <span class="font-medium">2</span>
-                    </button>
-                    <button
-                      class="aspect-square flex flex-col items-center justify-center rounded-lg hover:bg-white/5 transition-colors p-1"
-                    >
-                      <span class="font-medium">3</span>
-                    </button>
-                    <button
-                      class="aspect-square flex flex-col items-center justify-center rounded-lg hover:bg-white/5 transition-colors p-1"
-                    >
-                      <span class="font-medium">4</span>
-                    </button>
-                    <button
-                      class="aspect-square flex flex-col items-center justify-center rounded-lg hover:bg-white/5 transition-colors p-1"
-                    >
-                      <span class="font-medium">5</span>
-                      <div class="flex gap-1 mt-1">
-                        <div class="size-1.5 rounded-full bg-primary"></div>
-                      </div>
-                    </button>
-                    <button
-                      class="aspect-square flex flex-col items-center justify-center rounded-lg hover:bg-white/5 transition-colors p-1"
-                    >
-                      <span class="font-medium">6</span>
-                    </button>
-                    <button
-                      class="aspect-square flex flex-col items-center justify-center rounded-lg hover:bg-white/5 transition-colors p-1"
-                    >
-                      <span class="font-medium">7</span>
-                    </button>
-                    <button
-                      class="aspect-square flex flex-col items-center justify-center rounded-lg hover:bg-white/5 transition-colors p-1"
-                    >
-                      <span class="font-medium">8</span>
-                    </button>
-                    <button
-                      class="aspect-square flex flex-col items-center justify-center rounded-lg hover:bg-white/5 transition-colors p-1"
-                    >
-                      <span class="font-medium">9</span>
-                    </button>
-                    <button
-                      class="aspect-square flex flex-col items-center justify-center rounded-lg bg-primary/20 ring-2 ring-primary p-1"
-                    >
-                      <span class="font-bold text-primary">10</span>
-                      <div class="flex gap-1 mt-1">
-                        <div class="size-1.5 rounded-full bg-primary"></div>
-                        <div class="size-1.5 rounded-full bg-white"></div>
-                      </div>
-                    </button>
-                    <button
-                      class="aspect-square flex flex-col items-center justify-center rounded-lg hover:bg-white/5 transition-colors p-1"
-                    >
-                      <span class="font-medium">11</span>
-                    </button>
-                    <button
-                      class="aspect-square flex flex-col items-center justify-center rounded-lg hover:bg-white/5 transition-colors p-1"
-                    >
-                      <span class="font-medium">12</span>
-                    </button>
-                    <button
-                      class="aspect-square flex flex-col items-center justify-center rounded-lg hover:bg-white/5 transition-colors p-1"
-                    >
-                      <span class="font-medium">13</span>
-                    </button>
-                    <button
-                      class="aspect-square flex flex-col items-center justify-center rounded-lg hover:bg-white/5 transition-colors p-1"
-                    >
-                      <span class="font-medium">14</span>
-                    </button>
-                    <button
-                      class="aspect-square flex flex-col items-center justify-center rounded-lg hover:bg-white/5 transition-colors p-1"
-                    >
-                      <span class="font-medium">15</span>
-                    </button>
-                    <button
-                      class="aspect-square flex flex-col items-center justify-center rounded-lg hover:bg-white/5 transition-colors p-1"
-                    >
-                      <span class="font-medium">16</span>
-                    </button>
-                    <button
-                      class="aspect-square flex flex-col items-center justify-center rounded-lg hover:bg-white/5 transition-colors p-1"
-                    >
-                      <span class="font-medium">17</span>
-                    </button>
-                    <button
-                      class="aspect-square flex flex-col items-center justify-center rounded-lg hover:bg-white/5 transition-colors p-1"
-                    >
-                      <span class="font-medium">18</span>
-                    </button>
-                    <button
-                      class="aspect-square flex flex-col items-center justify-center rounded-lg hover:bg-white/5 transition-colors p-1"
-                    >
-                      <span class="font-medium">19</span>
-                      <div class="flex gap-1 mt-1">
-                        <div class="size-1.5 rounded-full bg-white"></div>
-                      </div>
-                    </button>
-                    <button
-                      class="aspect-square flex flex-col items-center justify-center rounded-lg hover:bg-white/5 transition-colors p-1"
-                    >
-                      <span class="font-medium">20</span>
-                    </button>
-                    <button
-                      class="aspect-square flex flex-col items-center justify-center rounded-lg hover:bg-white/5 transition-colors p-1"
-                    >
-                      <span class="font-medium">21</span>
-                    </button>
-                    <button
-                      class="aspect-square flex flex-col items-center justify-center rounded-lg hover:bg-white/5 transition-colors p-1"
-                    >
-                      <span class="font-medium">22</span>
-                    </button>
-                    <button
-                      class="aspect-square flex flex-col items-center justify-center rounded-lg hover:bg-white/5 transition-colors p-1"
-                    >
-                      <span class="font-medium">23</span>
-                    </button>
-                    <button
-                      class="aspect-square flex flex-col items-center justify-center rounded-lg hover:bg-white/5 transition-colors p-1"
-                    >
-                      <span class="font-medium">24</span>
-                    </button>
-                    <button
-                      class="aspect-square flex flex-col items-center justify-center rounded-lg hover:bg-white/5 transition-colors p-1"
-                    >
-                      <span class="font-medium">25</span>
-                    </button>
-                    <button
-                      class="aspect-square flex flex-col items-center justify-center rounded-lg hover:bg-white/5 transition-colors p-1"
-                    >
-                      <span class="font-medium">26</span>
-                    </button>
-                    <button
-                      class="aspect-square flex flex-col items-center justify-center rounded-lg hover:bg-white/5 transition-colors p-1"
-                    >
-                      <span class="font-medium">27</span>
-                    </button>
-                    <button
-                      class="aspect-square flex flex-col items-center justify-center rounded-lg hover:bg-white/5 transition-colors p-1"
-                    >
-                      <span class="font-medium">28</span>
-                    </button>
-                    <button
-                      class="aspect-square flex flex-col items-center justify-center rounded-lg hover:bg-white/5 transition-colors p-1"
-                    >
-                      <span class="font-medium">29</span>
-                    </button>
-                    <button
-                      class="aspect-square flex flex-col items-center justify-center rounded-lg hover:bg-white/5 transition-colors p-1"
-                    >
-                      <span class="font-medium">30</span>
-                    </button>
-                    <button
-                      class="aspect-square flex flex-col items-center justify-center rounded-lg hover:bg-white/5 transition-colors p-1"
-                    >
-                      <span class="font-medium">31</span>
-                    </button>
+                    
+                    <!-- Calendar Days will be generated dynamically -->
+                    <div id="calendar-days" class="col-span-7 grid grid-cols-7 gap-1">
+                      <!-- Dynamic content will be inserted here -->
+                    </div>
                   </div>
                 </div>
               </div>
+              
+              <!-- Sidebar -->
               <div class="w-full md:w-1/3 lg:w-1/4">
                 <div class="flex flex-col gap-6">
+                  <!-- Search -->
                   <label class="relative flex flex-col min-w-40 w-full">
                     <div
                       class="flex w-full flex-1 items-stretch rounded-full h-12"
@@ -354,110 +269,49 @@
                         >
                       </div>
                       <input
+                        id="search-input"
                         class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-r-full text-white focus:outline-0 focus:ring-2 focus:ring-primary/50 border-none bg-card-dark h-full placeholder:text-text-light/50 px-4 text-sm"
                         placeholder="Search events..."
                         value=""
                       />
                     </div>
                   </label>
+                  
+                  <!-- Event Filters -->
                   <div class="flex flex-wrap gap-2">
-                    <button
-                      class="flex h-8 shrink-0 items-center justify-center gap-x-2 rounded-full bg-card-dark px-4 hover:bg-white/10 transition-colors"
+                    <button id="filter-all"
+                      class="filter-btn flex h-8 shrink-0 items-center justify-center gap-x-2 rounded-full bg-card-dark px-4 hover:bg-white/10 transition-colors"
                     >
                       <p class="text-text-light text-sm font-medium">All</p>
                     </button>
-                    <button
-                      class="flex h-8 shrink-0 items-center justify-center gap-x-2 rounded-full bg-card-dark px-4 hover:bg-white/10 transition-colors"
+                    <button id="filter-service"
+                      class="filter-btn flex h-8 shrink-0 items-center justify-center gap-x-2 rounded-full bg-card-dark px-4 hover:bg-white/10 transition-colors"
                     >
                       <p class="text-text-light text-sm font-medium">Service</p>
                     </button>
-                    <button
-                      class="flex h-8 shrink-0 items-center justify-center gap-x-2 rounded-full bg-card-dark px-4 hover:bg-white/10 transition-colors"
+                    <button id="filter-training"
+                      class="filter-btn flex h-8 shrink-0 items-center justify-center gap-x-2 rounded-full bg-card-dark px-4 hover:bg-white/10 transition-colors"
                     >
                       <p class="text-text-light text-sm font-medium">
                         Training
                       </p>
                     </button>
-                    <button
-                      class="flex h-8 shrink-0 items-center justify-center gap-x-2 rounded-full bg-card-dark px-4 hover:bg-white/10 transition-colors"
+                    <button id="filter-social"
+                      class="filter-btn flex h-8 shrink-0 items-center justify-center gap-x-2 rounded-full bg-card-dark px-4 hover:bg-white/10 transition-colors"
                     >
                       <p class="text-text-light text-sm font-medium">Social</p>
                     </button>
                   </div>
+                  
                   <div class="border-t border-white/10"></div>
+                  
+                  <!-- Events List -->
                   <div class="flex flex-col gap-4">
-                    <h4 class="text-lg font-bold text-white">
+                    <h4 id="selected-date-title" class="text-lg font-bold text-white">
                       Events on October 10
                     </h4>
-                    <div class="flex flex-col gap-4">
-                      <!-- Event Card 1 -->
-                      <div
-                        class="bg-card-dark p-4 rounded-lg border-l-4 border-primary"
-                      >
-                        <div class="flex flex-col gap-2">
-                          <p
-                            class="text-xs font-semibold uppercase tracking-wider text-primary"
-                          >
-                            Faith
-                          </p>
-                          <h5 class="font-bold text-white">
-                            Youth Worship Night
-                          </h5>
-                          <p class="text-sm text-text-light/70">
-                            7:00 PM - 9:00 PM
-                          </p>
-                          <p class="text-sm text-text-light/70">
-                            An evening of praise, worship, and fellowship for
-                            all youth.
-                          </p>
-                          <div class="flex gap-2 mt-2">
-                            <button
-                              class="flex-1 text-center text-sm font-semibold rounded-full py-2 bg-primary/20 text-primary hover:bg-primary/30 transition-colors"
-                            >
-                              View Details
-                            </button>
-                            <button
-                              class="flex-1 text-center text-sm font-bold rounded-full py-2 bg-primary text-[#0A192F] hover:opacity-90 transition-opacity"
-                            >
-                              Register Now
-                            </button>
-                          </div>
-                        </div>
-                      </div>
-                      <!-- Event Card 2 -->
-                      <div
-                        class="bg-card-dark p-4 rounded-lg border-l-4 border-text-light"
-                      >
-                        <div class="flex flex-col gap-2">
-                          <p
-                            class="text-xs font-semibold uppercase tracking-wider text-text-light/80"
-                          >
-                            Service
-                          </p>
-                          <h5 class="font-bold text-white">
-                            Community Clean-Up
-                          </h5>
-                          <p class="text-sm text-text-light/70">
-                            9:00 AM - 12:00 PM
-                          </p>
-                          <p class="text-sm text-text-light/70">
-                            Join us as we serve our local community by cleaning
-                            up the park.
-                          </p>
-                          <div class="flex gap-2 mt-2">
-                            <button
-                              class="flex-1 text-center text-sm font-semibold rounded-full py-2 bg-white/10 text-white hover:bg-white/20 transition-colors"
-                            >
-                              View Details
-                            </button>
-                            <button
-                              class="flex-1 text-center text-sm font-bold rounded-full py-2 bg-primary text-[#0A192F] hover:opacity-90 transition-opacity"
-                            >
-                              Register Now
-                            </button>
-                          </div>
-                        </div>
-                      </div>
+                    <div id="events-list" class="flex flex-col gap-4">
+                      <!-- Dynamic events will be inserted here -->
                     </div>
                   </div>
                 </div>
@@ -467,5 +321,484 @@
         </main>
       </div>
     </div>
+
+    <script>
+      // ==================== MOBILE MENU FUNCTIONALITY ====================
+      const mobileMenuButton = document.getElementById('mobile-menu-button');
+      const closeMenuButton = document.getElementById('close-menu-button');
+      const mobileMenu = document.getElementById('mobile-menu');
+      const mobileMenuOverlay = document.getElementById('mobile-menu-overlay');
+
+      function openMobileMenu() {
+        mobileMenu.classList.add('open');
+        mobileMenuOverlay.classList.add('open');
+        document.body.style.overflow = 'hidden';
+      }
+
+      function closeMobileMenu() {
+        mobileMenu.classList.remove('open');
+        mobileMenuOverlay.classList.remove('open');
+        document.body.style.overflow = '';
+      }
+
+      mobileMenuButton.addEventListener('click', openMobileMenu);
+      closeMenuButton.addEventListener('click', closeMobileMenu);
+      mobileMenuOverlay.addEventListener('click', closeMobileMenu);
+
+      // Close menu when clicking on a link
+      const mobileLinks = mobileMenu.querySelectorAll('a');
+      mobileLinks.forEach(link => {
+        link.addEventListener('click', closeMobileMenu);
+      });
+
+      // Close menu with Escape key
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+          closeMobileMenu();
+        }
+      });
+
+      // ==================== DYNAMIC CALENDAR FUNCTIONALITY ====================
+      
+      // Sample events data
+      const eventsData = [
+        {
+          id: 1,
+          title: "Youth Worship Night",
+          date: "2024-10-10",
+          time: "7:00 PM - 9:00 PM",
+          category: "Faith",
+          description: "An evening of praise, worship, and fellowship for all youth.",
+          color: "primary",
+          registered: false
+        },
+        {
+          id: 2,
+          title: "Community Clean-Up",
+          date: "2024-10-10",
+          time: "9:00 AM - 12:00 PM",
+          category: "Service",
+          description: "Join us as we serve our local community by cleaning up the park.",
+          color: "text-light",
+          registered: false
+        },
+        {
+          id: 3,
+          title: "Leadership Training Workshop",
+          date: "2024-10-05",
+          time: "10:00 AM - 2:00 PM",
+          category: "Training",
+          description: "Developing leadership skills for young Christians.",
+          color: "primary",
+          registered: false
+        },
+        {
+          id: 4,
+          title: "Bible Study Group",
+          date: "2024-10-12",
+          time: "6:30 PM - 8:00 PM",
+          category: "Faith",
+          description: "Weekly Bible study and discussion.",
+          color: "primary",
+          registered: false
+        },
+        {
+          id: 5,
+          title: "Youth Social Night",
+          date: "2024-10-19",
+          time: "5:00 PM - 9:00 PM",
+          category: "Social",
+          description: "Games, food, and fellowship for young people.",
+          color: "text-light",
+          registered: false
+        },
+        {
+          id: 6,
+          title: "Mission Planning Meeting",
+          date: "2024-10-25",
+          time: "3:00 PM - 5:00 PM",
+          category: "Service",
+          description: "Planning our upcoming community mission.",
+          color: "text-light",
+          registered: false
+        }
+      ];
+
+      // Calendar state
+      let currentDate = new Date();
+      let currentYear = currentDate.getFullYear();
+      let currentMonth = currentDate.getMonth();
+      let selectedDate = new Date(2024, 9, 10); // October 10, 2024
+      let activeFilter = "all";
+
+      // DOM Elements
+      const calendarDays = document.getElementById('calendar-days');
+      const currentMonthYear = document.getElementById('current-month-year');
+      const selectedDateTitle = document.getElementById('selected-date-title');
+      const eventsList = document.getElementById('events-list');
+      const searchInput = document.getElementById('search-input');
+      const filterButtons = {
+        all: document.getElementById('filter-all'),
+        service: document.getElementById('filter-service'),
+        training: document.getElementById('filter-training'),
+        social: document.getElementById('filter-social')
+      };
+      const prevMonthBtn = document.getElementById('prev-month');
+      const nextMonthBtn = document.getElementById('next-month');
+      const todayBtn = document.getElementById('today-btn');
+      const monthSelector = document.getElementById('month-selector');
+
+      // Initialize calendar
+      function initCalendar() {
+        renderCalendar();
+        renderEventsForDate(selectedDate);
+        setupEventListeners();
+      }
+
+      // Render calendar for current month
+      function renderCalendar() {
+        // Clear previous days
+        calendarDays.innerHTML = '';
+        
+        // Update month/year display
+        const monthNames = [
+          "January", "February", "March", "April", "May", "June",
+          "July", "August", "September", "October", "November", "December"
+        ];
+        currentMonthYear.textContent = `${monthNames[currentMonth]} ${currentYear}`;
+        
+        // Get first day of month
+        const firstDay = new Date(currentYear, currentMonth, 1);
+        const lastDay = new Date(currentYear, currentMonth + 1, 0);
+        const daysInMonth = lastDay.getDate();
+        const startingDay = firstDay.getDay(); // 0 = Sunday
+        
+        // Add empty cells for days before first day of month
+        for (let i = 0; i < startingDay; i++) {
+          const emptyDay = document.createElement('div');
+          emptyDay.className = 'aspect-square text-text-light/40';
+          calendarDays.appendChild(emptyDay);
+        }
+        
+        // Add days of the month
+        const today = new Date();
+        const isCurrentMonth = currentYear === today.getFullYear() && currentMonth === today.getMonth();
+        
+        for (let day = 1; day <= daysInMonth; day++) {
+          const dayDate = new Date(currentYear, currentMonth, day);
+          const dayElement = document.createElement('button');
+          dayElement.className = 'aspect-square flex flex-col items-center justify-center rounded-lg hover:bg-white/5 transition-colors p-1 calendar-day';
+          dayElement.dataset.date = dayDate.toISOString().split('T')[0];
+          dayElement.dataset.day = day;
+          
+          // Check if day has events
+          const dayEvents = getEventsForDate(dayDate);
+          const hasEvents = dayEvents.length > 0;
+          const isToday = isCurrentMonth && day === today.getDate();
+          const isSelected = dayDate.toDateString() === selectedDate.toDateString();
+          
+          // Day number
+          const dayNumber = document.createElement('span');
+          dayNumber.className = 'font-medium';
+          if (isToday) dayNumber.classList.add('text-primary');
+          if (isSelected) {
+            dayNumber.classList.add('font-bold', 'text-primary');
+            dayElement.classList.add('bg-primary/20', 'ring-2', 'ring-primary');
+            dayElement.classList.remove('hover:bg-white/5');
+          }
+          dayNumber.textContent = day;
+          dayElement.appendChild(dayNumber);
+          
+          // Event indicators (dots)
+          if (hasEvents) {
+            const indicators = document.createElement('div');
+            indicators.className = 'flex gap-1 mt-1';
+            
+            // Get unique event colors for this day
+            const eventColors = [...new Set(dayEvents.map(event => event.color))];
+            
+            // Show up to 3 event indicators
+            eventColors.slice(0, 3).forEach(color => {
+              const indicator = document.createElement('div');
+              indicator.className = `size-1.5 rounded-full ${
+                color === 'primary' ? 'bg-primary' : 'bg-white'
+              }`;
+              indicators.appendChild(indicator);
+            });
+            
+            dayElement.appendChild(indicators);
+          }
+          
+          // Add click event
+          dayElement.addEventListener('click', () => {
+            selectDate(dayDate);
+            // Update events list
+            renderEventsForDate(dayDate);
+          });
+          
+          calendarDays.appendChild(dayElement);
+        }
+      }
+
+      // Get events for specific date
+      function getEventsForDate(date) {
+        const dateStr = date.toISOString().split('T')[0];
+        let filteredEvents = eventsData.filter(event => event.date === dateStr);
+        
+        // Apply current filter
+        if (activeFilter !== 'all') {
+          filteredEvents = filteredEvents.filter(event => 
+            event.category.toLowerCase() === activeFilter.toLowerCase()
+          );
+        }
+        
+        // Apply search filter
+        if (searchInput.value.trim() !== '') {
+          const searchTerm = searchInput.value.toLowerCase();
+          filteredEvents = filteredEvents.filter(event => 
+            event.title.toLowerCase().includes(searchTerm) ||
+            event.description.toLowerCase().includes(searchTerm) ||
+            event.category.toLowerCase().includes(searchTerm)
+          );
+        }
+        
+        return filteredEvents;
+      }
+
+      // Select a date
+      function selectDate(date) {
+        selectedDate = date;
+        
+        // Remove active class from all days
+        document.querySelectorAll('.calendar-day').forEach(day => {
+          day.classList.remove('bg-primary/20', 'ring-2', 'ring-primary');
+          day.classList.add('hover:bg-white/5');
+          
+          const dayNumber = day.querySelector('span');
+          if (dayNumber) {
+            dayNumber.classList.remove('font-bold', 'text-primary');
+            dayNumber.classList.add('font-medium');
+            // Keep today's color
+            if (!dayNumber.classList.contains('text-primary')) {
+              dayNumber.classList.remove('text-primary');
+            }
+          }
+        });
+        
+        // Add active class to selected day
+        const selectedDayElement = document.querySelector(`[data-date="${date.toISOString().split('T')[0]}"]`);
+        if (selectedDayElement) {
+          selectedDayElement.classList.add('bg-primary/20', 'ring-2', 'ring-primary');
+          selectedDayElement.classList.remove('hover:bg-white/5');
+          
+          const dayNumber = selectedDayElement.querySelector('span');
+          if (dayNumber) {
+            dayNumber.classList.add('font-bold', 'text-primary');
+            dayNumber.classList.remove('font-medium');
+          }
+        }
+      }
+
+      // Render events for selected date
+      function renderEventsForDate(date) {
+        // Update title
+        const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+        selectedDateTitle.textContent = `Events on ${date.toLocaleDateString('en-US', options)}`;
+        
+        // Clear previous events
+        eventsList.innerHTML = '';
+        
+        // Get events for this date
+        const events = getEventsForDate(date);
+        
+        if (events.length === 0) {
+          const noEvents = document.createElement('div');
+          noEvents.className = 'text-center py-6 text-text-light/50';
+          noEvents.innerHTML = `
+            <span class="material-symbols-outlined text-4xl mb-3 block">event_busy</span>
+            <p>No events scheduled for this date</p>
+          `;
+          eventsList.appendChild(noEvents);
+          return;
+        }
+        
+        // Render each event
+        events.forEach(event => {
+          const eventCard = document.createElement('div');
+          eventCard.className = `bg-card-dark p-4 rounded-lg border-l-4 ${
+            event.color === 'primary' ? 'border-primary' : 'border-text-light'
+          }`;
+          
+          eventCard.innerHTML = `
+            <div class="flex flex-col gap-2">
+              <p class="text-xs font-semibold uppercase tracking-wider ${
+                event.color === 'primary' ? 'text-primary' : 'text-text-light/80'
+              }">
+                ${event.category}
+              </p>
+              <h5 class="font-bold text-white">${event.title}</h5>
+              <p class="text-sm text-text-light/70">${event.time}</p>
+              <p class="text-sm text-text-light/70">${event.description}</p>
+              <div class="flex gap-2 mt-2">
+                <button class="view-details-btn flex-1 text-center text-sm font-semibold rounded-full py-2 ${
+                  event.color === 'primary' ? 'bg-primary/20 text-primary hover:bg-primary/30' : 'bg-white/10 text-white hover:bg-white/20'
+                } transition-colors">
+                  View Details
+                </button>
+                <button class="register-btn flex-1 text-center text-sm font-bold rounded-full py-2 ${
+                  event.registered ? 'bg-green-600 text-white' : 'bg-primary text-[#0A192F]'
+                } hover:opacity-90 transition-opacity" data-event-id="${event.id}">
+                  ${event.registered ? 'Registered ✓' : 'Register Now'}
+                </button>
+              </div>
+            </div>
+          `;
+          
+          eventsList.appendChild(eventCard);
+        });
+        
+        // Add event listeners to buttons
+        document.querySelectorAll('.view-details-btn').forEach(btn => {
+          btn.addEventListener('click', function() {
+            const eventTitle = this.closest('div').querySelector('h5').textContent;
+            alert(`Details for: ${eventTitle}\n\nMore information about this event will be displayed here.`);
+          });
+        });
+        
+        document.querySelectorAll('.register-btn').forEach(btn => {
+          btn.addEventListener('click', function() {
+            const eventId = parseInt(this.dataset.eventId);
+            const event = eventsData.find(e => e.id === eventId);
+            
+            if (event) {
+              event.registered = !event.registered;
+              if (event.registered) {
+                this.textContent = 'Registered ✓';
+                this.classList.add('bg-green-600', 'text-white');
+                this.classList.remove('bg-primary', 'text-[#0A192F]');
+              } else {
+                this.textContent = 'Register Now';
+                this.classList.remove('bg-green-600', 'text-white');
+                this.classList.add('bg-primary', 'text-[#0A192F]');
+              }
+              
+              // Update calendar to reflect registration status
+              renderCalendar();
+              selectDate(selectedDate);
+            }
+          });
+        });
+      }
+
+      // Filter events by category
+      function setFilter(filter) {
+        activeFilter = filter;
+        
+        // Update filter buttons appearance
+        Object.keys(filterButtons).forEach(key => {
+          const btn = filterButtons[key];
+          if (key === filter) {
+            btn.classList.add('bg-primary/20', 'text-primary');
+            btn.classList.remove('bg-card-dark', 'text-text-light');
+          } else {
+            btn.classList.remove('bg-primary/20', 'text-primary');
+            btn.classList.add('bg-card-dark', 'text-text-light');
+          }
+        });
+        
+        // Re-render events for selected date
+        renderEventsForDate(selectedDate);
+        renderCalendar();
+      }
+
+      // Search events
+      function searchEvents() {
+        renderEventsForDate(selectedDate);
+        renderCalendar();
+      }
+
+      // Navigate to previous month
+      function prevMonth() {
+        currentMonth--;
+        if (currentMonth < 0) {
+          currentMonth = 11;
+          currentYear--;
+        }
+        renderCalendar();
+      }
+
+      // Navigate to next month
+      function nextMonth() {
+        currentMonth++;
+        if (currentMonth > 11) {
+          currentMonth = 0;
+          currentYear++;
+        }
+        renderCalendar();
+      }
+
+      // Go to today
+      function goToToday() {
+        currentDate = new Date();
+        currentYear = currentDate.getFullYear();
+        currentMonth = currentDate.getMonth();
+        selectedDate = new Date(currentYear, currentMonth, currentDate.getDate());
+        renderCalendar();
+        selectDate(selectedDate);
+        renderEventsForDate(selectedDate);
+      }
+
+      // Show month selector
+      function showMonthSelector() {
+        const monthNames = [
+          "January", "February", "March", "April", "May", "June",
+          "July", "August", "September", "October", "November", "December"
+        ];
+        
+        const years = [2023, 2024, 2025];
+        const currentMonthName = monthNames[currentMonth];
+        
+        // Simple implementation - could be enhanced with a proper modal
+        const monthYear = prompt(
+          "Enter month and year (e.g., 'October 2024'):",
+          `${currentMonthName} ${currentYear}`
+        );
+        
+        if (monthYear) {
+          const [monthName, year] = monthYear.split(' ');
+          const monthIndex = monthNames.findIndex(m => 
+            m.toLowerCase() === monthName.toLowerCase()
+          );
+          
+          if (monthIndex !== -1 && !isNaN(year)) {
+            currentMonth = monthIndex;
+            currentYear = parseInt(year);
+            selectedDate = new Date(currentYear, currentMonth, 1);
+            renderCalendar();
+            renderEventsForDate(selectedDate);
+          }
+        }
+      }
+
+      // Setup event listeners
+      function setupEventListeners() {
+        // Filter buttons
+        Object.keys(filterButtons).forEach(key => {
+          filterButtons[key].addEventListener('click', () => setFilter(key));
+        });
+        
+        // Search input
+        searchInput.addEventListener('input', searchEvents);
+        
+        // Calendar navigation
+        prevMonthBtn.addEventListener('click', prevMonth);
+        nextMonthBtn.addEventListener('click', nextMonth);
+        todayBtn.addEventListener('click', goToToday);
+        monthSelector.addEventListener('click', showMonthSelector);
+      }
+
+      // Initialize when page loads
+      document.addEventListener('DOMContentLoaded', initCalendar);
+    </script>
   </body>
 </html>

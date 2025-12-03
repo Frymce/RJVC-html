@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html class="dark" lang="fr">
   <head>
     <meta charset="utf-8" />
@@ -12,13 +11,112 @@
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700;900&amp;display=swap"
       rel="stylesheet"
     />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@400"
-      rel="stylesheet"
-    />
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-      .material-symbols-outlined {
-        font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
+      /* Animation classes */
+      .slide-in-left {
+        animation: slideInLeft 0.8s ease-out forwards;
+        opacity: 0;
+        transform: translateX(-50px);
+      }
+
+      .slide-in-right {
+        animation: slideInRight 0.8s ease-out forwards;
+        opacity: 0;
+        transform: translateX(50px);
+      }
+
+      .slide-in-bottom {
+        animation: slideInBottom 0.8s ease-out forwards;
+        opacity: 0;
+        transform: translateY(50px);
+      }
+
+      @keyframes slideInLeft {
+        to {
+          opacity: 1;
+          transform: translateX(0);
+        }
+      }
+
+      @keyframes slideInRight {
+        to {
+          opacity: 1;
+          transform: translateX(0);
+        }
+      }
+
+      @keyframes slideInBottom {
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* Stagger delays */
+      .delay-100 { animation-delay: 100ms; }
+      .delay-200 { animation-delay: 200ms; }
+      .delay-300 { animation-delay: 300ms; }
+      .delay-400 { animation-delay: 400ms; }
+      .delay-500 { animation-delay: 500ms; }
+
+      /* Mobile menu styles */
+      .mobile-menu {
+        transform: translateX(100%);
+        transition: transform 0.3s ease-out;
+        width: 85%;
+        max-width: 320px;
+      }
+
+      .mobile-menu.open {
+        transform: translateX(0);
+      }
+
+      .overlay {
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.3s ease-out;
+        background: rgba(0, 0, 0, 0.8);
+        z-index: 49;
+      }
+
+      .overlay.open {
+        opacity: 1;
+        visibility: visible;
+      }
+
+      /* Hide scrollbar for horizontal scroll */
+      .scrollbar-hide {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+      }
+      
+      .scrollbar-hide::-webkit-scrollbar {
+        display: none;
+      }
+
+      /* Responsive improvements */
+      @media (max-width: 640px) {
+        .grid-cols-responsive {
+          grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        }
+        
+        .min-w-responsive {
+          min-width: 280px;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .mobile-menu a {
+          padding: 16px 0;
+          font-size: 18px;
+        }
+        
+        .mobile-menu button {
+          padding: 16px;
+          font-size: 16px;
+        }
       }
     </style>
     <script id="tailwind-config">
@@ -30,6 +128,7 @@
               primary: "#f9d406",
               "background-light": "#f8f8f5",
               "background-dark": "#111111",
+              "surface-dark": "#1a1a1a",
             },
             fontFamily: {
               display: ["Poppins", "sans-serif"],
@@ -45,460 +144,303 @@
       };
     </script>
   </head>
-  <body class="font-display">
-    <div
-      class="relative flex h-auto min-h-screen w-full flex-col bg-background-light dark:bg-background-dark group/design-root overflow-x-hidden"
-    >
-      <div class="layout-container flex h-full grow flex-col">
-        <div class="flex flex-1 justify-center py-5 md:px-10 lg:px-20 xl:px-40">
-          <div class="layout-content-container flex flex-col max-w-5xl flex-1">
-            <header
-              class="flex items-center justify-between whitespace-nowrap border-b border-solid border-white/10 px-4 sm:px-10 py-4"
+  <body class="font-display bg-background-dark text-white">
+    <!-- Mobile Menu Overlay -->
+    <div id="mobile-menu-overlay" class="overlay fixed inset-0 md:hidden"></div>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="mobile-menu fixed right-0 top-0 z-50 h-full bg-surface-dark shadow-xl">
+      <div class="p-6 h-full flex flex-col">
+        <!-- Header with close button -->
+        <div class="flex items-center justify-between mb-8 pb-4 border-b border-white/10">
+          <div class="flex items-center gap-3">
+            <div class="size-6 text-primary">
+              
+            </div>
+            <h2 class="text-white text-xl font-bold">RJVC</h2>
+          </div>
+          <button id="close-menu-button" class="text-white hover:text-primary transition-colors p-2">
+            <i class="fas fa-times text-2xl"></i>
+          </button>
+        </div>
+        
+        <!-- Navigation -->
+        <nav class="flex-1">
+          <div class="flex flex-col gap-1">
+            <a class="text-lg font-medium text-white transition-colors hover:text-primary hover:bg-background-dark/50 py-4 px-4 rounded-lg flex items-center gap-3" href="./index.html">
+              
+              Accueil
+            </a>
+             <a
+              class="text-neutral-text text-sm font-medium leading-normal transition-colors hover:text-primary"
+              href="./about.html"
+              >À propos</a
             >
-              <div class="flex items-center gap-4 text-white">
-                <div class="size-6 text-primary">
-                  <svg
-                    fill="none"
-                    viewbox="0 0 48 48"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M4 4H17.3334V17.3334H30.6666V30.6666H44V44H4V4Z"
-                      fill="currentColor"
-                    ></path>
-                  </svg>
-                </div>
-                <h2
-                  class="text-white text-xl font-bold leading-tight tracking-[-0.015em]"
-                >
-                  RJVC
-                </h2>
+            <a class="text-lg font-medium text-primary transition-colors hover:bg-background-dark/50 py-4 px-4 rounded-lg flex items-center gap-3" href="./communaut.html">
+              
+              Nos Communautés
+            </a>
+            <a class="text-lg font-medium text-white transition-colors hover:text-primary hover:bg-background-dark/50 py-4 px-4 rounded-lg flex items-center gap-3" href="./evenemetavenir.html">
+              
+              Événements
+            </a>
+            <a class="text-lg font-medium text-white transition-colors hover:text-primary hover:bg-background-dark/50 py-4 px-4 rounded-lg flex items-center gap-3" href="./contact.html">
+              
+              Contact
+            </a>
+          </div>
+        </nav>
+        
+        <!-- Donation Button -->
+        <div class="mt-auto pt-6 border-t border-white/10">
+          <button class="flex w-full items-center justify-center rounded-lg bg-primary py-4 px-5 text-base font-bold text-background-dark transition-colors hover:opacity-90">
+            <i class="fas fa-heart mr-2"></i>
+            Faire un don
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="relative flex min-h-screen w-full flex-col">
+      <div class="layout-container flex h-full grow flex-col">
+        <div class="flex flex-1 justify-center py-5 px-4 sm:px-6 md:px-10 lg:px-20 xl:px-40">
+          <div class="layout-content-container flex flex-col max-w-5xl flex-1 w-full">
+            <!-- Header -->
+            <header class="flex items-center justify-between whitespace-nowrap border-b border-white/10 py-4">
+              <div class="flex items-center gap-3 md:gap-4">
+        
+                <h2 class="text-white text-xl font-bold">RJVC</h2>
               </div>
-              <div class="hidden md:flex flex-1 justify-end gap-8">
-                <div class="flex items-center gap-9">
-                  <a
-                    class="text-white text-sm font-medium leading-normal hover:text-primary transition-colors"
-                    href="./index.html"
-                    >Accueil</a
-                  >
-                  <a
-                    class="text-primary text-sm font-bold leading-normal"
-                    href="./communaut.html"
-                    >Nos Communautés</a
-                  >
-                  <a
-                    class="text-white text-sm font-medium leading-normal hover:text-primary transition-colors"
-                    href="./evenemetavenir.html"
-                    >Événements</a
-                  >
-                  <a
-                    class="text-white text-sm font-medium leading-normal hover:text-primary transition-colors"
-                    href="./contact.html"
-                    >Contact</a
-                  >
+              
+              <!-- Desktop Navigation -->
+              <div class="hidden md:flex flex-1 justify-end items-center gap-8">
+                <div class="flex items-center gap-6 lg:gap-9">
+                  <a class="text-white text-sm font-medium hover:text-primary transition-colors flex items-center gap-2" href="./index.html">
+                    
+                    Accueil
+                  </a>
+                   <a
+              class="text-neutral-text text-sm font-medium leading-normal transition-colors hover:text-primary"
+              href="./about.html"
+              >À propos</a
+            >
+                  <a class="text-primary text-sm font-bold flex items-center gap-2" href="./communaut.html">
+                    
+                    Nos Communautés
+                  </a>
+                  <a class="text-white text-sm font-medium hover:text-primary transition-colors flex items-center gap-2" href="./evenemetavenir.html">
+                    
+                    Événements
+                  </a>
+                  <a class="text-white text-sm font-medium hover:text-primary transition-colors flex items-center gap-2" href="./contact.html">
+                    
+                    Contact
+                  </a>
                 </div>
-                <button
-                  class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-primary text-background-dark text-sm font-bold leading-normal tracking-[0.015em] hover:opacity-90 transition-opacity"
-                >
-                  <span class="truncate">Faire un don</span>
+                <button class="flex items-center justify-center rounded-lg h-10 px-4 bg-primary text-background-dark text-sm font-bold hover:opacity-90 transition-opacity min-w-[100px]">
+                  <i class="fas fa-heart mr-2"></i>
+                  Faire un don
                 </button>
               </div>
-              <div class="md:hidden text-white">
-                <span class="material-symbols-outlined text-3xl">menu</span>
-              </div>
+              
+              <!-- Mobile Menu Button -->
+              <button id="mobile-menu-button" class="md:hidden text-white p-2">
+                <i class="fas fa-bars text-2xl"></i>
+              </button>
             </header>
-            <main class="flex flex-col gap-16 md:gap-24">
-              <div
-                class="flex flex-wrap justify-between gap-4 p-4 md:p-10 text-center md:text-left"
-              >
-                <div
-                  class="flex w-full flex-col items-center md:items-start gap-3"
-                >
-                  <p
-                    class="text-primary text-4xl sm:text-5xl md:text-6xl font-black leading-tight tracking-tighter"
-                  >
-                    Nos Communautés
-                  </p>
-                  <p
-                    class="text-white/70 text-base md:text-lg font-normal leading-normal max-w-2xl"
-                  >
-                    Découvrez les piliers de notre organisation : la formation,
-                    la célébration et le rassemblement annuel.
-                  </p>
-                </div>
+
+            <!-- Main Content -->
+            <main class="flex flex-col gap-12 md:gap-16 lg:gap-24 mt-6 md:mt-8">
+              <!-- Hero Section -->
+              <div class="flex flex-col items-center md:items-start gap-4 p-4 text-center md:text-left slide-in-left">
+                <h1 class="text-primary text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black leading-tight">
+                  Nos Communautés
+                </h1>
+                <p class="text-white/70 text-base md:text-lg font-normal leading-normal max-w-2xl slide-in-right delay-100">
+                  Découvrez les piliers de notre organisation : la formation, la célébration et le rassemblement annuel.
+                </p>
               </div>
-              <div class="flex flex-col gap-10 px-4 py-10 @container">
+
+              <!-- RJVC Academy Section -->
+              <div class="flex flex-col gap-8 px-4 slide-in-bottom">
                 <div class="flex flex-col gap-6">
                   <div class="flex flex-col gap-4">
-                    <h1
-                      class="text-white tracking-tight text-3xl font-bold leading-tight @[480px]:text-4xl @[480px]:font-black @[480px]:leading-tight @[480px]:tracking-tight max-w-[720px]"
-                    >
+                    <h1 class="text-white text-2xl sm:text-3xl font-bold max-w-[720px]">
                       RJVC Academy
                     </h1>
-                    <p
-                      class="text-white/80 text-base font-normal leading-relaxed max-w-[720px]"
-                    >
-                      La RJVC Academy a pour mission de former la jeunesse aux
-                      compétences professionnelles (IT, Design, Photographie,
-                      etc.) tout en étant ancrée dans les valeurs chrétiennes.
+                    <p class="text-white/80 text-base font-normal leading-relaxed max-w-[720px]">
+                      La RJVC Academy a pour mission de former la jeunesse aux compétences professionnelles (IT, Design, Photographie, etc.) tout en étant ancrée dans les valeurs chrétiennes.
                     </p>
                   </div>
-                  <button
-                    class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-5 bg-primary text-background-dark text-base font-bold leading-normal tracking-[0.015em] w-fit hover:opacity-90 transition-opacity"
-                  >
-                    <span class="truncate">S'inscrire à une formation</span>
+                  <button class="flex items-center justify-center rounded-lg h-12 px-5 bg-primary text-background-dark text-base font-bold w-fit hover:opacity-90 transition-opacity slide-in-left delay-200">
+                    <i class="fas fa-user-plus mr-2"></i>
+                    S'inscrire à une formation
                   </button>
                 </div>
-                <div
-                  class="grid grid-cols-[repeat(auto-fit,minmax(200px,1fr))] gap-4 p-0"
-                >
-                  <div
-                    class="flex flex-1 gap-3 rounded-lg border border-white/10 bg-[#1a1a1a] p-4 flex-col"
-                  >
+                
+                <!-- Skills Grid -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                  <div class="flex flex-col gap-3 rounded-lg border border-white/10 bg-surface-dark p-4 hover:border-primary/50 transition-colors slide-in-left delay-300">
                     <div class="text-primary">
-                      <span class="material-symbols-outlined text-3xl"
-                        >code</span
-                      >
+                      <i class="fas fa-code text-3xl"></i>
                     </div>
                     <div class="flex flex-col gap-1">
-                      <h2 class="text-white text-base font-bold leading-tight">
-                        Développement IT
-                      </h2>
-                      <p
-                        class="text-white/60 text-sm font-normal leading-normal"
-                      >
+                      <h2 class="text-white text-base font-bold">Développement IT</h2>
+                      <p class="text-white/60 text-sm font-normal">
                         Apprenez à coder et à créer des applications.
                       </p>
                     </div>
                   </div>
-                  <div
-                    class="flex flex-1 gap-3 rounded-lg border border-white/10 bg-[#1a1a1a] p-4 flex-col"
-                  >
+                  
+                  <div class="flex flex-col gap-3 rounded-lg border border-white/10 bg-surface-dark p-4 hover:border-primary/50 transition-colors slide-in-bottom delay-300">
                     <div class="text-primary">
-                      <span class="material-symbols-outlined text-3xl"
-                        >brush</span
-                      >
+                      <i class="fas fa-paint-brush text-3xl"></i>
                     </div>
                     <div class="flex flex-col gap-1">
-                      <h2 class="text-white text-base font-bold leading-tight">
-                        Design Graphique
-                      </h2>
-                      <p
-                        class="text-white/60 text-sm font-normal leading-normal"
-                      >
+                      <h2 class="text-white text-base font-bold">Design Graphique</h2>
+                      <p class="text-white/60 text-sm font-normal">
                         Maîtrisez les outils de création visuelle.
                       </p>
                     </div>
                   </div>
-                  <div
-                    class="flex flex-1 gap-3 rounded-lg border border-white/10 bg-[#1a1a1a] p-4 flex-col"
-                  >
+                  
+                  <div class="flex flex-col gap-3 rounded-lg border border-white/10 bg-surface-dark p-4 hover:border-primary/50 transition-colors slide-in-bottom delay-400">
                     <div class="text-primary">
-                      <span class="material-symbols-outlined text-3xl"
-                        >photo_camera</span
-                      >
+                      <i class="fas fa-camera text-3xl"></i>
                     </div>
                     <div class="flex flex-col gap-1">
-                      <h2 class="text-white text-base font-bold leading-tight">
-                        Photographie
-                      </h2>
-                      <p
-                        class="text-white/60 text-sm font-normal leading-normal"
-                      >
+                      <h2 class="text-white text-base font-bold">Photographie</h2>
+                      <p class="text-white/60 text-sm font-normal">
                         Capturez des moments avec technique et art.
                       </p>
                     </div>
                   </div>
-                  <div
-                    class="flex flex-1 gap-3 rounded-lg border border-white/10 bg-[#1a1a1a] p-4 flex-col"
-                  >
+                  
+                  <div class="flex flex-col gap-3 rounded-lg border border-white/10 bg-surface-dark p-4 hover:border-primary/50 transition-colors slide-in-right delay-400">
                     <div class="text-primary">
-                      <span class="material-symbols-outlined text-3xl"
-                        >videocam</span
-                      >
+                      <i class="fas fa-video text-3xl"></i>
                     </div>
                     <div class="flex flex-col gap-1">
-                      <h2 class="text-white text-base font-bold leading-tight">
-                        Vidéographie
-                      </h2>
-                      <p
-                        class="text-white/60 text-sm font-normal leading-normal"
-                      >
+                      <h2 class="text-white text-base font-bold">Vidéographie</h2>
+                      <p class="text-white/60 text-sm font-normal">
                         Racontez des histoires à travers la vidéo.
                       </p>
                     </div>
                   </div>
                 </div>
               </div>
-              <div class="flex flex-col gap-6 px-4">
-                <div
-                  class="bg-cover bg-center flex flex-col items-stretch justify-end rounded-lg pt-[132px]"
-                  data-alt="Dynamic image of a joyful wedding reception organized by RJVC."
-                  style="
-                    background-image: linear-gradient(
-                        0deg,
-                        rgba(0, 0, 0, 0.6) 0%,
-                        rgba(0, 0, 0, 0) 100%
-                      ),
-                      url('https://lh3.googleusercontent.com/aida-public/AB6AXuCut82hVc0GltSBN8ojFjZI_C0J9YkCQB0nr2psArkMqzHo0RBvBH9sdW_xFSfd6M6NxyToZpguxyGdo7XBOk8RKVpqDyPLlBFH1bCwTSN-xIJZyVEpeUhv_Aus9kbPuOXCUhCcfHpYJv5Yq778PlRKnjPj5Sn6rudPBJTXrzhcQuETe0bG28r5D7ydDmcSnUI_tkyu9JmsW72J5qt5KUBI54durj0mtwUDj8z6SHSFkL0jUnp9-4XU8ZOW_NgFQ2iKRwLrK6LVloc');
-                  "
-                >
-                  <div
-                    class="flex w-full flex-col md:flex-row items-start md:items-end justify-between gap-4 p-6 md:p-8"
-                  >
+
+              <!-- RJVC Events Section -->
+              <div class="flex flex-col gap-6 px-4 slide-in-bottom delay-500">
+                <!-- Hero Card -->
+                <div class="relative bg-cover bg-center rounded-lg overflow-hidden min-h-[300px] md:min-h-[400px] flex flex-col justify-end" style="background-image: linear-gradient(0deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.1) 100%), url('https://lh3.googleusercontent.com/aida-public/AB6AXuCut82hVc0GltSBN8ojFjZI_C0J9YkCQB0nr2psArkMqzHo0RBvBH9sdW_xFSfd6M6NxyToZpguxyGdo7XBOk8RKVpqDyPLlBFH1bCwTSN-xIJZyVEpeUhv_Aus9kbPuOXCUhCcfHpYJv5Yq778PlRKnjPj5Sn6rudPBJTXrzhcQuETe0bG28r5D7ydDmcSnUI_tkyu9JmsW72J5qt5KUBI54durj0mtwUDj8z6SHSFkL0jUnp9-4XU8ZOW_NgFQ2iKRwLrK6LVloc');">
+                  <div class="flex flex-col md:flex-row items-start md:items-end justify-between gap-4 p-6 md:p-8">
                     <div class="flex max-w-[480px] flex-1 flex-col gap-2">
-                      <p
-                        class="text-white tracking-tight text-3xl font-bold leading-tight"
-                      >
-                        RJVC Events
-                      </p>
-                      <p
-                        class="text-white/90 text-base font-medium leading-normal"
-                      >
-                        Nous organisons vos événements marquants (mariages,
-                        baptêmes, etc.) avec un esprit de service et
-                        d'excellence. Découvrez nos réalisations.
+                      <h2 class="text-white text-2xl sm:text-3xl font-bold">RJVC Events</h2>
+                      <p class="text-white/90 text-base font-medium">
+                        Nous organisons vos événements marquants (mariages, baptêmes, etc.) avec un esprit de service et d'excellence. Découvrez nos réalisations.
                       </p>
                     </div>
-                    <button
-                      class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-5 bg-primary text-background-dark text-base font-bold leading-normal tracking-[0.015em] w-full mt-2 md:mt-0 md:w-fit flex-shrink-0 hover:opacity-90 transition-opacity"
-                    >
-                      <span class="truncate"
-                        >Organiser un événement avec RJVC</span
-                      >
+                    <button class="flex items-center justify-center rounded-lg h-12 px-5 bg-primary text-background-dark text-base font-bold w-full md:w-fit hover:opacity-90 transition-opacity mt-4 md:mt-0">
+                      <i class="fas fa-calendar-plus mr-2"></i>
+                      Organiser un événement
                     </button>
                   </div>
                 </div>
-                <div
-                  class="flex overflow-x-auto [-ms-scrollbar-style:none] [scrollbar-width:none] [&amp;::-webkit-scrollbar]:hidden"
-                >
-                  <div class="flex items-stretch p-4 gap-4">
-                    <div
-                      class="flex h-full flex-1 flex-col gap-3 rounded-lg min-w-60 md:min-w-72"
-                    >
-                      <div
-                        class="w-full bg-center bg-no-repeat aspect-video bg-cover rounded-lg flex flex-col"
-                        data-alt="A beautiful wedding ceremony with guests."
-                        style="
-                          background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCF_e597GYqq3xGfk58Qn3IkhD0PKBmhOYegKTvapbeAymfEcw7Lf3xb-R_5ghntSt9VQNhPvUfkqacmNnvsxIT7KwGMw3XWqnWJOnjbWy7o60AncG_sMt6AMPwghp5OselID9fBeAz0XoJtKBTYpWR6Nz-Vbq88hZ7TKeMs80apxXiVx8xBEmrBJGRKXb82cIanM5XyJ-qdPSeK0ADWxzAbb16lEgVQZPM-B2c4iQz0--mNoLw3o7kAnb9ZY73-ECpuWVOnJg9LJs');
-                        "
-                      ></div>
+
+                <!-- Events Gallery -->
+                <div class="overflow-x-auto scrollbar-hide py-2">
+                  <div class="flex gap-4 pb-4 min-w-min">
+                    <!-- Event 1 -->
+                    <div class="flex flex-col gap-3 rounded-lg min-w-[280px] sm:min-w-[300px]">
+                      <div class="w-full aspect-video bg-cover rounded-lg" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCF_e597GYqq3xGfk58Qn3IkhD0PKBmhOYegKTvapbeAymfEcw7Lf3xb-R_5ghntSt9VQNhPvUfkqacmNnvsxIT7KwGMw3XWqnWJOnjbWy7o60AncG_sMt6AMPwghp5OselID9fBeAz0XoJtKBTYpWR6Nz-Vbq88hZ7TKeMs80apxXiVx8xBEmrBJGRKXb82cIanM5XyJ-qdPSeK0ADWxzAbb16lEgVQZPM-B2c4iQz0--mNoLw3o7kAnb9ZY73-ECpuWVOnJg9LJs');"></div>
                       <div>
-                        <p
-                          class="text-white text-base font-medium leading-normal"
-                        >
-                          Mariage de Grâce &amp; David
-                        </p>
-                        <p
-                          class="text-white/60 text-sm font-normal leading-normal"
-                        >
-                          Une célébration d'amour et de foi.
-                        </p>
+                        <p class="text-white text-base font-medium">Mariage de Grâce & David</p>
+                        <p class="text-white/60 text-sm">Une célébration d'amour et de foi.</p>
                       </div>
                     </div>
-                    <div
-                      class="flex h-full flex-1 flex-col gap-3 rounded-lg min-w-60 md:min-w-72"
-                    >
-                      <div
-                        class="w-full bg-center bg-no-repeat aspect-video bg-cover rounded-lg flex flex-col"
-                        data-alt="A peaceful baptism ceremony in a church."
-                        style="
-                          background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuC0yrFY6TqFLLW107wwE-dK9PJTe3iz6E5dLdzN1Yfws772IIO8L-VRYI1L73ItoR7BjYUaZ_LaFRrExvdKVibhkK9fVWsYxRn2u6DNhE1NVeRQbdWzkmcg_5tLLPHaUMT7vTfzDoIt6mHfmsXURmVWEBRVHMrKaZTf8Fgc1WFvvGsLgbquW1bgDyCKnoRI-2lFl34DRlD9ArLzgAzBkb31FJc3si9PA4Y8o5TXfhZUARUeBcQ1GG2RmA2jmhPYWY5s3UCFoFBv4Rc');
-                        "
-                      ></div>
+                    
+                    <!-- Event 2 -->
+                    <div class="flex flex-col gap-3 rounded-lg min-w-[280px] sm:min-w-[300px]">
+                      <div class="w-full aspect-video bg-cover rounded-lg" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuC0yrFY6TqFLLW107wwE-dK9PJTe3iz6E5dLdzN1Yfws772IIO8L-VRYI1L73ItoR7BjYUaZ_LaFRrExvdKVibhkK9fVWsYxRn2u6DNhE1NVeRQbdWzkmcg_5tLLPHaUMT7vTfzDoIt6mHfmsXURmVWEBRVHMrKaZTf8Fgc1WFvvGsLgbquW1bgDyCKnoRI-2lFl34DRlD9ArLzgAzBkb31FJc3si9PA4Y8o5TXfhZUARUeBcQ1GG2RmA2jmhPYWY5s3UCFoFBv4Rc');"></div>
                       <div>
-                        <p
-                          class="text-white text-base font-medium leading-normal"
-                        >
-                          Baptême du petit Léo
-                        </p>
-                        <p
-                          class="text-white/60 text-sm font-normal leading-normal"
-                        >
-                          Un moment de joie et de bénédiction.
-                        </p>
+                        <p class="text-white text-base font-medium">Baptême du petit Léo</p>
+                        <p class="text-white/60 text-sm">Un moment de joie et de bénédiction.</p>
                       </div>
                     </div>
-                    <div
-                      class="flex h-full flex-1 flex-col gap-3 rounded-lg min-w-60 md:min-w-72"
-                    >
-                      <div
-                        class="w-full bg-center bg-no-repeat aspect-video bg-cover rounded-lg flex flex-col"
-                        data-alt="Guests mingling at an elegant charity gala."
-                        style="
-                          background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDcLLhiENycRK7HEeOPiwirMVY7AYTjNbN2kXi802hvu7bpt_5eEfDjGRxpGc7Vx5ICrdXIT7FR-WJW7K-wi8mCA9eIKmT5dSkJnOrHi3vthBfL9FzHEBjOHPAh_Boyzmz__UWZQ7rTr1eoqHO1asO4kkhra9vDeWEAkdbvGJ8H5VAFjlPndB820VQyTg0w-HcCi-Wem91cLeyYMmV1VH1RQDmNhQkNSDDlEo1WFo9m2qI-tfxaJyce3ik9RshDr7dQ39LKXOEaj_w');
-                        "
-                      ></div>
+                    
+                    <!-- Event 3 -->
+                    <div class="flex flex-col gap-3 rounded-lg min-w-[280px] sm:min-w-[300px]">
+                      <div class="w-full aspect-video bg-cover rounded-lg" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDcLLhiENycRK7HEeOPiwirMVY7AYTjNbN2kXi802hvu7bpt_5eEfDjGRxpGc7Vx5ICrdXIT7FR-WJW7K-wi8mCA9eIKmT5dSkJnOrHi3vthBfL9FzHEBjOHPAh_Boyzmz__UWZQ7rTr1eoqHO1asO4kkhra9vDeWEAkdbvGJ8H5VAFjlPndB820VQyTg0w-HcCi-Wem91cLeyYMmV1VH1RQDmNhQkNSDDlEo1WFo9m2qI-tfxaJyce3ik9RshDr7dQ39LKXOEaj_w');"></div>
                       <div>
-                        <p
-                          class="text-white text-base font-medium leading-normal"
-                        >
-                          Gala de charité 2023
-                        </p>
-                        <p
-                          class="text-white/60 text-sm font-normal leading-normal"
-                        >
-                          Une soirée mémorable pour une bonne cause.
-                        </p>
+                        <p class="text-white text-base font-medium">Gala de charité 2023</p>
+                        <p class="text-white/60 text-sm">Une soirée mémorable pour une bonne cause.</p>
                       </div>
                     </div>
-                    <div
-                      class="flex h-full flex-1 flex-col gap-3 rounded-lg min-w-60 md:min-w-72"
-                    >
-                      <div
-                        class="w-full bg-center bg-no-repeat aspect-video bg-cover rounded-lg flex flex-col"
-                        data-alt="A vibrant outdoor community festival."
-                        style="
-                          background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDWU5flRkVfiPRXaSqNeTZlAm-koNUhN3RYQAvC9tL57P6jkvlCgjA37uTvpgBq1DYLgDhs6Op9qOR4EnFZk8yPBqLKyvNUgr9Ui7IjySuhh2129Ju2K6bux2n5V-5p4oTGNs9p5yTgeAVOmYRb7I9FH8GGza3Mxt_TxRRD_-tcw2UjN2LUGiy_iiIts5m7R3mYcRAYKMtPzOEJ4yYpBY2TtPTvhkT0TjNAfmlwWf--XSx77GZJhhhYOhZeR_fzclnH-nO-ooQ_-HM');
-                        "
-                      ></div>
+                    
+                    <!-- Event 4 -->
+                    <div class="flex flex-col gap-3 rounded-lg min-w-[280px] sm:min-w-[300px]">
+                      <div class="w-full aspect-video bg-cover rounded-lg" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDWU5flRkVfiPRXaSqNeTZlAm-koNUhN3RYQAvC9tL57P6jkvlCgjA37uTvpgBq1DYLgDhs6Op9qOR4EnFZk8yPBqLKyvNUgr9Ui7IjySuhh2129Ju2K6bux2n5V-5p4oTGNs9p5yTgeAVOmYRb7I9FH8GGza3Mxt_TxRRD_-tcw2UjN2LUGiy_iiIts5m7R3mYcRAYKMtPzOEJ4yYpBY2TtPTvhkT0TjNAfmlwWf--XSx77GZJhhhYOhZeR_fzclnH-nO-ooQ_-HM');"></div>
                       <div>
-                        <p
-                          class="text-white text-base font-medium leading-normal"
-                        >
-                          Fête de la communauté
-                        </p>
-                        <p
-                          class="text-white/60 text-sm font-normal leading-normal"
-                        >
-                          Partage et fraternité au cœur de notre mission.
-                        </p>
+                        <p class="text-white text-base font-medium">Fête de la communauté</p>
+                        <p class="text-white/60 text-sm">Partage et fraternité au cœur de notre mission.</p>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
-              <div class="px-4 pb-10">
-                <div
-                  class="relative bg-cover bg-center flex flex-col items-stretch justify-end rounded-lg overflow-hidden min-h-[500px] p-6 md:p-8"
-                  data-alt="A large group of young people worshiping together at an annual event."
-                  style="
-                    background-image: linear-gradient(
-                        0deg,
-                        rgba(0, 0, 0, 0.7) 0%,
-                        rgba(0, 0, 0, 0.1) 100%
-                      ),
-                      url('https://lh3.googleusercontent.com/aida-public/AB6AXuAxqjYu5BaI8Ky9-qvJtuDJ0JgxBlwddr5JXTnxXK5NoMYcqIMYLlFZi7jn1OKO_XNO-sVmMtf2EDORThbK3vzLrp5-mXjkVRc2uVuOTKkDXYRGTT7n6oXK4CEQxIWsgTyAChq9bfEVhN61zjEOpjpcpHDH6KWOEwI6ma77bdR93ApmuPxoKIYEOavCWLy_9MOd_IkyNxofZXWNxtVEnKTkTI8lowCfqordD2o0Z82-NSwtRh6gmCjIrUsPTYiDh7J1DYHzdovaTvQ');
-                  "
-                >
-                  <div
-                    class="relative z-10 flex w-full flex-col items-start gap-4"
-                  >
+
+              <!-- Mouvement RJVC Section -->
+              <div class="px-4 pb-10 slide-in-bottom delay-600">
+                <div class="relative bg-cover bg-center rounded-lg overflow-hidden min-h-[400px] md:min-h-[500px] flex flex-col justify-end" style="background-image: linear-gradient(0deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.1) 100%), url('https://lh3.googleusercontent.com/aida-public/AB6AXuAxqjYu5BaI8Ky9-qvJtuDJ0JgxBlwddr5JXTnxXK5NoMYcqIMYLlFZi7jn1OKO_XNO-sVmMtf2EDORThbK3vzLrp5-mXjkVRc2uVuOTKkDXYRGTT7n6oXK4CEQxIWsgTyAChq9bfEVhN61zjEOpjpcpHDH6KWOEwI6ma77bdR93ApmuPxoKIYEOavCWLy_9MOd_IkyNxofZXWNxtVEnKTkTI8lowCfqordD2o0Z82-NSwtRh6gmCjIrUsPTYiDh7J1DYHzdovaTvQ');">
+                  <div class="relative z-10 flex w-full flex-col items-start gap-4 p-6 md:p-8">
                     <div class="flex max-w-[520px] flex-1 flex-col gap-2">
-                      <p
-                        class="text-white tracking-tight text-3xl font-bold leading-tight"
-                      >
-                        Le Mouvement RJVC
-                      </p>
-                      <p
-                        class="text-white/90 text-base font-medium leading-normal"
-                      >
-                        Rejoignez notre grand rassemblement annuel pendant les
-                        vacances. Un temps fort de communion, de louange,
-                        d'ateliers et de croissance spirituelle.
+                      <h2 class="text-white text-2xl sm:text-3xl font-bold">Le Mouvement RJVC</h2>
+                      <p class="text-white/90 text-base font-medium">
+                        Rejoignez notre grand rassemblement annuel pendant les vacances. Un temps fort de communion, de louange, d'ateliers et de croissance spirituelle.
                       </p>
                     </div>
-                    <button
-                      class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-5 bg-primary text-background-dark text-base font-bold leading-normal tracking-[0.015em] hover:opacity-90 transition-opacity"
-                    >
-                      <span class="truncate">Rejoindre l'événement annuel</span>
+                    <button class="flex items-center justify-center rounded-lg h-12 px-5 bg-primary text-background-dark text-base font-bold hover:opacity-90 transition-opacity">
+                      <i class="fas fa-users mr-2"></i>
+                      Rejoindre l'événement annuel
                     </button>
                   </div>
                 </div>
               </div>
             </main>
-            <footer class="mt-16 border-t border-white/10 px-4 py-8 sm:px-10">
-              <div
-                class="flex flex-col md:flex-row justify-between items-center gap-6"
-              >
-                <div class="flex items-center gap-4 text-white">
+
+            <!-- Footer -->
+            <footer class="mt-12 md:mt-16 border-t border-white/10 py-8">
+              <div class="flex flex-col md:flex-row justify-between items-center gap-6 px-4">
+                <div class="flex items-center gap-4">
                   <div class="size-5 text-primary">
-                    <svg
-                      fill="none"
-                      viewbox="0 0 48 48"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="M4 4H17.3334V17.3334H30.6666V30.6666H44V44H4V4Z"
-                        fill="currentColor"
-                      ></path>
-                    </svg>
+                    <i class="fas fa-cross"></i>
                   </div>
                   <h2 class="text-white text-lg font-bold">RJVC</h2>
                 </div>
-                <nav
-                  class="flex flex-wrap justify-center gap-x-6 gap-y-2 text-sm"
-                >
-                  <a
-                    class="text-white/70 hover:text-primary transition-colors"
-                    href="./index.html"
-                    >Accueil</a
-                  >
-                  <a
-                    class="text-white/70 hover:text-primary transition-colors"
-                    href="#"
-                    >Nos Communautés</a
-                  >
-                  <a
-                    class="text-white/70 hover:text-primary transition-colors"
-                    href="#"
-                    >Événements</a
-                  >
-                  <a
-                    class="text-white/70 hover:text-primary transition-colors"
-                    href="#"
-                    >Contact</a
-                  >
-                  <a
-                    class="text-white/70 hover:text-primary transition-colors"
-                    href="#"
-                    >Faire un don</a
-                  >
+                
+                <nav class="flex flex-wrap justify-center gap-x-6 gap-y-2 text-sm">
+                  <a class="text-white/70 hover:text-primary transition-colors" href="./index.html">Accueil</a>
+                  <a class="text-white/70 hover:text-primary transition-colors" href="./communaut.html">Nos Communautés</a>
+                  <a class="text-white/70 hover:text-primary transition-colors" href="./evenemetavenir.html">Événements</a>
+                  <a class="text-white/70 hover:text-primary transition-colors" href="./contact.html">Contact</a>
+                  <a class="text-white/70 hover:text-primary transition-colors" href="#">Faire un don</a>
                 </nav>
+                
                 <div class="flex gap-4 text-white/70">
                   <a class="hover:text-primary transition-colors" href="#">
-                    <svg
-                      aria-hidden="true"
-                      class="h-6 w-6"
-                      fill="currentColor"
-                      viewbox="0 0 24 24"
-                    >
-                      <path
-                        clip-rule="evenodd"
-                        d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"
-                        fill-rule="evenodd"
-                      ></path>
-                    </svg>
+                    <i class="fab fa-facebook-f text-xl"></i>
                   </a>
                   <a class="hover:text-primary transition-colors" href="#">
-                    <svg
-                      aria-hidden="true"
-                      class="h-6 w-6"
-                      fill="currentColor"
-                      viewbox="0 0 24 24"
-                    >
-                      <path
-                        d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.71v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84"
-                      ></path>
-                    </svg>
+                    <i class="fab fa-twitter text-xl"></i>
                   </a>
                   <a class="hover:text-primary transition-colors" href="#">
-                    <svg
-                      aria-hidden="true"
-                      class="h-6 w-6"
-                      fill="currentColor"
-                      viewbox="0 0 24 24"
-                    >
-                      <path
-                        clip-rule="evenodd"
-                        d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.024.06 1.378.06 3.808s-.012 2.784-.06 3.808c-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.024.048-1.378.06-3.808.06s-2.784-.013-3.808-.06c-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.048-1.024-.06-1.378-.06-3.808s.012-2.784.06-3.808c.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 016.345 2.525c.636-.247 1.363-.416 2.427-.465C9.801 2.013 10.155 2 12.315 2zm-1.003 3.865a5.134 5.134 0 11-5.134 5.134 5.134 5.134 0 015.134-5.134zm-6.257 5.134a6.257 6.257 0 106.257-6.257 6.257 6.257 0 00-6.257 6.257zm12.348-7.799a1.44 1.44 0 100 2.88 1.44 1.44 0 000-2.88z"
-                        fill-rule="evenodd"
-                      ></path>
-                    </svg>
+                    <i class="fab fa-instagram text-xl"></i>
                   </a>
                 </div>
               </div>
-              <div class="mt-6 text-center text-sm text-white/50">
+              
+              <div class="mt-6 text-center text-sm text-white/50 px-4">
                 <p>© 2024 RJVC. Tous droits réservés.</p>
               </div>
             </footer>
@@ -506,5 +448,53 @@
         </div>
       </div>
     </div>
+
+    <script>
+      // Mobile menu functionality
+      const mobileMenuButton = document.getElementById('mobile-menu-button');
+      const closeMenuButton = document.getElementById('close-menu-button');
+      const mobileMenu = document.getElementById('mobile-menu');
+      const mobileMenuOverlay = document.getElementById('mobile-menu-overlay');
+
+      function openMobileMenu() {
+        mobileMenu.classList.add('open');
+        mobileMenuOverlay.classList.add('open');
+        document.body.style.overflow = 'hidden';
+      }
+
+      function closeMobileMenu() {
+        mobileMenu.classList.remove('open');
+        mobileMenuOverlay.classList.remove('open');
+        document.body.style.overflow = '';
+      }
+
+      mobileMenuButton.addEventListener('click', openMobileMenu);
+      closeMenuButton.addEventListener('click', closeMobileMenu);
+      mobileMenuOverlay.addEventListener('click', closeMobileMenu);
+
+      // Close menu when clicking on a link
+      const mobileLinks = mobileMenu.querySelectorAll('a');
+      mobileLinks.forEach(link => {
+        link.addEventListener('click', closeMobileMenu);
+      });
+
+      // Close menu with Escape key
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+          closeMobileMenu();
+        }
+      });
+
+      // Animation on page load
+      document.addEventListener('DOMContentLoaded', () => {
+        // Animate sections sequentially
+        const sections = document.querySelectorAll('.slide-in-left, .slide-in-right, .slide-in-bottom');
+        sections.forEach((section, index) => {
+          setTimeout(() => {
+            section.style.animationPlayState = 'running';
+          }, index * 100);
+        });
+      });
+    </script>
   </body>
 </html>

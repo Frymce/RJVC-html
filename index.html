@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html class="dark" lang="fr">
   <head>
     <meta charset="utf-8" />
@@ -19,6 +18,102 @@
     <style>
       .material-symbols-outlined {
         font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
+      }
+
+      /* Animation classes */
+      .slide-in-left {
+        animation: slideInLeft 0.8s ease-out forwards;
+        opacity: 0;
+        transform: translateX(-50px);
+      }
+
+      .slide-in-right {
+        animation: slideInRight 0.8s ease-out forwards;
+        opacity: 0;
+        transform: translateX(50px);
+      }
+
+      .slide-in-bottom {
+        animation: slideInBottom 0.8s ease-out forwards;
+        opacity: 0;
+        transform: translateY(50px);
+      }
+
+      @keyframes slideInLeft {
+        to {
+          opacity: 1;
+          transform: translateX(0);
+        }
+      }
+
+      @keyframes slideInRight {
+        to {
+          opacity: 1;
+          transform: translateX(0);
+        }
+      }
+
+      @keyframes slideInBottom {
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* Stagger delays for sequential animations */
+      .delay-100 {
+        animation-delay: 100ms;
+      }
+      .delay-200 {
+        animation-delay: 200ms;
+      }
+      .delay-300 {
+        animation-delay: 300ms;
+      }
+      .delay-400 {
+        animation-delay: 400ms;
+      }
+
+      /* Mobile menu styles */
+      .mobile-menu {
+        transform: translateX(100%);
+        transition: transform 0.3s ease-out;
+      }
+
+      .mobile-menu.open {
+        transform: translateX(0);
+      }
+
+      .overlay {
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.3s ease-out;
+      }
+
+      .overlay.open {
+        opacity: 1;
+        visibility: visible;
+      }
+
+      /* Countdown Styles */
+      .countdown-transition {
+        transition: all 0.3s ease-in-out;
+      }
+
+      @keyframes pulse {
+        0% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.05);
+        }
+        100% {
+          transform: scale(1);
+        }
+      }
+
+      .pulse-animation {
+        animation: pulse 1s ease-in-out;
       }
     </style>
     <script id="tailwind-config">
@@ -98,35 +193,213 @@
             >
             <a
               class="text-neutral-text text-sm font-medium leading-normal transition-colors hover:text-primary"
-              href="./valeur.html"
-              >Témoignages</a
-            >
-            <a
-              class="text-neutral-text text-sm font-medium leading-normal transition-colors hover:text-primary"
               href="./contact.html"
               >Contact</a
             >
+            <button
+              class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-primary text-background-dark text-sm font-bold leading-normal tracking-[0.015em] hover:bg-primary/90 transition-colors"
+            >
+              <span class="truncate">Donate</span>
+            </button>
           </nav>
-          <button class="md:hidden text-neutral-text">
+          <button id="mobile-menu-button" class="md:hidden text-neutral-text">
             <span class="material-symbols-outlined">menu</span>
           </button>
         </div>
       </header>
+
+      <!-- Mobile Menu Overlay -->
+      <div
+        id="mobile-menu-overlay"
+        class="overlay fixed inset-0 z-40 bg-black/50 md:hidden"
+      ></div>
+
+      <!-- Mobile Menu -->
+      <div
+        id="mobile-menu"
+        class="mobile-menu fixed right-0 top-0 z-50 h-full w-64 bg-background-dark p-6 md:hidden"
+      >
+        <div class="flex items-center justify-between mb-8">
+          <div class="flex items-center gap-3">
+            <div class="size-6 text-primary">
+              <svg
+                fill="none"
+                viewbox="0 0 48 48"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M4 4H17.3334V17.3334H30.6666V30.6666H44V44H4V4Z"
+                  fill="currentColor"
+                ></path>
+              </svg>
+            </div>
+            <h2 class="text-neutral-text text-xl font-bold tracking-tight">
+              RJVC
+            </h2>
+          </div>
+          <button id="close-menu-button" class="text-neutral-text">
+            <span class="material-symbols-outlined">close</span>
+          </button>
+        </div>
+        <nav class="flex flex-col gap-6">
+          <a
+            class="text-neutral-text text-lg font-medium leading-normal transition-colors hover:text-primary py-2 border-b border-white/10"
+            href="index.html"
+            >Accueil</a
+          >
+          <a
+            class="text-neutral-text text-lg font-medium leading-normal transition-colors hover:text-primary py-2 border-b border-white/10"
+            href="./about.html"
+            >À propos</a
+          >
+          <a
+            class="text-neutral-text text-lg font-medium leading-normal transition-colors hover:text-primary py-2 border-b border-white/10"
+            href="./communaut.html"
+            >Nos Communautés</a
+          >
+          <a
+            class="text-neutral-text text-lg font-medium leading-normal transition-colors hover:text-primary py-2 border-b border-white/10"
+            href="./evenemetavenir.html"
+            >Événements</a
+          >
+          <a
+            class="text-neutral-text text-lg font-medium leading-normal transition-colors hover:text-primary py-2"
+            href="./contact.html"
+            >Contact</a
+          >
+          <button
+            class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-primary text-background-dark text-sm font-bold leading-normal tracking-[0.015em] hover:bg-primary/90 transition-colors"
+          >
+            <span class="truncate">Donate</span>
+          </button>
+        </nav>
+      </div>
+
       <main class="flex flex-1 flex-col items-center">
         <div class="w-full max-w-7xl px-4 sm:px-10">
           <!-- HeadlineText -->
           <div class="border-b border-solid border-white/10 py-4 text-center">
             <h3
-              class="text-lg font-semibold italic leading-tight tracking-wide text-neutral-text/80"
+              class="text-lg font-semibold italic leading-tight tracking-wide text-neutral-text/80 slide-in-left"
             >
               Réjouissez-vous toujours dans le Seigneur
             </h3>
           </div>
+
+          <!-- Countdown Banner -->
+          <div
+            id="countdown-banner"
+            class="bg-gradient-to-r from-primary/20 to-primary/10 border-b border-primary/30"
+          >
+            <div class="max-w-7xl mx-auto px-4 py-3">
+              <div
+                class="flex flex-col sm:flex-row items-center justify-between gap-3"
+              >
+                <div class="flex items-center gap-3">
+                  <div class="text-primary">
+                    <svg
+                      class="w-6 h-6"
+                      fill="currentColor"
+                      viewBox="0 0 24 24"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M12 2c5.523 0 10 4.477 10 10s-4.477 10-10 10S2 17.523 2 12 6.477 2 12 2zm0 2a8 8 0 1 0 0 16 8 8 0 0 0 0-16zm1 2v5h4v2h-6V6h2z"
+                      />
+                    </svg>
+                  </div>
+                  <div>
+                    <p class="text-white font-bold text-sm">
+                      Prochain événement:
+                      <span id="event-title" class="text-primary"
+                        >Festival de la Joie 2024</span
+                      >
+                    </p>
+                    <p class="text-white/70 text-xs" id="event-date">
+                      24-26 Août 2024
+                    </p>
+                  </div>
+                </div>
+                <div class="flex items-center gap-4">
+                  <div class="flex items-center gap-2">
+                    <div
+                      class="bg-background-dark/80 rounded-lg px-3 py-2 text-center min-w-[50px]"
+                    >
+                      <div
+                        id="countdown-days"
+                        class="text-2xl font-bold text-white"
+                      >
+                        00
+                      </div>
+                      <div class="text-xs text-white/70">Jours</div>
+                    </div>
+                    <div class="text-white/50">:</div>
+                    <div
+                      class="bg-background-dark/80 rounded-lg px-3 py-2 text-center min-w-[50px]"
+                    >
+                      <div
+                        id="countdown-hours"
+                        class="text-2xl font-bold text-white"
+                      >
+                        00
+                      </div>
+                      <div class="text-xs text-white/70">Heures</div>
+                    </div>
+                    <div class="text-white/50">:</div>
+                    <div
+                      class="bg-background-dark/80 rounded-lg px-3 py-2 text-center min-w-[50px]"
+                    >
+                      <div
+                        id="countdown-minutes"
+                        class="text-2xl font-bold text-white"
+                      >
+                        00
+                      </div>
+                      <div class="text-xs text-white/70">Minutes</div>
+                    </div>
+                    <div class="text-white/50">:</div>
+                    <div
+                      class="bg-background-dark/80 rounded-lg px-3 py-2 text-center min-w-[50px]"
+                    >
+                      <div
+                        id="countdown-seconds"
+                        class="text-2xl font-bold text-white"
+                      >
+                        00
+                      </div>
+                      <div class="text-xs text-white/70">Secondes</div>
+                    </div>
+                  </div>
+                  <button
+                    id="register-event-btn"
+                    class="bg-primary text-background-dark px-4 py-2 rounded-lg text-sm font-bold hover:bg-primary/90 transition-colors"
+                  >
+                    S'inscrire
+                  </button>
+                  <button
+                    id="close-countdown"
+                    class="text-white/70 hover:text-white transition-colors"
+                  >
+                    <svg
+                      class="w-5 h-5"
+                      fill="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
+                      />
+                    </svg>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
           <!-- HeroSection -->
           <div class="py-20 sm:py-28">
             <div class="@container">
               <div
-                class="flex min-h-[480px] flex-col items-center justify-center gap-6 rounded-xl bg-cover bg-center bg-no-repeat p-6 text-center shadow-lg"
+                class="flex min-h-[480px] flex-col items-center justify-center gap-6 rounded-xl bg-cover bg-center bg-no-repeat p-6 text-center shadow-lg slide-in-bottom"
                 data-alt="Abstract dark blue background with hints of golden light rays."
                 style="
                   background-image: linear-gradient(
@@ -138,13 +411,13 @@
               >
                 <div class="flex max-w-3xl flex-col gap-4">
                   <h1
-                    class="text-4xl font-black leading-tight tracking-tighter text-neutral-text @[480px]:text-6xl"
+                    class="text-4xl font-black leading-tight tracking-tighter text-neutral-text @[480px]:text-6xl slide-in-left delay-100"
                   >
                     Bienvenue dans le mouvement RJVC - Unis en Christ pour une
                     joie commune.
                   </h1>
                   <h2
-                    class="text-base font-normal leading-normal text-neutral-text/80 @[480px]:text-lg"
+                    class="text-base font-normal leading-normal text-neutral-text/80 @[480px]:text-lg slide-in-right delay-200"
                   >
                     Découvrez une communauté fondée sur la foi, l'unité, le
                     service et la joie. Rejoignez-nous pour grandir ensemble et
@@ -152,13 +425,15 @@
                   </h2>
                 </div>
                 <div class="flex flex-wrap items-center justify-center gap-4">
+                  <a href="./rejoindre.html">
+                    <button
+                      class="flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-6 bg-primary text-background-dark text-base font-bold leading-normal tracking-wide transition-transform hover:scale-105 slide-in-left delay-300"
+                    >
+                      <span class="truncate">Rejoindre le mouvement</span>
+                    </button>
+                  </a>
                   <button
-                    class="flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-6 bg-primary text-background-dark text-base font-bold leading-normal tracking-wide transition-transform hover:scale-105"
-                  >
-                    <span class="truncate">Rejoindre le mouvement</span>
-                  </button>
-                  <button
-                    class="flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-lg border-2 border-primary/50 bg-transparent h-12 px-6 text-primary text-base font-bold leading-normal tracking-wide transition-colors hover:border-primary hover:bg-primary/10"
+                    class="flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-lg border-2 border-primary/50 bg-transparent h-12 px-6 text-primary text-base font-bold leading-normal tracking-wide transition-colors hover:border-primary hover:bg-primary/10 slide-in-right delay-400"
                   >
                     <span class="truncate">Participer à nos événements</span>
                   </button>
@@ -170,12 +445,12 @@
           <section class="py-16 sm:py-24">
             <div class="text-center">
               <h2
-                class="text-3xl font-bold leading-tight tracking-tighter text-neutral-text sm:text-4xl"
+                class="text-3xl font-bold leading-tight tracking-tighter text-neutral-text sm:text-4xl slide-in-left"
               >
                 Notre mission, notre vision
               </h2>
               <p
-                class="mx-auto mt-4 max-w-2xl text-base font-normal leading-normal text-neutral-text/70 sm:text-lg"
+                class="mx-auto mt-4 max-w-2xl text-base font-normal leading-normal text-neutral-text/70 sm:text-lg slide-in-right delay-100"
               >
                 Le RJVC est une organisation de jeunesse chrétienne dédiée à
                 cultiver la foi, l'unité, le service et la joie parmi les
@@ -184,7 +459,7 @@
             </div>
             <div class="mt-12 grid grid-cols-1 gap-8 md:grid-cols-3">
               <div
-                class="flex flex-col items-center rounded-xl border border-white/10 bg-white/5 p-8 text-center transition-all hover:border-primary/50 hover:bg-primary/5"
+                class="flex flex-col items-center rounded-xl border border-white/10 bg-white/5 p-8 text-center transition-all hover:border-primary/50 hover:bg-primary/5 slide-in-left delay-200"
               >
                 <div
                   class="mb-4 flex size-16 items-center justify-center rounded-full bg-primary/10 text-primary"
@@ -198,7 +473,7 @@
                 </p>
               </div>
               <div
-                class="flex flex-col items-center rounded-xl border border-white/10 bg-white/5 p-8 text-center transition-all hover:border-primary/50 hover:bg-primary/5"
+                class="flex flex-col items-center rounded-xl border border-white/10 bg-white/5 p-8 text-center transition-all hover:border-primary/50 hover:bg-primary/5 slide-in-right delay-300"
               >
                 <div
                   class="mb-4 flex size-16 items-center justify-center rounded-full bg-primary/10 text-primary"
@@ -216,7 +491,7 @@
                 </p>
               </div>
               <div
-                class="flex flex-col items-center rounded-xl border border-white/10 bg-white/5 p-8 text-center transition-all hover:border-primary/50 hover:bg-primary/5"
+                class="flex flex-col items-center rounded-xl border border-white/10 bg-white/5 p-8 text-center transition-all hover:border-primary/50 hover:bg-primary/5 slide-in-left delay-400"
               >
                 <div
                   class="mb-4 flex size-16 items-center justify-center rounded-full bg-primary/10 text-primary"
@@ -237,12 +512,12 @@
           <section class="py-16 sm:py-24">
             <div class="text-center">
               <h2
-                class="text-3xl font-bold leading-tight tracking-tighter text-neutral-text sm:text-4xl"
+                class="text-3xl font-bold leading-tight tracking-tighter text-neutral-text sm:text-4xl slide-in-right"
               >
                 Événements à venir
               </h2>
               <p
-                class="mx-auto mt-4 max-w-2xl text-base font-normal leading-normal text-neutral-text/70 sm:text-lg"
+                class="mx-auto mt-4 max-w-2xl text-base font-normal leading-normal text-neutral-text/70 sm:text-lg slide-in-left delay-100"
               >
                 Ne manquez pas nos prochains grands rassemblements. Soyez des
                 nôtres !
@@ -252,7 +527,7 @@
               class="mt-12 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3"
             >
               <div
-                class="group overflow-hidden rounded-xl border border-white/10 bg-white/5 transition-shadow hover:shadow-2xl hover:shadow-primary/10"
+                class="group overflow-hidden rounded-xl border border-white/10 bg-white/5 transition-shadow hover:shadow-2xl hover:shadow-primary/10 slide-in-left delay-200"
               >
                 <img
                   class="h-56 w-full object-cover transition-transform duration-300 group-hover:scale-105"
@@ -278,7 +553,7 @@
                 </div>
               </div>
               <div
-                class="group overflow-hidden rounded-xl border border-white/10 bg-white/5 transition-shadow hover:shadow-2xl hover:shadow-primary/10"
+                class="group overflow-hidden rounded-xl border border-white/10 bg-white/5 transition-shadow hover:shadow-2xl hover:shadow-primary/10 slide-in-right delay-300"
               >
                 <img
                   class="h-56 w-full object-cover transition-transform duration-300 group-hover:scale-105"
@@ -304,7 +579,7 @@
                 </div>
               </div>
               <div
-                class="group overflow-hidden rounded-xl border border-white/10 bg-white/5 transition-shadow hover:shadow-2xl hover:shadow-primary/10"
+                class="group overflow-hidden rounded-xl border border-white/10 bg-white/5 transition-shadow hover:shadow-2xl hover:shadow-primary/10 slide-in-left delay-400"
               >
                 <img
                   class="h-56 w-full object-cover transition-transform duration-300 group-hover:scale-105"
@@ -335,12 +610,12 @@
           <section class="py-16 sm:py-24">
             <div class="text-center">
               <h2
-                class="text-3xl font-bold leading-tight tracking-tighter text-neutral-text sm:text-4xl"
+                class="text-3xl font-bold leading-tight tracking-tighter text-neutral-text sm:text-4xl slide-in-right"
               >
                 Paroles de notre communauté
               </h2>
               <p
-                class="mx-auto mt-4 max-w-2xl text-base font-normal leading-normal text-neutral-text/70 sm:text-lg"
+                class="mx-auto mt-4 max-w-2xl text-base font-normal leading-normal text-neutral-text/70 sm:text-lg slide-in-left delay-100"
               >
                 Ils ont vécu l'expérience RJVC. Découvrez ce qu'ils en disent.
               </p>
@@ -348,7 +623,7 @@
             <div class="relative mt-12">
               <div class="grid grid-cols-1 gap-8 lg:grid-cols-2">
                 <div
-                  class="flex flex-col rounded-xl border border-white/10 bg-white/5 p-8"
+                  class="flex flex-col rounded-xl border border-white/10 bg-white/5 p-8 slide-in-left delay-200"
                 >
                   <p class="flex-grow text-neutral-text/80">
                     "RJVC a transformé ma foi. J'ai trouvé ici une vraie
@@ -369,7 +644,7 @@
                   </div>
                 </div>
                 <div
-                  class="flex flex-col rounded-xl border border-white/10 bg-white/5 p-8"
+                  class="flex flex-col rounded-xl border border-white/10 bg-white/5 p-8 slide-in-right delay-300"
                 >
                   <p class="flex-grow text-neutral-text/80">
                     "Les événements sont toujours incroyables ! La qualité de la
@@ -415,5 +690,286 @@
         </div>
       </main>
     </div>
+
+    <script>
+      // Mobile menu functionality
+      const mobileMenuButton = document.getElementById("mobile-menu-button");
+      const closeMenuButton = document.getElementById("close-menu-button");
+      const mobileMenu = document.getElementById("mobile-menu");
+      const mobileMenuOverlay = document.getElementById("mobile-menu-overlay");
+
+      function openMobileMenu() {
+        mobileMenu.classList.add("open");
+        mobileMenuOverlay.classList.add("open");
+        document.body.style.overflow = "hidden";
+      }
+
+      function closeMobileMenu() {
+        mobileMenu.classList.remove("open");
+        mobileMenuOverlay.classList.remove("open");
+        document.body.style.overflow = "";
+      }
+
+      mobileMenuButton.addEventListener("click", openMobileMenu);
+      closeMenuButton.addEventListener("click", closeMobileMenu);
+      mobileMenuOverlay.addEventListener("click", closeMobileMenu);
+
+      // Close menu when clicking on a link
+      const mobileLinks = mobileMenu.querySelectorAll("a");
+      mobileLinks.forEach((link) => {
+        link.addEventListener("click", closeMobileMenu);
+      });
+
+      // Animation observer for scroll-triggered animations
+      const observerOptions = {
+        threshold: 0.1,
+        rootMargin: "0px 0px -50px 0px",
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            // Elements already have animation classes applied on page load
+            // This observer can be used for additional scroll-triggered animations
+          }
+        });
+      }, observerOptions);
+
+      // Observe elements with animation classes
+      document
+        .querySelectorAll(".slide-in-left, .slide-in-right, .slide-in-bottom")
+        .forEach((el) => {
+          observer.observe(el);
+        });
+
+      // Animation on page load
+      document.addEventListener("DOMContentLoaded", () => {
+        // Animate headline immediately
+        const headline = document.querySelector(".slide-in-left");
+        if (headline) {
+          headline.style.animationPlayState = "running";
+        }
+
+        // Animate hero section with slight delay
+        setTimeout(() => {
+          const heroElements = document.querySelectorAll(
+            ".hero-section .slide-in-left, .hero-section .slide-in-right, .hero-section .slide-in-bottom"
+          );
+          heroElements.forEach((el) => {
+            el.style.animationPlayState = "running";
+          });
+        }, 300);
+
+        // Animate other sections sequentially
+        const sections = document.querySelectorAll("section");
+        sections.forEach((section, index) => {
+          setTimeout(() => {
+            const sectionElements = section.querySelectorAll(
+              ".slide-in-left, .slide-in-right, .slide-in-bottom"
+            );
+            sectionElements.forEach((el) => {
+              el.style.animationPlayState = "running";
+            });
+          }, 500 + index * 200);
+        });
+      });
+
+      // Configuration des événements à venir
+      const upcomingEvents = [
+        {
+          id: 1,
+          title: "Festival de la Joie 2024",
+          date: "2025-12-24T09:00:00", // Date et heure de l'événement
+          endDate: "2024-08-26T18:00:00",
+          description: "Trois jours de louange, de musique et de partage",
+          registrationLink: "./evenemetavenir.html",
+          active: true,
+        },
+        {
+          id: 2,
+          title: "Convention Annuelle RJVC",
+          date: "2026-10-18T09:00:00",
+          endDate: "2024-10-20T18:00:00",
+          description: "Le point culminant de notre année",
+          registrationLink: "./evenemetavenir.html",
+          active: true,
+        },
+        {
+          id: 3,
+          title: "Retraite Spirituelle",
+          date: "2026-11-15T17:00:00",
+          endDate: "2024-11-17T14:00:00",
+          description: "Un weekend de ressourcement spirituel",
+          registrationLink: "./evenemetavenir.html",
+          active: true,
+        },
+      ];
+
+      // DOM Elements
+      const countdownBanner = document.getElementById("countdown-banner");
+      const eventTitle = document.getElementById("event-title");
+      const eventDate = document.getElementById("event-date");
+      const countdownDays = document.getElementById("countdown-days");
+      const countdownHours = document.getElementById("countdown-hours");
+      const countdownMinutes = document.getElementById("countdown-minutes");
+      const countdownSeconds = document.getElementById("countdown-seconds");
+      const registerEventBtn = document.getElementById("register-event-btn");
+      const closeCountdownBtn = document.getElementById("close-countdown");
+
+      // Variables
+      let currentEvent = null;
+      let countdownInterval = null;
+
+      // Fonction pour trouver le prochain événement
+      function findNextEvent() {
+        const now = new Date();
+        let nextEvent = null;
+        let shortestTime = Infinity;
+
+        upcomingEvents.forEach((event) => {
+          if (event.active) {
+            const eventDate = new Date(event.date);
+            const timeDiff = eventDate - now;
+
+            if (timeDiff > 0 && timeDiff < shortestTime) {
+              shortestTime = timeDiff;
+              nextEvent = event;
+            }
+          }
+        });
+
+        return nextEvent;
+      }
+
+      // Fonction pour formater la date
+      function formatEventDate(event) {
+        const startDate = new Date(event.date);
+        const endDate = new Date(event.endDate);
+
+        const options = {
+          day: "numeric",
+          month: "long",
+          year: "numeric",
+        };
+
+        if (event.date === event.endDate || !event.endDate) {
+          return startDate.toLocaleDateString("fr-FR", options);
+        } else {
+          const startStr = startDate.toLocaleDateString("fr-FR", {
+            day: "numeric",
+            month: "long",
+          });
+          const endStr = endDate.toLocaleDateString("fr-FR", options);
+          return `${startStr} - ${endStr}`;
+        }
+      }
+
+      // Fonction pour mettre à jour le décompte
+      function updateCountdown() {
+        if (!currentEvent) return;
+
+        const now = new Date();
+        const eventTime = new Date(currentEvent.date);
+        const timeRemaining = eventTime - now;
+
+        if (timeRemaining <= 0) {
+          // L'événement est passé ou en cours
+          clearInterval(countdownInterval);
+          countdownBanner.classList.add("hidden");
+          return;
+        }
+
+        // Calcul des jours, heures, minutes, secondes
+        const days = Math.floor(timeRemaining / (1000 * 60 * 60 * 24));
+        const hours = Math.floor(
+          (timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+        );
+        const minutes = Math.floor(
+          (timeRemaining % (1000 * 60 * 60)) / (1000 * 60)
+        );
+        const seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
+
+        // Mise à jour de l'affichage
+        countdownDays.textContent = days.toString().padStart(2, "0");
+        countdownHours.textContent = hours.toString().padStart(2, "0");
+        countdownMinutes.textContent = minutes.toString().padStart(2, "0");
+        countdownSeconds.textContent = seconds.toString().padStart(2, "0");
+
+        // Animation de pulse pour les changements de seconde
+        countdownSeconds.classList.add("pulse-animation");
+        setTimeout(() => {
+          countdownSeconds.classList.remove("pulse-animation");
+        }, 1000);
+      }
+
+      // Fonction pour initialiser le décompte
+      function initCountdown() {
+        // Vérifier s'il y a un événement stocké dans localStorage
+        const savedEvent = localStorage.getItem("rjvc_countdown_event");
+        const savedHidden = localStorage.getItem("rjvc_countdown_hidden");
+
+        // Trouver le prochain événement
+        currentEvent = findNextEvent();
+
+        if (!currentEvent) {
+          countdownBanner.classList.add("hidden");
+          return;
+        }
+
+        // Vérifier si l'utilisateur a masqué le décompte
+        if (
+          savedHidden === "true" &&
+          savedEvent === currentEvent.id.toString()
+        ) {
+          countdownBanner.classList.add("");
+          return;
+        }
+
+        // Mettre à jour les informations de l'événement
+        eventTitle.textContent = currentEvent.title;
+        eventDate.textContent = formatEventDate(currentEvent);
+
+        // Configurer le lien d'inscription
+        registerEventBtn.addEventListener("click", () => {
+          window.location.href = currentEvent.registrationLink;
+        });
+
+        // Afficher le décompte
+        countdownBanner.classList.remove("hidden");
+
+        // Mettre à jour immédiatement
+        updateCountdown();
+
+        // Démarrer l'intervalle de mise à jour
+        countdownInterval = setInterval(updateCountdown, 1000);
+      }
+
+      // Fermer le décompte
+      closeCountdownBtn.addEventListener("click", () => {
+        countdownBanner.classList.add("countdown-transition", "hidden");
+
+        // Sauvegarder la préférence dans localStorage
+        if (currentEvent) {
+          localStorage.setItem("rjvc_countdown_hidden", "true");
+          localStorage.setItem(
+            "rjvc_countdown_event",
+            currentEvent.id.toString()
+          );
+        }
+      });
+
+      // Réinitialiser le décompte (pour les tests)
+      function resetCountdown() {
+        localStorage.removeItem("rjvc_countdown_hidden");
+        localStorage.removeItem("rjvc_countdown_event");
+        location.reload();
+      }
+
+      // Initialiser le décompte au chargement de la page
+      document.addEventListener("DOMContentLoaded", initCountdown);
+
+      // Exposer la fonction de réinitialisation pour les tests
+      window.resetCountdown = resetCountdown;
+    </script>
   </body>
 </html>

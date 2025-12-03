@@ -18,6 +18,31 @@
       .material-symbols-outlined {
         font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
       }
+      
+      /* Mobile menu styles */
+      .mobile-menu {
+        transform: translateX(100%);
+        transition: transform 0.3s ease-out;
+        width: 85%;
+        max-width: 320px;
+      }
+
+      .mobile-menu.open {
+        transform: translateX(0);
+      }
+
+      .overlay {
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.3s ease-out;
+        background: rgba(0, 0, 0, 0.8);
+        z-index: 49;
+      }
+
+      .overlay.open {
+        opacity: 1;
+        visibility: visible;
+      }
     </style>
     <script id="tailwind-config">
       tailwind.config = {
@@ -46,6 +71,50 @@
   <body
     class="font-display bg-background-light dark:bg-background-dark text-[#E6F1FF]"
   >
+    <!-- Mobile Menu Overlay -->
+    <div id="mobile-menu-overlay" class="overlay fixed inset-0 md:hidden"></div>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="mobile-menu fixed right-0 top-0 z-50 h-full bg-background-dark shadow-xl">
+      <div class="p-6 h-full flex flex-col">
+        <!-- Header with close button -->
+        <div class="flex items-center justify-between mb-8 pb-4 border-b border-primary/20">
+          <div class="flex items-center gap-4 text-primary">
+            <div class="size-6">
+              <svg fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+                <path d="M4 4H17.3334V17.3334H30.6666V30.6666H44V44H4V4Z" fill="currentColor"></path>
+              </svg>
+            </div>
+            <h2 class="text-white text-xl font-bold leading-tight tracking-[-0.015em]">
+              RJVC
+            </h2>
+          </div>
+          <button id="close-menu-button" class="text-white hover:text-primary transition-colors p-2">
+            <span class="material-symbols-outlined text-3xl">close</span>
+          </button>
+        </div>
+        
+        <!-- Navigation -->
+        <nav class="flex-1">
+          <div class="flex flex-col gap-1">
+            <a class="text-lg font-medium text-white hover:text-primary transition-colors hover:bg-white/5 py-4 px-4 rounded-lg" href="./index.html">Accueil</a>
+            <a class="text-lg font-medium text-white hover:text-primary transition-colors hover:bg-white/5 py-4 px-4 rounded-lg" href="./about.html">A propos</a>
+            <a class="text-lg font-medium text-white hover:text-primary transition-colors hover:bg-white/5 py-4 px-4 rounded-lg" href="./communaut.html">Nos communautés</a>
+            <a class="text-lg font-medium text-white hover:text-primary transition-colors hover:bg-white/5 py-4 px-4 rounded-lg" href="./evenemetavenir.html">Evenements</a>
+            <a class="text-lg font-medium text-white hover:text-primary transition-colors hover:bg-white/5 py-4 px-4 rounded-lg" href="./">Join</a>
+            <a class="text-lg font-medium text-primary hover:bg-white/5 py-4 px-4 rounded-lg" href="./contact.html">Contact</a>
+          </div>
+        </nav>
+        
+        <!-- Donation Button -->
+        <div class="mt-auto pt-6 border-t border-primary/20">
+          <button class="flex w-full items-center justify-center rounded-lg h-12 bg-primary text-background-dark text-base font-bold hover:bg-primary/90 transition-colors">
+            Donate
+          </button>
+        </div>
+      </div>
+    </div>
+
     <div
       class="relative flex h-auto min-h-screen w-full flex-col group/design-root overflow-x-hidden"
     >
@@ -78,24 +147,30 @@
               <a
                 class="text-white text-sm font-medium leading-normal hover:text-primary transition-colors"
                 href="./index.html"
-                >Home</a
+                >Accueil</a
               >
               <a
                 class="text-white text-sm font-medium leading-normal hover:text-primary transition-colors"
-                href="#"
-                >About Us</a
+                href="./about.html"
+                >A propos</a
               >
               <a
                 class="text-white text-sm font-medium leading-normal hover:text-primary transition-colors"
-                href="#"
-                >Events</a
+                href="./communaut.html"
+                >Nos communautés</a
               >
               <a
                 class="text-white text-sm font-medium leading-normal hover:text-primary transition-colors"
-                href="#"
+                href="./evenemetavenir.html"
+                >Evenements</a
+              >
+              <a
+                class="text-white text-sm font-medium leading-normal hover:text-primary transition-colors"
+                href="./"
                 >Join</a
               >
-              <a class="text-primary text-sm font-bold leading-normal" href="#"
+              <a class="text-primary text-sm font-bold leading-normal"
+                href="./contact.html"
                 >Contact</a
               >
             </div>
@@ -105,7 +180,7 @@
               <span class="truncate">Donate</span>
             </button>
           </div>
-          <button class="md:hidden text-white">
+          <button id="mobile-menu-button" class="md:hidden text-white p-2">
             <span class="material-symbols-outlined text-3xl">menu</span>
           </button>
         </header>
@@ -377,5 +452,42 @@
         </footer>
       </div>
     </div>
+
+    <script>
+      // Mobile menu functionality
+      const mobileMenuButton = document.getElementById('mobile-menu-button');
+      const closeMenuButton = document.getElementById('close-menu-button');
+      const mobileMenu = document.getElementById('mobile-menu');
+      const mobileMenuOverlay = document.getElementById('mobile-menu-overlay');
+
+      function openMobileMenu() {
+        mobileMenu.classList.add('open');
+        mobileMenuOverlay.classList.add('open');
+        document.body.style.overflow = 'hidden';
+      }
+
+      function closeMobileMenu() {
+        mobileMenu.classList.remove('open');
+        mobileMenuOverlay.classList.remove('open');
+        document.body.style.overflow = '';
+      }
+
+      mobileMenuButton.addEventListener('click', openMobileMenu);
+      closeMenuButton.addEventListener('click', closeMobileMenu);
+      mobileMenuOverlay.addEventListener('click', closeMobileMenu);
+
+      // Close menu when clicking on a link
+      const mobileLinks = mobileMenu.querySelectorAll('a');
+      mobileLinks.forEach(link => {
+        link.addEventListener('click', closeMobileMenu);
+      });
+
+      // Close menu with Escape key
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+          closeMobileMenu();
+        }
+      });
+    </script>
   </body>
 </html>

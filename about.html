@@ -1,14 +1,15 @@
 <!DOCTYPE html>
-<html class="dark" lang="fr"><head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Notre Histoire - RJVC</title>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="https://fonts.googleapis.com" rel="preconnect"/>
-<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;900&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
-<style>
+<html class="dark" lang="fr">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Notre Histoire - RJVC</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com" rel="preconnect"/>
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;900&amp;display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+    <style>
         .material-symbols-outlined {
             font-variation-settings:
             'FILL' 0,
@@ -16,8 +17,115 @@
             'GRAD' 0,
             'opsz' 24
         }
+
+        /* Animation classes */
+        .slide-in-left {
+            animation: slideInLeft 0.8s ease-out forwards;
+            opacity: 0;
+            transform: translateX(-50px);
+        }
+
+        .slide-in-right {
+            animation: slideInRight 0.8s ease-out forwards;
+            opacity: 0;
+            transform: translateX(50px);
+        }
+
+        .slide-in-bottom {
+            animation: slideInBottom 0.8s ease-out forwards;
+            opacity: 0;
+            transform: translateY(50px);
+        }
+
+        @keyframes slideInLeft {
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInRight {
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInBottom {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Stagger delays for sequential animations */
+        .delay-100 {
+            animation-delay: 100ms;
+        }
+        .delay-200 {
+            animation-delay: 200ms;
+        }
+        .delay-300 {
+            animation-delay: 300ms;
+        }
+        .delay-400 {
+            animation-delay: 400ms;
+        }
+        .delay-500 {
+            animation-delay: 500ms;
+        }
+        .delay-600 {
+            animation-delay: 600ms;
+        }
+
+        /* Mobile menu styles */
+        .mobile-menu {
+            transform: translateX(100%);
+            transition: transform 0.3s ease-out;
+        }
+
+        .mobile-menu.open {
+            transform: translateX(0);
+        }
+
+        .overlay {
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease-out;
+        }
+
+        .overlay.open {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Timeline custom styles */
+        .timeline-line {
+            animation: drawLine 1s ease-out forwards;
+            stroke-dasharray: 1000;
+            stroke-dashoffset: 1000;
+        }
+
+        @keyframes drawLine {
+            to {
+                stroke-dashoffset: 0;
+            }
+        }
+
+        .timeline-dot {
+            animation: popIn 0.6s ease-out forwards;
+            opacity: 0;
+            transform: scale(0);
+        }
+
+        @keyframes popIn {
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
     </style>
-<script>
+    <script>
         tailwind.config = {
             darkMode: "class",
             theme: {
@@ -41,184 +149,313 @@
 </head>
 <body class="bg-background-dark font-display text-text-light">
 <div class="relative flex min-h-screen w-full flex-col">
-<header class="sticky top-0 z-50 bg-background-dark/90 backdrop-blur-sm">
-<div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-<div class="flex items-center justify-between border-b border-border-dark py-4">
-<a class="flex items-center gap-3" href="#">
-<div class="size-7 text-primary">
-<svg fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2c5.523 0 10 4.477 10 10s-4.477 10-10 10S2 17.523 2 12 6.477 2 12 2zm0 2a8 8 0 0 0-8 8c0 2.05.776 3.914 2.062 5.336L12 12V4zm0 16a8 8 0 0 0 8-8c0-2.05-.776-3.914-2.062-5.336L12 12v8z"></path></svg>
-</div>
-<span class="text-xl font-bold text-white">RJVC</span>
-</a>
-<nav class="hidden items-center gap-8 md:flex">
-<a class="text-sm font-medium text-white transition-colors hover:text-primary" href="#">Notre Histoire</a>
-<a class="text-sm font-medium text-text-secondary transition-colors hover:text-primary" href="#">Événements</a>
-<a class="text-sm font-medium text-text-secondary transition-colors hover:text-primary" href="#">Nous Rejoindre</a>
-<a class="text-sm font-medium text-text-secondary transition-colors hover:text-primary" href="#">Contact</a>
-</nav>
-<div class="flex items-center gap-4">
-<button class="flex h-10 items-center justify-center rounded-md bg-primary px-5 text-sm font-bold text-background-dark transition-colors hover:bg-accent-gold">
-                            Faire un don
-                        </button>
-<button class="md:hidden text-white">
-<span class="material-symbols-outlined text-3xl">menu</span>
-</button>
-</div>
-</div>
-</div>
-</header>
-<main class="flex-1">
-<section class="relative py-24 sm:py-32">
-<div class="absolute inset-0 bg-cover bg-center" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBgcBYLZB0zbaC_GsB9UjnGpZY_51abdf-igHoicH2V-GlE9Xto0Rde_tek5IF-yLMl0iSsTwA3cMAR569HP9U7SPMqfsypCOxxEA6ix3PaoJGUTIGzDWlTzwXi--puQwlFq_STBWHxj8F-a9Q0Frdr1vQUyY8EcdjDAVMkIfrKVxbw6KHXFtY4K1fb8mhwMkia1VV5z3X8Q-SpvbNYBHx3mmnRaAmk8tDo9bUKY0gELxTBp11nMjMnRAcI_vrG3zXxfozVFEGxZTY');"></div>
-<div class="absolute inset-0 bg-background-dark/80 backdrop-blur-sm"></div>
-<div class="relative mx-auto max-w-4xl px-4 text-center sm:px-6 lg:px-8">
-<h1 class="text-4xl font-black text-white sm:text-6xl">Notre Histoire</h1>
-<p class="mt-4 text-lg text-text-light sm:text-xl">De l'étincelle d'une idée à un mouvement pour la jeunesse chrétienne.</p>
-</div>
-</section>
-<div class="mx-auto max-w-4xl px-4 py-16 sm:px-6 sm:py-24 lg:px-8">
-<div class="space-y-20 sm:space-y-28">
-<section>
-<div class="text-center">
-<h2 class="text-3xl font-bold text-white sm:text-4xl">L'Évolution de RJVC</h2>
-<p class="mt-4 text-text-secondary">Un parcours guidé par la foi, de nos débuts modestes à nos trois communautés dynamiques.</p>
-</div>
-<div class="relative mt-12">
-<div class="absolute left-1/2 top-0 h-full w-0.5 -translate-x-1/2 bg-border-dark"></div>
-<div class="group relative flex items-center md:items-start">
-<div class="relative z-10 hidden h-28 w-1/2 pr-8 md:flex md:flex-col md:items-end md:text-right">
-<p class="text-sm font-semibold text-primary">Les Origines</p>
-<h3 class="mt-1 text-xl font-semibold text-white">L'Étincelle de la Foi</h3>
-</div>
-<div class="absolute left-1/2 z-20 flex h-8 w-8 -translate-x-1/2 items-center justify-center rounded-full bg-surface-dark ring-4 ring-background-dark">
-<div class="h-3 w-3 rounded-full bg-primary"></div>
-</div>
-<div class="w-full pl-8 md:w-1/2 md:pl-8">
-<div class="md:hidden">
-<p class="text-sm font-semibold text-primary">Les Origines</p>
-<h3 class="mt-1 text-xl font-semibold text-white">L'Étincelle de la Foi</h3>
-</div>
-<p class="mt-2 text-text-secondary">Né de la vision d'une poignée de jeunes passionnés, RJVC a commencé comme un simple désir de créer un espace pour une communion authentique et une croissance spirituelle partagée.</p>
-</div>
-</div>
-<div class="group relative mt-16 flex items-center md:items-start">
-<div class="relative z-10 w-full pr-8 md:w-1/2 md:pr-8 md:text-right">
-<div class="md:hidden">
-<p class="text-sm font-semibold text-primary">Croissance</p>
-<h3 class="mt-1 text-xl font-semibold text-white">Premier Rassemblement</h3>
-</div>
-<p class="mt-2 text-text-secondary">Le premier grand événement a dépassé toutes les attentes, rassemblant des centaines de jeunes et confirmant le besoin profond d'un tel mouvement. Ce fut le début d'une nouvelle ère.</p>
-</div>
-<div class="absolute left-1/2 z-20 flex h-8 w-8 -translate-x-1/2 items-center justify-center rounded-full bg-surface-dark ring-4 ring-background-dark">
-<div class="h-3 w-3 rounded-full bg-primary"></div>
-</div>
-<div class="relative z-10 hidden h-28 w-1/2 pl-8 md:flex md:flex-col md:items-start">
-<p class="text-sm font-semibold text-primary">Croissance</p>
-<h3 class="mt-1 text-xl font-semibold text-white">Premier Rassemblement</h3>
-</div>
-</div>
-<div class="group relative mt-16 flex items-center md:items-start">
-<div class="relative z-10 hidden h-28 w-1/2 pr-8 md:flex md:flex-col md:items-end md:text-right">
-<p class="text-sm font-semibold text-primary">Aujourd'hui</p>
-<h3 class="mt-1 text-xl font-semibold text-white">Trois Communautés Unies</h3>
-</div>
-<div class="absolute left-1/2 z-20 flex h-8 w-8 -translate-x-1/2 items-center justify-center rounded-full bg-surface-dark ring-4 ring-background-dark">
-<div class="h-3 w-3 rounded-full bg-primary"></div>
-</div>
-<div class="w-full pl-8 md:w-1/2 md:pl-8">
-<div class="md:hidden">
-<p class="text-sm font-semibold text-primary">Aujourd'hui</p>
-<h3 class="mt-1 text-xl font-semibold text-white">Trois Communautés Unies</h3>
-</div>
-<p class="mt-2 text-text-secondary">Pour mieux servir notre communauté grandissante, RJVC s'est structuré en trois pôles distincts mais interconnectés : l'Académie, les Événements, et Le Mouvement Annuel.</p>
-</div>
-</div>
-</div>
-</section>
-</section>
-<!-- Communities Section -->
-<section>
-<h2 class="text-white text-center text-3xl font-bold leading-tight tracking-[-0.015em] mb-12">Our Three Communities</h2>
-<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-<div class="bg-surface-dark border border-border-dark p-8 rounded-xl flex flex-col items-center text-center">
-<div class="bg-primary/10 p-4 rounded-full mb-6">
-<span class="material-symbols-outlined text-primary text-4xl">school</span>
-</div>
-<h3 class="text-white text-xl font-bold mb-2">Academy</h3>
-<p class="text-text-light text-base font-normal leading-relaxed">Focused on in-depth spiritual training, leadership development, and theological formation to equip the next generation of Christian leaders.</p>
-</div>
-<div class="bg-surface-dark border border-border-dark p-8 rounded-xl flex flex-col items-center text-center">
-<div class="bg-primary/10 p-4 rounded-full mb-6">
-<span class="material-symbols-outlined text-primary text-4xl">celebration</span>
-</div>
-<h3 class="text-white text-xl font-bold mb-2">Events</h3>
-<p class="text-text-light text-base font-normal leading-relaxed">Creating vibrant, engaging gatherings, retreats, and worship nights that foster community, fellowship, and a shared passion for faith.</p>
-</div>
-<div class="bg-surface-dark border border-border-dark p-8 rounded-xl flex flex-col items-center text-center">
-<div class="bg-primary/10 p-4 rounded-full mb-6">
-<span class="material-symbols-outlined text-primary text-4xl">calendar_month</span>
-</div>
-<h3 class="text-white text-xl font-bold mb-2">Le Mouvement Annuel</h3>
-<p class="text-text-light text-base font-normal leading-relaxed">Our cornerstone annual event, a powerful multi-day experience that brings together the entire RJVC family for worship, teaching, and celebration.</p>
-</div>
-</div>
-</section>
-<!-- Mission and Vision Section -->
-<section class="space-y-16">
-<div class="text-center max-w-3xl mx-auto">
-<h2 class="text-white text-3xl font-bold leading-tight tracking-[-0.015em] mb-4">Our Mission &amp; Vision</h2>
-<p class="text-text-light text-lg font-normal leading-relaxed mb-6">Our mission is to unite young Christians, empowering them to grow in their faith, serve their communities, and live lives that reflect the joy and love of Christ. We envision a generation on fire for God, transforming the world through unity and service.</p>
-</div>
-<!-- Values -->
-<div>
-<h3 class="text-white text-center text-2xl font-bold leading-tight tracking-[-0.015em] mb-12">Our Values</h3>
-<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-<div class="flex flex-col items-center text-center">
-<span class="material-symbols-outlined text-primary text-4xl mb-4">health_cross</span>
-<h4 class="text-white text-lg font-bold">Faith</h4>
-<p class="text-text-light text-sm mt-1">Rooted in the teachings of Christ, guiding all our actions.</p>
-</div>
-<div class="flex flex-col items-center text-center">
-<span class="material-symbols-outlined text-primary text-4xl mb-4">groups</span>
-<h4 class="text-white text-lg font-bold">Unity</h4>
-<p class="text-text-light text-sm mt-1">Building strong bonds and fostering a supportive community.</p>
-</div>
-<div class="flex flex-col items-center text-center">
-<span class="material-symbols-outlined text-primary text-4xl mb-4">volunteer_activism</span>
-<h4 class="text-white text-lg font-bold">Service</h4>
-<p class="text-text-light text-sm mt-1">Serving others with love and humility, just as He served us.</p>
-</div>
-<div class="flex flex-col items-center text-center">
-<span class="material-symbols-outlined text-primary text-4xl mb-4">sentiment_very_satisfied</span>
-<h4 class="text-white text-lg font-bold">Joy</h4>
-<p class="text-text-light text-sm mt-1">Celebrating our faith with enthusiasm and gratitude.</p>
-</div>
-</div>
-</div>
-</section>
-<!-- Quote Section -->
-<section class="py-16">
-<blockquote class="max-w-3xl mx-auto text-center border-l-4 border-primary pl-6 sm:pl-8">
-<p class="text-white text-2xl sm:text-3xl font-medium leading-relaxed italic">"For where two or three are gathered in my name, there am I among them."</p>
-<cite class="block text-text-light text-base mt-4 not-italic">- Matthew 18:20</cite>
-</blockquote>
-</section>
-<!-- CTA Section -->
-<section class="bg-surface-dark rounded-xl p-8 sm:p-12 text-center flex flex-col items-center">
-<h2 class="text-white text-3xl font-bold leading-tight tracking-[-0.015em] mb-4">Be Part of the Story</h2>
-<p class="text-text-light text-lg font-normal leading-relaxed mb-8 max-w-2xl">Join a vibrant community of young believers. Whether you're seeking to grow your faith, find fellowship, or serve others, there's a place for you here.</p>
-<div class="flex flex-wrap gap-4 justify-center">
-<button class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-6 bg-primary text-background-dark text-base font-bold leading-normal tracking-[0.015em] hover:bg-accent-dark transition-colors">
-<span class="truncate">Join Us</span>
-</button>
-<button class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-6 bg-border-dark text-white text-base font-bold leading-normal tracking-[0.015em] hover:bg-border-dark/80 transition-colors">
-<span class="truncate">Explore Our Events</span>
-</button>
-</div>
-</section>
-</div>
-</div>
-</main>
+    <!-- Mobile Menu Overlay -->
+    <div id="mobile-menu-overlay" class="overlay fixed inset-0 z-40 bg-black/70 md:hidden"></div>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="mobile-menu fixed right-0 top-0 z-50 h-full w-64 bg-surface-dark p-6 md:hidden">
+        <div class="flex items-center justify-between mb-8">
+            <div class="flex items-center gap-3">
+                <div class="size-7 text-primary">
+                    <svg fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2c5.523 0 10 4.477 10 10s-4.477 10-10 10S2 17.523 2 12 6.477 2 12 2zm0 2a8 8 0 0 0-8 8c0 2.05.776 3.914 2.062 5.336L12 12V4zm0 16a8 8 0 0 0 8-8c0-2.05-.776-3.914-2.062-5.336L12 12v8z"></path></svg>
+                </div>
+                <span class="text-xl font-bold text-white">RJVC</span>
+            </div>
+            <button id="close-menu-button" class="text-white">
+                <span class="material-symbols-outlined text-3xl">close</span>
+            </button>
+        </div>
+        <nav class="flex flex-col gap-6">
+            <a class="text-lg font-medium text-white transition-colors hover:text-primary py-2 border-b border-border-dark" href="./index.html">Accueil</a>
+            <a class="text-lg font-medium text-white transition-colors hover:text-primary py-2 border-b border-border-dark" href="./about.html">A propos</a>
+            <a class="text-lg font-medium text-text-secondary transition-colors hover:text-primary py-2 border-b border-border-dark" href="./evenemetavenir.html">Événements</a>
+            <a class="text-lg font-medium text-text-secondary transition-colors hover:text-primary py-2 border-b border-border-dark" href="./">Nous Rejoindre</a>
+            <a class="text-lg font-medium text-text-secondary transition-colors hover:text-primary py-2" href="./contact.html">Contact</a>
+        </nav>
+        <div class="mt-8 pt-6 border-t border-border-dark">
+            <button class="flex w-full h-12 items-center justify-center rounded-md bg-primary px-5 text-sm font-bold text-background-dark transition-colors hover:bg-accent-gold">
+                Faire un don
+            </button>
+        </div>
+    </div>
+
+    <header class="sticky top-0 z-50 bg-background-dark/90 backdrop-blur-sm">
+        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between border-b border-border-dark py-4">
+                <a class="flex items-center gap-3" href="#">
+                    <div class="size-7 text-primary">
+                        <svg fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2c5.523 0 10 4.477 10 10s-4.477 10-10 10S2 17.523 2 12 6.477 2 12 2zm0 2a8 8 0 0 0-8 8c0 2.05.776 3.914 2.062 5.336L12 12V4zm0 16a8 8 0 0 0 8-8c0-2.05-.776-3.914-2.062-5.336L12 12v8z"></path></svg>
+                    </div>
+                    <span class="text-xl font-bold text-white">RJVC</span>
+                </a>
+                <nav class="hidden items-center gap-8 md:flex">
+                    <a class="text-sm font-medium text-white transition-colors hover:text-primary" href="./index.html">Accueil</a>
+                    <a class="text-sm font-medium text-white transition-colors hover:text-primary" href="./about.html">A propos</a>
+                    <a class="text-sm font-medium text-text-secondary transition-colors hover:text-primary" href="./evenemetavenir.html">Événements</a>
+                    <a class="text-sm font-medium text-text-secondary transition-colors hover:text-primary" href="./">Nous Rejoindre</a>
+                    <a class="text-sm font-medium text-text-secondary transition-colors hover:text-primary" href="./contact.html">Contact</a>
+                </nav>
+                <div class="flex items-center gap-4">
+                    <button class="hidden h-10 items-center justify-center rounded-md bg-primary px-5 text-sm font-bold text-background-dark transition-colors hover:bg-accent-gold md:flex">
+                        Faire un don
+                    </button>
+                    <button id="mobile-menu-button" class="md:hidden text-white">
+                        <span class="material-symbols-outlined text-3xl">menu</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+    <main class="flex-1">
+        <!-- Hero Section -->
+        <section class="relative py-24 sm:py-32">
+            <div class="absolute inset-0 bg-cover bg-center slide-in-bottom" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBgcBYLZB0zbaC_GsB9UjnGpZY_51abdf-igHoicH2V-GlE9Xto0Rde_tek5IF-yLMl0iSsTwA3cMAR569HP9U7SPMqfsypCOxxEA6ix3PaoJGUTIGzDWlTzwXi--puQwlFq_STBWHxj8F-a9Q0Frdr1vQUyY8EcdjDAVMkIfrKVxbw6KHXFtY4K1fb8mhwMkia1VV5z3X8Q-SpvbNYBHx3mmnRaAmk8tDo9bUKY0gELxTBp11nMjMnRAcI_vrG3zXxfozVFEGxZTY');"></div>
+            <div class="absolute inset-0 bg-background-dark/80 backdrop-blur-sm"></div>
+            <div class="relative mx-auto max-w-4xl px-4 text-center sm:px-6 lg:px-8">
+                <h1 class="text-4xl font-black text-white sm:text-6xl slide-in-left">Notre Histoire</h1>
+                <p class="mt-4 text-lg text-text-light sm:text-xl slide-in-right delay-100">De l'étincelle d'une idée à un mouvement pour la jeunesse chrétienne.</p>
+            </div>
+        </section>
+
+        <!-- Main Content -->
+        <div class="mx-auto max-w-4xl px-4 py-16 sm:px-6 sm:py-24 lg:px-8">
+            <!-- Evolution Section -->
+            <section class="space-y-20 sm:space-y-28 slide-in-bottom">
+                <div>
+                    <div class="text-center slide-in-left">
+                        <h2 class="text-3xl font-bold text-white sm:text-4xl">L'Évolution de RJVC</h2>
+                        <p class="mt-4 text-text-secondary slide-in-right delay-100">Un parcours guidé par la foi, de nos débuts modestes à nos trois communautés dynamiques.</p>
+                    </div>
+                    <div class="relative mt-12">
+                        <!-- Animated Timeline Line -->
+                        <svg class="absolute left-1/2 top-0 h-full w-0.5 -translate-x-1/2" viewBox="0 0 2 100" preserveAspectRatio="none">
+                            <line x1="1" y1="0" x2="1" y2="100" stroke="#30363D" stroke-width="2" class="timeline-line"/>
+                        </svg>
+                        
+                        <!-- Timeline Item 1 -->
+                        <div class="group relative flex items-center md:items-start">
+                            <div class="relative z-10 hidden h-28 w-1/2 pr-8 md:flex md:flex-col md:items-end md:text-right slide-in-left delay-200">
+                                <p class="text-sm font-semibold text-primary">Les Origines</p>
+                                <h3 class="mt-1 text-xl font-semibold text-white">L'Étincelle de la Foi</h3>
+                            </div>
+                            <div class="absolute left-[250px] z-20 top-[-40px] flex h-8 w-8 -translate-x-1/2 items-center justify-center rounded-full bg-surface-dark ring-4 ring-background-dark timeline-dot delay-200">
+                                <div class="h-3 w-3 rounded-full bg-primary"></div>
+                            </div>
+                            <div class="w-full pl-8 md:w-1/2 md:pl-8 slide-in-right delay-200">
+                                <div class="md:hidden">
+                                    <p class="text-sm font-semibold text-primary">Les Origines</p>
+                                    <h3 class="mt-1 text-xl font-semibold text-white">L'Étincelle de la Foi</h3>
+                                </div>
+                                <p class="mt-2 text-text-secondary">Né de la vision d'une poignée de jeunes passionnés, RJVC a commencé comme un simple désir de créer un espace pour une communion authentique et une croissance spirituelle partagée.</p>
+                            </div>
+                        </div>
+                        
+                        <!-- Timeline Item 2 -->
+                        <div class="group relative mt-16 flex items-center md:items-start">
+                            <div class="relative z-10 w-full pr-8 md:w-1/2 md:pr-8 md:text-right slide-in-left delay-300">
+                                <div class="md:hidden">
+                                    <p class="text-sm font-semibold text-primary">Croissance</p>
+                                    <h3 class="mt-1 text-xl font-semibold text-white">Premier Rassemblement</h3>
+                                </div>
+                                <p class="mt-2 text-text-secondary">Le premier grand événement a dépassé toutes les attentes, rassemblant des centaines de jeunes et confirmant le besoin profond d'un tel mouvement. Ce fut le début d'une nouvelle ère.</p>
+                            </div>
+                            <div class="absolute left-[250px] top-[-30px] z-20 flex h-8 w-8 -translate-x-1/2 items-center justify-center rounded-full bg-surface-dark ring-4 ring-background-dark timeline-dot delay-300">
+                                <div class="h-3 w-3 rounded-full bg-primary"></div>
+                            </div>
+                            <div class="relative z-10 hidden h-28 w-1/2 pl-8 md:flex md:flex-col md:items-start slide-in-right delay-300">
+                                <p class="text-sm font-semibold text-primary">Croissance</p>
+                                <h3 class="mt-1 text-xl font-semibold text-white">Premier Rassemblement</h3>
+                            </div>
+                        </div>
+                        
+                        <!-- Timeline Item 3 -->
+                        <div class="group relative mt-16 flex items-center md:items-start">
+                            <div class="relative z-10 hidden h-28 w-1/2 pr-8 md:flex md:flex-col md:items-end md:text-right slide-in-left delay-400">
+                                <p class="text-sm font-semibold text-primary">Aujourd'hui</p>
+                                <h3 class="mt-1 text-xl font-semibold text-white">Trois Communautés Unies</h3>
+                            </div>
+                            <div class="absolute left-[250px] top-[-40px] z-20 flex h-8 w-8 -translate-x-1/2 items-center justify-center rounded-full bg-surface-dark ring-4 ring-background-dark timeline-dot delay-400">
+                                <div class="h-3 w-3 rounded-full bg-primary"></div>
+                            </div>
+                            <div class="w-full pl-8 md:w-1/2 md:pl-8 slide-in-right delay-400">
+                                <div class="md:hidden">
+                                    <p class="text-sm font-semibold text-primary">Aujourd'hui</p>
+                                    <h3 class="mt-1 text-xl font-semibold text-white">Trois Communautés Unies</h3>
+                                </div>
+                                <p class="mt-2 text-text-secondary">Pour mieux servir notre communauté grandissante, RJVC s'est structuré en trois pôles distincts mais interconnectés : l'Académie, les Événements, et Le Mouvement Annuel.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Communities Section -->
+            <section class="slide-in-bottom delay-500">
+                <h2 class="text-white text-center text-3xl font-bold leading-tight tracking-[-0.015em] mb-12 slide-in-left">Nos Trois Communautés</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="bg-surface-dark border border-border-dark p-8 rounded-xl flex flex-col items-center text-center slide-in-left delay-600">
+                        <div class="bg-primary/10 p-4 rounded-full mb-6">
+                            <span class="material-symbols-outlined text-primary text-4xl">school</span>
+                        </div>
+                        <h3 class="text-white text-xl font-bold mb-2">L'Académie</h3>
+                        <p class="text-text-light text-base font-normal leading-relaxed">Formations approfondies, développement du leadership et formation théologique pour équiper la prochaine génération de leaders chrétiens.</p>
+                    </div>
+                    <div class="bg-surface-dark border border-border-dark p-8 rounded-xl flex flex-col items-center text-center slide-in-bottom delay-600">
+                        <div class="bg-primary/10 p-4 rounded-full mb-6">
+                            <span class="material-symbols-outlined text-primary text-4xl">celebration</span>
+                        </div>
+                        <h3 class="text-white text-xl font-bold mb-2">Les Événements</h3>
+                        <p class="text-text-light text-base font-normal leading-relaxed">Rassemblements vibrants, retraites et soirées de louange qui favorisent la communauté, la fraternité et une passion partagée pour la foi.</p>
+                    </div>
+                    <div class="bg-surface-dark border border-border-dark p-8 rounded-xl flex flex-col items-center text-center slide-in-right delay-600">
+                        <div class="bg-primary/10 p-4 rounded-full mb-6">
+                            <span class="material-symbols-outlined text-primary text-4xl">calendar_month</span>
+                        </div>
+                        <h3 class="text-white text-xl font-bold mb-2">Le Mouvement Annuel</h3>
+                        <p class="text-text-light text-base font-normal leading-relaxed">Notre événement phare annuel, une expérience multi-jours puissante qui réunit toute la famille RJVC pour la louange, l'enseignement et la célébration.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Mission and Vision Section -->
+            <section class="space-y-16 slide-in-bottom delay-600">
+                <div class="text-center max-w-3xl mx-auto">
+                    <h2 class="text-white text-3xl font-bold leading-tight tracking-[-0.015em] mb-4 slide-in-left">Notre Mission & Vision</h2>
+                    <p class="text-text-light text-lg font-normal leading-relaxed mb-6 slide-in-right delay-100">Notre mission est d'unir les jeunes chrétiens, en les équipant pour grandir dans leur foi, servir leurs communautés et vivre des vies qui reflètent la joie et l'amour du Christ. Nous envisageons une génération en feu pour Dieu, transformant le monde par l'unité et le service.</p>
+                </div>
+                
+                <!-- Values -->
+                <div class="slide-in-bottom">
+                    <h3 class="text-white text-center text-2xl font-bold leading-tight tracking-[-0.015em] mb-12 slide-in-left">Nos Valeurs</h3>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                        <div class="flex flex-col items-center text-center slide-in-left delay-200">
+                            <span class="material-symbols-outlined text-primary text-4xl mb-4">health_cross</span>
+                            <h4 class="text-white text-lg font-bold">Foi</h4>
+                            <p class="text-text-light text-sm mt-1">Enracinés dans les enseignements du Christ, guidant toutes nos actions.</p>
+                        </div>
+                        <div class="flex flex-col items-center text-center slide-in-bottom delay-300">
+                            <span class="material-symbols-outlined text-primary text-4xl mb-4">groups</span>
+                            <h4 class="text-white text-lg font-bold">Unité</h4>
+                            <p class="text-text-light text-sm mt-1">Construire des liens forts et favoriser une communauté solidaire.</p>
+                        </div>
+                        <div class="flex flex-col items-center text-center slide-in-bottom delay-400">
+                            <span class="material-symbols-outlined text-primary text-4xl mb-4">volunteer_activism</span>
+                            <h4 class="text-white text-lg font-bold">Service</h4>
+                            <p class="text-text-light text-sm mt-1">Servir les autres avec amour et humilité, comme Il nous a servis.</p>
+                        </div>
+                        <div class="flex flex-col items-center text-center slide-in-right delay-500">
+                            <span class="material-symbols-outlined text-primary text-4xl mb-4">sentiment_very_satisfied</span>
+                            <h4 class="text-white text-lg font-bold">Joie</h4>
+                            <p class="text-text-light text-sm mt-1">Célébrer notre foi avec enthousiasme et gratitude.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Quote Section -->
+            <section class="py-16 slide-in-bottom delay-700">
+                <blockquote class="max-w-3xl mx-auto text-center border-l-4 border-primary pl-6 sm:pl-8 slide-in-left">
+                    <p class="text-white text-2xl sm:text-3xl font-medium leading-relaxed italic">"Car là où deux ou trois sont assemblés en mon nom, je suis au milieu d'eux."</p>
+                    <cite class="block text-text-light text-base mt-4 not-italic slide-in-right delay-100">- Matthieu 18:20</cite>
+                </blockquote>
+            </section>
+
+            <!-- CTA Section -->
+            <section class="bg-surface-dark rounded-xl p-8 sm:p-12 text-center flex flex-col items-center slide-in-bottom delay-800">
+                <h2 class="text-white text-3xl font-bold leading-tight tracking-[-0.015em] mb-4 slide-in-left">Faites Partie de l'Histoire</h2>
+                <p class="text-text-light text-lg font-normal leading-relaxed mb-8 max-w-2xl slide-in-right delay-100">Rejoignez une communauté vibrante de jeunes croyants. Que vous cherchiez à grandir dans votre foi, trouver une fraternité ou servir les autres, il y a une place pour vous ici.</p>
+                <div class="flex flex-wrap gap-4 justify-center">
+                    <button class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-6 bg-primary text-background-dark text-base font-bold leading-normal tracking-[0.015em] hover:bg-accent-gold transition-colors slide-in-left delay-200">
+                        <span class="truncate">Nous Rejoindre</span>
+                    </button>
+                    <button class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-6 bg-border-dark text-white text-base font-bold leading-normal tracking-[0.015em] hover:bg-border-dark/80 transition-colors slide-in-right delay-300">
+                        <span class="truncate">Explorer Nos Événements</span>
+                    </button>
+                </div>
+            </section>
+        </div>
+    </main>
 </div>
 
-</body></html>
+<script>
+    // Mobile menu functionality
+    const mobileMenuButton = document.getElementById('mobile-menu-button');
+    const closeMenuButton = document.getElementById('close-menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const mobileMenuOverlay = document.getElementById('mobile-menu-overlay');
+
+    function openMobileMenu() {
+        mobileMenu.classList.add('open');
+        mobileMenuOverlay.classList.add('open');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeMobileMenu() {
+        mobileMenu.classList.remove('open');
+        mobileMenuOverlay.classList.remove('open');
+        document.body.style.overflow = '';
+    }
+
+    mobileMenuButton.addEventListener('click', openMobileMenu);
+    closeMenuButton.addEventListener('click', closeMobileMenu);
+    mobileMenuOverlay.addEventListener('click', closeMobileMenu);
+
+    // Close menu when clicking on a link
+    const mobileLinks = mobileMenu.querySelectorAll('a');
+    mobileLinks.forEach(link => {
+        link.addEventListener('click', closeMobileMenu);
+    });
+
+    // Animation observer for scroll-triggered animations
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                // Elements already have animation classes applied on page load
+                // This observer can be used for additional scroll-triggered animations
+            }
+        });
+    }, observerOptions);
+
+    // Observe elements with animation classes
+    document.querySelectorAll('.slide-in-left, .slide-in-right, .slide-in-bottom').forEach(el => {
+        observer.observe(el);
+    });
+
+    // Animation on page load
+    document.addEventListener('DOMContentLoaded', () => {
+        // Animate hero section
+        const heroElements = document.querySelectorAll('.relative.py-24.sm\\:py-32 .slide-in-left, .relative.py-24.sm\\:py-32 .slide-in-right, .relative.py-24.sm\\:py-32 .slide-in-bottom');
+        heroElements.forEach(el => {
+            el.style.animationPlayState = 'running';
+        });
+
+        // Animate timeline with sequence
+        const timelineSections = document.querySelectorAll('.space-y-20.sm\\:space-y-28 > div, section');
+        timelineSections.forEach((section, index) => {
+            setTimeout(() => {
+                const sectionElements = section.querySelectorAll('.slide-in-left, .slide-in-right, .slide-in-bottom, .timeline-dot');
+                sectionElements.forEach(el => {
+                    el.style.animationPlayState = 'running';
+                });
+            }, 300 + (index * 200));
+        });
+
+        // Animate values and CTA sections
+        setTimeout(() => {
+            const remainingSections = document.querySelectorAll('.slide-in-bottom.delay-600, .slide-in-bottom.delay-700, .slide-in-bottom.delay-800');
+            remainingSections.forEach((section, index) => {
+                const elements = section.querySelectorAll('.slide-in-left, .slide-in-right, .slide-in-bottom');
+                elements.forEach(el => {
+                    el.style.animationPlayState = 'running';
+                });
+            });
+        }, 1000);
+    });
+</script>
+</body>
+</html>

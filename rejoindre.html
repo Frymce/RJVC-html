@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html class="dark" lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Inscription Événements RJVC</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+      rel="stylesheet"
+    />
+    <style>
+      .material-symbols-outlined {
+        font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
+      }
+    </style>
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              primary: "#f9d406",
+              "background-light": "#f8f8f5",
+              "background-dark": "#23200f",
+            },
+            fontFamily: {
+              display: ["Plus Jakarta Sans", "sans-serif"],
+            },
+            borderRadius: {
+              DEFAULT: "1rem",
+              lg: "2rem",
+              xl: "3rem",
+              full: "9999px",
+            },
+          },
+        },
+      };
+    </script>
+  </head>
+  <body class="font-display bg-background-light dark:bg-background-dark">
+    <div
+      class="relative flex min-h-screen w-full flex-col items-center overflow-x-hidden"
+    >
+      <header class="w-full max-w-6xl px-4 py-5">
+        <div
+          class="flex items-center justify-between whitespace-nowrap border-b border-solid border-white/10 px-6 sm:px-10 py-3"
+        >
+          <div class="flex items-center gap-4 text-white">
+            <div class="h-6 w-6 text-primary">
+              <svg
+                fill="currentColor"
+                viewbox="0 0 48 48"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M4 4H17.3334V17.3334H30.6666V30.6666H44V44H4V4Z"
+                ></path>
+              </svg>
+            </div>
+            <h2 class="text-white text-lg font-bold tracking-[-0.015em]">
+              RJVC
+            </h2>
+          </div>
+          <div class="flex items-center gap-9">
+            <a
+              class="text-white text-sm font-medium transition-colors hover:text-primary"
+              href="./index.html"
+              >Retour à l'accueil</a
+            >
+          </div>
+        </div>
+      </header>
+      <main
+        class="flex w-full max-w-6xl flex-1 flex-col items-center justify-center px-4 py-10 sm:py-20"
+      >
+        <div class="flex w-full max-w-xl flex-col items-center gap-8">
+          <div class="flex flex-col gap-3 text-center">
+            <h1
+              class="text-white text-4xl font-black leading-tight tracking-[-0.033em] md:text-5xl"
+            >
+              Inscription aux Activités RJVC
+            </h1>
+            <p class="text-white/70 text-base font-normal leading-normal">
+              Rejoignez-nous pour participer à nos événements, formations et
+              activités communautaires.
+            </p>
+          </div>
+          <form class="flex w-full flex-col gap-6" id="inscription-form">
+            <div class="grid grid-cols-1 gap-6 sm:grid-cols-2">
+              <label class="flex flex-col">
+                <p class="pb-2 text-base font-medium leading-normal text-white">
+                  Prénom
+                </p>
+                <input
+                  class="form-input flex h-14 w-full min-w-0 flex-1 resize-none overflow-hidden rounded-md border border-white/20 bg-white/5 p-[15px] text-base font-normal leading-normal text-white placeholder:text-white/40 focus:border-primary focus:outline-0 focus:ring-2 focus:ring-primary/40"
+                  placeholder="Entrez votre prénom"
+                  type="text"
+                  required
+                />
+              </label>
+              <label class="flex flex-col">
+                <p class="pb-2 text-base font-medium leading-normal text-white">
+                  Nom
+                </p>
+                <input
+                  class="form-input flex h-14 w-full min-w-0 flex-1 resize-none overflow-hidden rounded-md border border-white/20 bg-white/5 p-[15px] text-base font-normal leading-normal text-white placeholder:text-white/40 focus:border-primary focus:outline-0 focus:ring-2 focus:ring-primary/40"
+                  placeholder="Entrez votre nom"
+                  type="text"
+                  required
+                />
+              </label>
+            </div>
+            <label class="flex flex-col">
+              <p class="pb-2 text-base font-medium leading-normal text-white">
+                Adresse e-mail
+              </p>
+              <input
+                class="form-input flex h-14 w-full min-w-0 flex-1 resize-none overflow-hidden rounded-md border border-white/20 bg-white/5 p-[15px] text-base font-normal leading-normal text-white placeholder:text-white/40 focus:border-primary focus:outline-0 focus:ring-2 focus:ring-primary/40"
+                placeholder="votre.email@exemple.com"
+                type="email"
+                required
+              />
+            </label>
+            <label class="flex flex-col">
+              <p class="pb-2 text-base font-medium leading-normal text-white">
+                Numéro de téléphone
+              </p>
+              <input
+                class="form-input flex h-14 w-full min-w-0 flex-1 resize-none overflow-hidden rounded-md border border-white/20 bg-white/5 p-[15px] text-base font-normal leading-normal text-white placeholder:text-white/40 focus:border-primary focus:outline-0 focus:ring-2 focus:ring-primary/40"
+                placeholder="+225 01 23 45 67 89"
+                type="tel"
+              />
+            </label>
+
+            <!-- Sélecteur de type d'inscription -->
+            <label class="flex flex-col">
+              <p class="pb-2 text-base font-medium leading-normal text-white">
+                Type d'inscription *
+              </p>
+              <div class="relative">
+                <select
+                  class="form-select flex h-14 w-full min-w-0 flex-1 resize-none overflow-hidden rounded-md border border-white/20 bg-white/5 p-[15px] pr-12 text-base font-normal leading-normal text-white focus:border-primary focus:outline-0 focus:ring-2 focus:ring-primary/40 appearance-none"
+                  id="type-inscription"
+                  required
+                >
+                  <option value="" disabled selected>
+                    Sélectionnez votre type d'inscription
+                  </option>
+                  <option value="formation">
+                    Suivre une formation (RJVC Academy)
+                  </option>
+                  <option value="evenement">
+                    Organiser un événement avec RJVC
+                  </option>
+                  <option value="participer">
+                    Participer aux activités RJVC
+                  </option>
+                  <option value="mouvement">
+                    Rejoindre le Mouvement Annuel RJVC
+                  </option>
+                  <option value="benevolat">Devenir bénévole RJVC</option>
+                </select>
+                <div
+                  class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-white/60"
+                >
+                  <span class="material-symbols-outlined text-xl"
+                    >expand_more</span
+                  >
+                </div>
+              </div>
+            </label>
+
+            <!-- Section conditionnelle pour les formations -->
+            <div id="formation-details" class="hidden flex-col gap-4">
+              <label class="flex flex-col">
+                <p class="pb-2 text-base font-medium leading-normal text-white">
+                  Formation souhaitée *
+                </p>
+                <div class="relative">
+                  <select
+                    class="form-select flex h-14 w-full min-w-0 flex-1 resize-none overflow-hidden rounded-md border border-white/20 bg-white/5 p-[15px] pr-12 text-base font-normal leading-normal text-white focus:border-primary focus:outline-0 focus:ring-2 focus:ring-primary/40 appearance-none"
+                    id="choix-formation"
+                  >
+                    <option value="" disabled selected>
+                      Choisissez une formation
+                    </option>
+                    <option value="developpement">Développement IT</option>
+                    <option value="design">Design Graphique</option>
+                    <option value="photo">Photographie</option>
+                    <option value="video">Vidéographie</option>
+                    <option value="leadership">Leadership Chrétien</option>
+                    <option value="theologie">Théologie Pratique</option>
+                  </select>
+                  <div
+                    class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-white/60"
+                  >
+                    <span class="material-symbols-outlined text-xl"
+                      >expand_more</span
+                    >
+                  </div>
+                </div>
+              </label>
+              <label class="flex flex-col">
+                <p class="pb-2 text-base font-medium leading-normal text-white">
+                  Niveau actuel
+                </p>
+                <input
+                  class="form-input flex h-14 w-full min-w-0 flex-1 resize-none overflow-hidden rounded-md border border-white/20 bg-white/5 p-[15px] text-base font-normal leading-normal text-white placeholder:text-white/40 focus:border-primary focus:outline-0 focus:ring-2 focus:ring-primary/40"
+                  placeholder="Débutant, Intermédiaire, Avancé"
+                  type="text"
+                />
+              </label>
+            </div>
+
+            <!-- Section conditionnelle pour les événements -->
+            <div id="evenement-details" class="hidden flex-col gap-4">
+              <label class="flex flex-col">
+                <p class="pb-2 text-base font-medium leading-normal text-white">
+                  Type d'événement *
+                </p>
+                <div class="relative">
+                  <select
+                    class="form-select flex h-14 w-full min-w-0 flex-1 resize-none overflow-hidden rounded-md border border-white/20 bg-white/5 p-[15px] pr-12 text-base font-normal leading-normal text-white focus:border-primary focus:outline-0 focus:ring-2 focus:ring-primary/40 appearance-none"
+                    id="type-evenement"
+                  >
+                    <option value="" disabled selected>
+                      Choisissez le type d'événement
+                    </option>
+                    <option value="mariage">Mariage</option>
+                    <option value="bapteme">Baptême</option>
+                    <option value="anniversaire">Anniversaire</option>
+                    <option value="conference">Conférence/Séminaire</option>
+                    <option value="retraite">Retraite Spirituelle</option>
+                    <option value="concert">Concert/Louange</option>
+                  </select>
+                  <div
+                    class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-white/60"
+                  >
+                    <span class="material-symbols-outlined text-xl"
+                      >expand_more</span
+                    >
+                  </div>
+                </div>
+              </label>
+              <label class="flex flex-col">
+                <p class="pb-2 text-base font-medium leading-normal text-white">
+                  Date prévue de l'événement
+                </p>
+                <input
+                  class="form-input flex h-14 w-full min-w-0 flex-1 resize-none overflow-hidden rounded-md border border-white/20 bg-white/5 p-[15px] text-base font-normal leading-normal text-white placeholder:text-white/40 focus:border-primary focus:outline-0 focus:ring-2 focus:ring-primary/40"
+                  placeholder="JJ/MM/AAAA"
+                  type="date"
+                />
+              </label>
+              <label class="flex flex-col">
+                <p class="pb-2 text-base font-medium leading-normal text-white">
+                  Nombre de participants estimé
+                </p>
+                <input
+                  class="form-input flex h-14 w-full min-w-0 flex-1 resize-none overflow-hidden rounded-md border border-white/20 bg-white/5 p-[15px] text-base font-normal leading-normal text-white placeholder:text-white/40 focus:border-primary focus:outline-0 focus:ring-2 focus:ring-primary/40"
+                  placeholder="Ex: 50 personnes"
+                  type="number"
+                  min="1"
+                />
+              </label>
+            </div>
+
+            <!-- Section conditionnelle pour la participation -->
+            <div id="participation-details" class="hidden flex-col gap-4">
+              <label class="flex flex-col">
+                <p class="pb-2 text-base font-medium leading-normal text-white">
+                  Intérêts principaux *
+                </p>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  <label
+                    class="flex items-center gap-3 p-3 rounded-md border border-white/20 bg-white/5 hover:bg-white/10 transition-colors cursor-pointer"
+                  >
+                    <input
+                      type="checkbox"
+                      class="form-checkbox h-5 w-5 rounded border-white/30 bg-white/10 text-primary focus:ring-primary/50"
+                      value="worship"
+                    />
+                    <span class="text-sm text-white/80"
+                      >Louange & Adoration</span
+                    >
+                  </label>
+                  <label
+                    class="flex items-center gap-3 p-3 rounded-md border border-white/20 bg-white/5 hover:bg-white/10 transition-colors cursor-pointer"
+                  >
+                    <input
+                      type="checkbox"
+                      class="form-checkbox h-5 w-5 rounded border-white/30 bg-white/10 text-primary focus:ring-primary/50"
+                      value="service"
+                    />
+                    <span class="text-sm text-white/80"
+                      >Service Communautaire</span
+                    >
+                  </label>
+                  <label
+                    class="flex items-center gap-3 p-3 rounded-md border border-white/20 bg-white/5 hover:bg-white/10 transition-colors cursor-pointer"
+                  >
+                    <input
+                      type="checkbox"
+                      class="form-checkbox h-5 w-5 rounded border-white/30 bg-white/10 text-primary focus:ring-primary/50"
+                      value="study"
+                    />
+                    <span class="text-sm text-white/80">Étude Biblique</span>
+                  </label>
+                  <label
+                    class="flex items-center gap-3 p-3 rounded-md border border-white/20 bg-white/5 hover:bg-white/10 transition-colors cursor-pointer"
+                  >
+                    <input
+                      type="checkbox"
+                      class="form-checkbox h-5 w-5 rounded border-white/30 bg-white/10 text-primary focus:ring-primary/50"
+                      value="social"
+                    />
+                    <span class="text-sm text-white/80"
+                      >Activités Sociales</span
+                    >
+                  </label>
+                  <label
+                    class="flex items-center gap-3 p-3 rounded-md border border-white/20 bg-white/5 hover:bg-white/10 transition-colors cursor-pointer"
+                  >
+                    <input
+                      type="checkbox"
+                      class="form-checkbox h-5 w-5 rounded border-white/30 bg-white/10 text-primary focus:ring-primary/50"
+                      value="missions"
+                    />
+                    <span class="text-sm text-white/80"
+                      >Missions & Évangélisation</span
+                    >
+                  </label>
+                  <label
+                    class="flex items-center gap-3 p-3 rounded-md border border-white/20 bg-white/5 hover:bg-white/10 transition-colors cursor-pointer"
+                  >
+                    <input
+                      type="checkbox"
+                      class="form-checkbox h-5 w-5 rounded border-white/30 bg-white/10 text-primary focus:ring-primary/50"
+                      value="youth"
+                    />
+                    <span class="text-sm text-white/80">Jeunesse & Sports</span>
+                  </label>
+                </div>
+              </label>
+              <label class="flex flex-col">
+                <p class="pb-2 text-base font-medium leading-normal text-white">
+                  Disponibilités
+                </p>
+                <input
+                  class="form-input flex h-14 w-full min-w-0 flex-1 resize-none overflow-hidden rounded-md border border-white/20 bg-white/5 p-[15px] text-base font-normal leading-normal text-white placeholder:text-white/40 focus:border-primary focus:outline-0 focus:ring-2 focus:ring-primary/40"
+                  placeholder="Ex: Weekends, Soirées en semaine..."
+                  type="text"
+                />
+              </label>
+            </div>
+
+            <div class="flex flex-col gap-4 pt-2">
+              <label class="flex cursor-pointer items-center gap-3">
+                <input
+                  class="form-checkbox h-5 w-5 rounded border-white/30 bg-white/10 text-primary focus:ring-primary/50 focus:ring-offset-background-dark"
+                  type="checkbox"
+                />
+                <span class="text-sm text-white/80"
+                  >Je souhaite m'inscrire à la newsletter pour recevoir les
+                  actualités.</span
+                >
+              </label>
+              <label class="flex cursor-pointer items-center gap-3">
+                <input
+                  class="form-checkbox h-5 w-5 rounded border-white/30 bg-white/10 text-primary focus:ring-primary/50 focus:ring-offset-background-dark"
+                  required
+                  type="checkbox"
+                />
+                <span class="text-sm text-white/80"
+                  >J'accepte les
+                  <a class="font-semibold text-primary underline" href="#"
+                    >Termes et Conditions</a
+                  >.</span
+                >
+              </label>
+            </div>
+
+            <div class="relative flex items-center py-2">
+              <div class="flex-grow border-t border-white/20"></div>
+              <span class="mx-4 flex-shrink text-sm text-white/60">OU</span>
+              <div class="flex-grow border-t border-white/20"></div>
+            </div>
+
+            <button
+              class="flex h-14 w-full items-center justify-center rounded-md bg-primary text-base font-bold text-background-dark transition-transform hover:scale-[1.02] active:scale-[0.98]"
+              type="submit"
+            >
+              <span class="material-symbols-outlined mr-2">how_to_reg</span>
+              Soumettre mon inscription
+            </button>
+          </form>
+
+          <div class="mt-8 text-center">
+            <p class="text-white/60 text-sm">
+              Vous avez déjà un compte pour les événements ?
+              <a class="font-semibold text-primary underline" href="#"
+                >Connectez-vous ici</a
+              >
+            </p>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const typeInscription = document.getElementById("type-inscription");
+        const formationDetails = document.getElementById("formation-details");
+        const evenementDetails = document.getElementById("evenement-details");
+        const participationDetails = document.getElementById(
+          "participation-details"
+        );
+        const inscriptionForm = document.getElementById("inscription-form");
+
+        // Fonction pour masquer toutes les sections conditionnelles
+        function hideAllSections() {
+          formationDetails.classList.add("hidden");
+          evenementDetails.classList.add("hidden");
+          participationDetails.classList.add("hidden");
+        }
+
+        // Afficher la section correspondante au choix
+        typeInscription.addEventListener("change", function () {
+          hideAllSections();
+
+          switch (this.value) {
+            case "formation":
+              formationDetails.classList.remove("hidden");
+              break;
+            case "evenement":
+              evenementDetails.classList.remove("hidden");
+              break;
+            case "participer":
+            case "mouvement":
+            case "benevolat":
+              participationDetails.classList.remove("hidden");
+              break;
+          }
+        });
+
+        // Gestion de la soumission du formulaire
+        inscriptionForm.addEventListener("submit", function (e) {
+          e.preventDefault();
+
+          // Récupération des données
+          const formData = {
+            prenom: document.querySelector(
+              'input[placeholder="Entrez votre prénom"]'
+            ).value,
+            nom: document.querySelector('input[placeholder="Entrez votre nom"]')
+              .value,
+            email: document.querySelector('input[type="email"]').value,
+            telephone: document.querySelector('input[type="tel"]').value,
+            typeInscription: typeInscription.value,
+            newsletter: document.querySelector('input[type="checkbox"]')
+              .checked,
+            acceptTerms: document.querySelector(
+              'input[required][type="checkbox"]'
+            ).checked,
+          };
+
+          // Ajouter les données spécifiques selon le type d'inscription
+          if (typeInscription.value === "formation") {
+            formData.formation =
+              document.getElementById("choix-formation").value;
+            formData.niveau = document.querySelector(
+              'input[placeholder="Débutant, Intermédiaire, Avancé"]'
+            ).value;
+          } else if (typeInscription.value === "evenement") {
+            formData.typeEvenement =
+              document.getElementById("type-evenement").value;
+            formData.dateEvenement = document.querySelector(
+              'input[placeholder="JJ/MM/AAAA"]'
+            ).value;
+            formData.participants = document.querySelector(
+              'input[placeholder="Ex: 50 personnes"]'
+            ).value;
+          } else if (
+            ["participer", "mouvement", "benevolat"].includes(
+              typeInscription.value
+            )
+          ) {
+            const interets = Array.from(
+              document.querySelectorAll(
+                '#participation-details input[type="checkbox"]:checked'
+              )
+            ).map((cb) => cb.value);
+            formData.interets = interets;
+            formData.disponibilites = document.querySelector(
+              'input[placeholder="Ex: Weekends, Soirées en semaine..."]'
+            ).value;
+          }
+
+          // Simulation d'envoi (remplacer par appel API réel)
+          console.log("Données du formulaire:", formData);
+
+          // Message de confirmation
+          const messages = {
+            formation:
+              "Votre demande d'inscription à une formation a été enregistrée ! Notre équipe vous contactera sous 48h.",
+            evenement:
+              "Votre demande pour organiser un événement a été reçue ! Notre équipe événementielle vous contactera rapidement.",
+            participer:
+              "Merci pour votre intérêt ! Vous recevrez bientôt les informations pour participer aux activités RJVC.",
+            mouvement:
+              "Bienvenue dans le Mouvement Annuel RJVC ! Vous recevrez toutes les informations nécessaires par email.",
+            benevolat:
+              "Merci pour votre volonté de servir ! Notre équipe bénévole vous contactera pour discuter des opportunités.",
+          };
+
+          alert(
+            messages[typeInscription.value] ||
+              "Votre inscription a été enregistrée avec succès !"
+          );
+
+          // Redirection après confirmation
+          setTimeout(() => {
+            window.location.href = "./index.html";
+          }, 2000);
+        });
+
+        // Améliorer l'expérience des sélecteurs
+        const selects = document.querySelectorAll(".form-select");
+        selects.forEach((select) => {
+          select.addEventListener("focus", function () {
+            this.parentElement.classList.add("ring-2", "ring-primary/40");
+          });
+
+          select.addEventListener("blur", function () {
+            this.parentElement.classList.remove("ring-2", "ring-primary/40");
+          });
+        });
+      });
+    </script>
+  </body>
+</html>
