@@ -11,14 +11,9 @@
       href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&amp;display=swap"
       rel="stylesheet"
     />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
-      rel="stylesheet"
-    />
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-      .material-symbols-outlined {
-        font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
-      }
     </style>
     <script id="tailwind-config">
       tailwind.config = {
@@ -92,54 +87,220 @@
               activités communautaires.
             </p>
           </div>
-          <form class="flex w-full flex-col gap-6" id="inscription-form">
+          <?php
+          // Démarrer la session pour le jeton CSRF
+          session_start();
+          
+          // Générer un jeton CSRF s'il n'existe pas
+          if (empty($_SESSION['csrf_token'])) {
+              $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
+          }
+          $csrf_token = $_SESSION['csrf_token'];
+          
+          // Récupérer les données du formulaire en cas d'erreur
+          $form_data = $_SESSION['form_data'] ?? [];
+          $form_errors = $_SESSION['form_errors'] ?? [];
+          
+          // Effacer les messages d'erreur après les avoir affichés
+          unset($_SESSION['form_errors'], $_SESSION['form_data']);
+          ?>
+          
+          <?php if (!empty($form_errors)): ?>
+            <div class="bg-red-900/50 border border-red-700 text-red-100 px-6 py-4 rounded-md mb-6">
+              <p class="font-bold mb-2">Veuillez corriger les erreurs suivantes :</p>
+              <ul class="list-disc pl-5 space-y-1">
+                <?php foreach ($form_errors as $error): ?>
+                  <li><?php echo htmlspecialchars($error); ?></li>
+                <?php endforeach; ?>
+              </ul>
+            </div>
+          <?php endif; ?>
+          
+          <form action="process_inscription.php" method="POST" class="flex w-full flex-col gap-6" id="inscription-form">
+            <input type="hidden" name="csrf_token" value="<?php echo $csrf_token; ?>">
+            
             <div class="grid grid-cols-1 gap-6 sm:grid-cols-2">
               <label class="flex flex-col">
                 <p class="pb-2 text-base font-medium leading-normal text-white">
-                  Prénom
+                  Prénom *
                 </p>
                 <input
+                  name="prenom"
                   class="form-input flex h-14 w-full min-w-0 flex-1 resize-none overflow-hidden rounded-md border border-white/20 bg-white/5 p-[15px] text-base font-normal leading-normal text-white placeholder:text-white/40 focus:border-primary focus:outline-0 focus:ring-2 focus:ring-primary/40"
                   placeholder="Entrez votre prénom"
                   type="text"
                   required
+                  value="<?php echo htmlspecialchars($form_data['prenom'] ?? ''); ?>"
                 />
               </label>
               <label class="flex flex-col">
                 <p class="pb-2 text-base font-medium leading-normal text-white">
-                  Nom
+                  Nom *
                 </p>
                 <input
+                  name="nom"
                   class="form-input flex h-14 w-full min-w-0 flex-1 resize-none overflow-hidden rounded-md border border-white/20 bg-white/5 p-[15px] text-base font-normal leading-normal text-white placeholder:text-white/40 focus:border-primary focus:outline-0 focus:ring-2 focus:ring-primary/40"
                   placeholder="Entrez votre nom"
                   type="text"
                   required
+                  value="<?php echo htmlspecialchars($form_data['nom'] ?? ''); ?>"
                 />
               </label>
             </div>
             <label class="flex flex-col">
               <p class="pb-2 text-base font-medium leading-normal text-white">
-                Adresse e-mail
+                Adresse e-mail *
               </p>
               <input
+                name="email"
                 class="form-input flex h-14 w-full min-w-0 flex-1 resize-none overflow-hidden rounded-md border border-white/20 bg-white/5 p-[15px] text-base font-normal leading-normal text-white placeholder:text-white/40 focus:border-primary focus:outline-0 focus:ring-2 focus:ring-primary/40"
                 placeholder="votre.email@exemple.com"
                 type="email"
                 required
+                value="<?php echo htmlspecialchars($form_data['email'] ?? ''); ?>"
               />
             </label>
             <label class="flex flex-col">
               <p class="pb-2 text-base font-medium leading-normal text-white">
-                Numéro de téléphone
+                Numéro de téléphone *
               </p>
               <input
+                name="telephone"
                 class="form-input flex h-14 w-full min-w-0 flex-1 resize-none overflow-hidden rounded-md border border-white/20 bg-white/5 p-[15px] text-base font-normal leading-normal text-white placeholder:text-white/40 focus:border-primary focus:outline-0 focus:ring-2 focus:ring-primary/40"
                 placeholder="+225 01 23 45 67 89"
                 type="tel"
+                required
+                value="<?php echo htmlspecialchars($form_data['telephone'] ?? ''); ?>"
               />
             </label>
 
             <!-- Sélecteur de type d'inscription -->
+            <!-- Date de naissance -->
+            <label class="flex flex-col">
+              <p class="pb-2 text-base font-medium leading-normal text-white">
+                Date de naissance *
+              </p>
+              <input
+                name="date_naissance"
+                type="date"
+                class="form-input flex h-14 w-full min-w-0 flex-1 resize-none overflow-hidden rounded-md border border-white/20 bg-white/5 p-[15px] text-base font-normal leading-normal text-white placeholder:text-white/40 focus:border-primary focus:outline-0 focus:ring-2 focus:ring-primary/40"
+                required
+                value="<?php echo htmlspecialchars($form_data['date_naissance'] ?? ''); ?>"
+              />
+            </label>
+            
+            <!-- Genre -->
+            <label class="flex flex-col">
+              <p class="pb-2 text-base font-medium leading-normal text-white">
+                Genre *
+              </p>
+              <div class="flex space-x-6">
+                <label class="inline-flex items-center">
+                  <input type="radio" name="genre" value="M" class="form-radio h-5 w-5 text-primary" required 
+                    <?php echo (isset($form_data['genre']) && $form_data['genre'] === 'M') ? 'checked' : ''; ?>>
+                  <span class="ml-2 text-white">Homme</span>
+                </label>
+                <label class="inline-flex items-center">
+                  <input type="radio" name="genre" value="F" class="form-radio h-5 w-5 text-primary"
+                    <?php echo (isset($form_data['genre']) && $form_data['genre'] === 'F') ? 'checked' : ''; ?>>
+                  <span class="ml-2 text-white">Femme</span>
+                </label>
+                <label class="inline-flex items-center">
+                  <input type="radio" name="genre" value="Autre" class="form-radio h-5 w-5 text-primary"
+                    <?php echo (isset($form_data['genre']) && $form_data['genre'] === 'Autre') ? 'checked' : ''; ?>>
+                  <span class="ml-2 text-white">Autre</span>
+                </label>
+              </div>
+            </label>
+            
+            <!-- Adresse -->
+            <label class="flex flex-col">
+              <p class="pb-2 text-base font-medium leading-normal text-white">
+                Adresse
+              </p>
+              <input
+                name="adresse"
+                class="form-input flex h-14 w-full min-w-0 flex-1 resize-none overflow-hidden rounded-md border border-white/20 bg-white/5 p-[15px] text-base font-normal leading-normal text-white placeholder:text-white/40 focus:border-primary focus:outline-0 focus:ring-2 focus:ring-primary/40"
+                placeholder="Votre adresse"
+                type="text"
+                value="<?php echo htmlspecialchars($form_data['adresse'] ?? ''); ?>"
+              />
+            </label>
+            
+            <div class="grid grid-cols-1 gap-6 sm:grid-cols-3">
+              <label class="flex flex-col">
+                <p class="pb-2 text-base font-medium leading-normal text-white">
+                  Code postal
+                </p>
+                <input
+                  name="code_postal"
+                  class="form-input flex h-14 w-full min-w-0 flex-1 resize-none overflow-hidden rounded-md border border-white/20 bg-white/5 p-[15px] text-base font-normal leading-normal text-white placeholder:text-white/40 focus:border-primary focus:outline-0 focus:ring-2 focus:ring-primary/40"
+                  placeholder="Code postal"
+                  type="text"
+                  value="<?php echo htmlspecialchars($form_data['code_postal'] ?? ''); ?>"
+                />
+              </label>
+              <label class="flex flex-col">
+                <p class="pb-2 text-base font-medium leading-normal text-white">
+                  Ville
+                </p>
+                <input
+                  name="ville"
+                  class="form-input flex h-14 w-full min-w-0 flex-1 resize-none overflow-hidden rounded-md border border-white/20 bg-white/5 p-[15px] text-base font-normal leading-normal text-white placeholder:text-white/40 focus:border-primary focus:outline-0 focus:ring-2 focus:ring-primary/40"
+                  placeholder="Ville"
+                  type="text"
+                  value="<?php echo htmlspecialchars($form_data['ville'] ?? ''); ?>"
+                />
+              </label>
+              <label class="flex flex-col">
+                <p class="pb-2 text-base font-medium leading-normal text-white">
+                  Pays
+                </p>
+                <input
+                  name="pays"
+                  class="form-input flex h-14 w-full min-w-0 flex-1 resize-none overflow-hidden rounded-md border border-white/20 bg-white/5 p-[15px] text-base font-normal leading-normal text-white placeholder:text-white/40 focus:border-primary focus:outline-0 focus:ring-2 focus:ring-primary/40"
+                  placeholder="Pays"
+                  type="text"
+                  value="<?php echo htmlspecialchars($form_data['pays'] ?? 'Côte d\'Ivoire'); ?>"
+                />
+              </label>
+            </div>
+            
+            <!-- Niveau d'études et école/entreprise -->
+            <div class="grid grid-cols-1 gap-6 sm:grid-cols-2">
+              <label class="flex flex-col">
+                <p class="pb-2 text-base font-medium leading-normal text-white">
+                  Niveau d'études
+                </p>
+                <select
+                  name="niveau_etude"
+                  class="form-select flex h-14 w-full min-w-0 flex-1 resize-none overflow-hidden rounded-md border border-white/20 bg-white/5 p-[15px] pr-12 text-base font-normal leading-normal text-white focus:border-primary focus:outline-0 focus:ring-2 focus:ring-primary/40 appearance-none"
+                >
+                  <option value="" disabled selected>Sélectionnez un niveau</option>
+                  <option value="Secondaire" <?php echo (isset($form_data['niveau_etude']) && $form_data['niveau_etude'] === 'Secondaire') ? 'selected' : ''; ?>>Secondaire</option>
+                  <option value="Bac" <?php echo (isset($form_data['niveau_etude']) && $form_data['niveau_etude'] === 'Bac') ? 'selected' : ''; ?>>Bac</option>
+                  <option value="Bac+2" <?php echo (isset($form_data['niveau_etude']) && $form_data['niveau_etude'] === 'Bac+2') ? 'selected' : ''; ?>>Bac+2</option>
+                  <option value="Licence" <?php echo (isset($form_data['niveau_etude']) && $form_data['niveau_etude'] === 'Licence') ? 'selected' : ''; ?>>Licence</option>
+                  <option value="Master" <?php echo (isset($form_data['niveau_etude']) && $form_data['niveau_etude'] === 'Master') ? 'selected' : ''; ?>>Master</option>
+                  <option value="Doctorat" <?php echo (isset($form_data['niveau_etude']) && $form_data['niveau_etude'] === 'Doctorat') ? 'selected' : ''; ?>>Doctorat</option>
+                  <option value="Autre" <?php echo (isset($form_data['niveau_etude']) && $form_data['niveau_etude'] === 'Autre') ? 'selected' : ''; ?>>Autre</option>
+                </select>
+              </label>
+              <label class="flex flex-col">
+                <p class="pb-2 text-base font-medium leading-normal text-white">
+                  École/Entreprise
+                </p>
+                <input
+                  name="ecole_entreprise"
+                  class="form-input flex h-14 w-full min-w-0 flex-1 resize-none overflow-hidden rounded-md border border-white/20 bg-white/5 p-[15px] text-base font-normal leading-normal text-white placeholder:text-white/40 focus:border-primary focus:outline-0 focus:ring-2 focus:ring-primary/40"
+                  placeholder="Nom de l'école ou entreprise"
+                  type="text"
+                  value="<?php echo htmlspecialchars($form_data['ecole_entreprise'] ?? ''); ?>"
+                />
+              </label>
+            </div>
+            
+            <!-- Type d'inscription -->
             <label class="flex flex-col">
               <p class="pb-2 text-base font-medium leading-normal text-white">
                 Type d'inscription *
@@ -170,9 +331,7 @@
                 <div
                   class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-white/60"
                 >
-                  <span class="material-symbols-outlined text-xl"
-                    >expand_more</span
-                  >
+                  <i class="fas fa-chevron-down text-xl"></i>
                 </div>
               </div>
             </label>
@@ -201,9 +360,7 @@
                   <div
                     class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-white/60"
                   >
-                    <span class="material-symbols-outlined text-xl"
-                      >expand_more</span
-                    >
+                    <i class="fas fa-chevron-down text-xl"></i>
                   </div>
                 </div>
               </label>
@@ -243,9 +400,7 @@
                   <div
                     class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-white/60"
                   >
-                    <span class="material-symbols-outlined text-xl"
-                      >expand_more</span
-                    >
+                    <i class="fas fa-chevron-down text-xl"></i>
                   </div>
                 </div>
               </label>
@@ -361,6 +516,18 @@
               </label>
             </div>
 
+            <!-- Commentaires -->
+            <label class="flex flex-col">
+              <p class="pb-2 text-base font-medium leading-normal text-white">
+                Commentaires ou questions
+              </p>
+              <textarea
+                name="commentaires"
+                class="form-textarea flex min-h-[120px] w-full min-w-0 flex-1 resize-none overflow-hidden rounded-md border border-white/20 bg-white/5 p-[15px] text-base font-normal leading-normal text-white placeholder:text-white/40 focus:border-primary focus:outline-0 focus:ring-2 focus:ring-primary/40"
+                placeholder="Avez-vous des questions ou des commentaires ?"
+              ><?php echo htmlspecialchars($form_data['commentaires'] ?? ''); ?></textarea>
+            </label>
+
             <div class="flex flex-col gap-4 pt-2">
               <label class="flex cursor-pointer items-center gap-3">
                 <input
@@ -389,33 +556,82 @@
 
             <div class="relative flex items-center py-2">
               <div class="flex-grow border-t border-white/20"></div>
-              <span class="mx-4 flex-shrink text-sm text-white/60">OU</span>
+              <!-- <span class="mx-4 flex-shrink text-sm text-white/60">OU</span> -->
               <div class="flex-grow border-t border-white/20"></div>
             </div>
 
             <button
-              class="flex h-14 w-full items-center justify-center rounded-md bg-primary text-base font-bold text-background-dark transition-transform hover:scale-[1.02] active:scale-[0.98]"
+              class="flex w-full items-center justify-center gap-2 rounded-md bg-primary px-6 py-4 text-base font-semibold leading-normal text-background-dark transition-colors hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-primary/40 focus:ring-offset-2 focus:ring-offset-background-dark"
               type="submit"
+              name="submit_inscription"
             >
-              <span class="material-symbols-outlined mr-2">how_to_reg</span>
-              Soumettre mon inscription
+              <span>Envoyer ma demande d'inscription</span>
+              <i class="fas fa-arrow-right text-xl"></i>
             </button>
           </form>
-
-          <div class="mt-8 text-center">
-            <p class="text-white/60 text-sm">
-              Vous avez déjà un compte pour les événements ?
-              <a class="font-semibold text-primary underline" href="#"
-                >Connectez-vous ici</a
-              >
-            </p>
-          </div>
         </div>
       </main>
     </div>
 
     <script>
+      // Fonction pour formater automatiquement le numéro de téléphone
+      function formatPhoneNumber(input) {
+        // Supprimer tous les caractères non numériques
+        let value = input.value.replace(/\D/g, '');
+        
+        // Limiter à 10 chiffres (pour un numéro français)
+        if (value.length > 10) {
+          value = value.substring(0, 10);
+        }
+        
+        // Ajouter des espaces pour la lisibilité
+        if (value.length > 2) {
+          value = value.substring(0, 2) + ' ' + value.substring(2);
+        }
+        if (value.length > 5) {
+          value = value.substring(0, 5) + ' ' + value.substring(5);
+        }
+        if (value.length > 8) {
+          value = value.substring(0, 8) + ' ' + value.substring(8);
+        }
+        
+        // Mettre à jour la valeur du champ
+        input.value = value.trim();
+      }
+      
+      // Fonction pour formater automatiquement le code postal
+      function formatPostalCode(input) {
+        // Supprimer tous les caractères non numériques
+        let value = input.value.replace(/\D/g, '');
+        
+        // Limiter à 5 chiffres (pour un code postal français)
+        if (value.length > 5) {
+          value = value.substring(0, 5);
+        }
+        
+        // Mettre à jour la valeur du champ
+        input.value = value;
+      }
+      
+      // Ajouter les écouteurs d'événements
       document.addEventListener("DOMContentLoaded", function () {
+        // Formater le numéro de téléphone
+        const phoneInput = document.querySelector('input[name="telephone"]');
+        if (phoneInput) {
+          phoneInput.addEventListener('input', function() {
+            formatPhoneNumber(this);
+          });
+        }
+        
+        // Formater le code postal
+        const postalCodeInput = document.querySelector('input[name="code_postal"]');
+        if (postalCodeInput) {
+          postalCodeInput.addEventListener('input', function() {
+            formatPostalCode(this);
+          });
+        }
+        
+        // Gestion des sections conditionnelles
         const typeInscription = document.getElementById("type-inscription");
         const formationDetails = document.getElementById("formation-details");
         const evenementDetails = document.getElementById("evenement-details");
@@ -452,83 +668,17 @@
 
         // Gestion de la soumission du formulaire
         inscriptionForm.addEventListener("submit", function (e) {
-          e.preventDefault();
-
-          // Récupération des données
-          const formData = {
-            prenom: document.querySelector(
-              'input[placeholder="Entrez votre prénom"]'
-            ).value,
-            nom: document.querySelector('input[placeholder="Entrez votre nom"]')
-              .value,
-            email: document.querySelector('input[type="email"]').value,
-            telephone: document.querySelector('input[type="tel"]').value,
-            typeInscription: typeInscription.value,
-            newsletter: document.querySelector('input[type="checkbox"]')
-              .checked,
-            acceptTerms: document.querySelector(
-              'input[required][type="checkbox"]'
-            ).checked,
-          };
-
-          // Ajouter les données spécifiques selon le type d'inscription
-          if (typeInscription.value === "formation") {
-            formData.formation =
-              document.getElementById("choix-formation").value;
-            formData.niveau = document.querySelector(
-              'input[placeholder="Débutant, Intermédiaire, Avancé"]'
-            ).value;
-          } else if (typeInscription.value === "evenement") {
-            formData.typeEvenement =
-              document.getElementById("type-evenement").value;
-            formData.dateEvenement = document.querySelector(
-              'input[placeholder="JJ/MM/AAAA"]'
-            ).value;
-            formData.participants = document.querySelector(
-              'input[placeholder="Ex: 50 personnes"]'
-            ).value;
-          } else if (
-            ["participer", "mouvement", "benevolat"].includes(
-              typeInscription.value
-            )
-          ) {
-            const interets = Array.from(
-              document.querySelectorAll(
-                '#participation-details input[type="checkbox"]:checked'
-              )
-            ).map((cb) => cb.value);
-            formData.interets = interets;
-            formData.disponibilites = document.querySelector(
-              'input[placeholder="Ex: Weekends, Soirées en semaine..."]'
-            ).value;
-          }
-
-          // Simulation d'envoi (remplacer par appel API réel)
-          console.log("Données du formulaire:", formData);
-
-          // Message de confirmation
-          const messages = {
-            formation:
-              "Votre demande d'inscription à une formation a été enregistrée ! Notre équipe vous contactera sous 48h.",
-            evenement:
-              "Votre demande pour organiser un événement a été reçue ! Notre équipe événementielle vous contactera rapidement.",
-            participer:
-              "Merci pour votre intérêt ! Vous recevrez bientôt les informations pour participer aux activités RJVC.",
-            mouvement:
-              "Bienvenue dans le Mouvement Annuel RJVC ! Vous recevrez toutes les informations nécessaires par email.",
-            benevolat:
-              "Merci pour votre volonté de servir ! Notre équipe bénévole vous contactera pour discuter des opportunités.",
-          };
-
-          alert(
-            messages[typeInscription.value] ||
-              "Votre inscription a été enregistrée avec succès !"
-          );
-
-          // Redirection après confirmation
-          setTimeout(() => {
-            window.location.href = "./index.html";
-          }, 2000);
+          // Ne pas empêcher la soumission normale pour l'instant
+          // e.preventDefault();
+          
+          // Valider le formulaire avant envoi
+          const formData = new FormData(inscriptionForm);
+          
+          // Afficher les données pour debug
+          console.log("Données du formulaire:", Object.fromEntries(formData));
+          
+          // Le formulaire sera soumis normalement au serveur
+          // Le PHP s'occupera du traitement
         });
 
         // Améliorer l'expérience des sélecteurs
@@ -544,5 +694,6 @@
         });
       });
     </script>
+    
   </body>
 </html>
