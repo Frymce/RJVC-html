@@ -15,4 +15,3 @@ try {
     error_log("Erreur de connexion à la base de données : " . $e->getMessage());
     die("Erreur de connexion à la base de données. Veuillez contacter l'administrateur.");
 }
-?>

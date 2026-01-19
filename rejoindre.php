@@ -116,7 +116,7 @@
             </div>
           <?php endif; ?>
           
-          <form action="process_inscription.php" method="POST" class="flex w-full flex-col gap-6" id="inscription-form">
+          <form action="process_inscription_simple.php" method="POST" class="flex w-full flex-col gap-6" id="inscription-form">
             <input type="hidden" name="csrf_token" value="<?php echo $csrf_token; ?>">
             
             <div class="grid grid-cols-1 gap-6 sm:grid-cols-2">
@@ -309,6 +309,7 @@
                 <select
                   class="form-select flex h-14 w-full min-w-0 flex-1 resize-none overflow-hidden rounded-md border border-white/20 bg-white/5 p-[15px] pr-12 text-base font-normal leading-normal text-white focus:border-primary focus:outline-0 focus:ring-2 focus:ring-primary/40 appearance-none"
                   id="type-inscription"
+                  name="type-inscription"
                   required
                 >
                   <option value="" disabled selected>
@@ -346,6 +347,7 @@
                   <select
                     class="form-select flex h-14 w-full min-w-0 flex-1 resize-none overflow-hidden rounded-md border border-white/20 bg-white/5 p-[15px] pr-12 text-base font-normal leading-normal text-white focus:border-primary focus:outline-0 focus:ring-2 focus:ring-primary/40 appearance-none"
                     id="choix-formation"
+                    name="choix-formation"
                   >
                     <option value="" disabled selected>
                       Choisissez une formation
@@ -386,6 +388,7 @@
                   <select
                     class="form-select flex h-14 w-full min-w-0 flex-1 resize-none overflow-hidden rounded-md border border-white/20 bg-white/5 p-[15px] pr-12 text-base font-normal leading-normal text-white focus:border-primary focus:outline-0 focus:ring-2 focus:ring-primary/40 appearance-none"
                     id="type-evenement"
+                    name="type-evenement"
                   >
                     <option value="" disabled selected>
                       Choisissez le type d'événement
@@ -412,6 +415,7 @@
                   class="form-input flex h-14 w-full min-w-0 flex-1 resize-none overflow-hidden rounded-md border border-white/20 bg-white/5 p-[15px] text-base font-normal leading-normal text-white placeholder:text-white/40 focus:border-primary focus:outline-0 focus:ring-2 focus:ring-primary/40"
                   placeholder="JJ/MM/AAAA"
                   type="date"
+                  name="date-evenement"
                 />
               </label>
               <label class="flex flex-col">
@@ -423,6 +427,7 @@
                   placeholder="Ex: 50 personnes"
                   type="number"
                   min="1"
+                  name="nb-participants"
                 />
               </label>
             </div>
@@ -441,6 +446,7 @@
                       type="checkbox"
                       class="form-checkbox h-5 w-5 rounded border-white/30 bg-white/10 text-primary focus:ring-primary/50"
                       value="worship"
+                      name="interets[]"
                     />
                     <span class="text-sm text-white/80"
                       >Louange & Adoration</span
@@ -453,6 +459,7 @@
                       type="checkbox"
                       class="form-checkbox h-5 w-5 rounded border-white/30 bg-white/10 text-primary focus:ring-primary/50"
                       value="service"
+                      name="interets[]"
                     />
                     <span class="text-sm text-white/80"
                       >Service Communautaire</span
@@ -465,6 +472,7 @@
                       type="checkbox"
                       class="form-checkbox h-5 w-5 rounded border-white/30 bg-white/10 text-primary focus:ring-primary/50"
                       value="study"
+                      name="interets[]"
                     />
                     <span class="text-sm text-white/80">Étude Biblique</span>
                   </label>
@@ -475,6 +483,7 @@
                       type="checkbox"
                       class="form-checkbox h-5 w-5 rounded border-white/30 bg-white/10 text-primary focus:ring-primary/50"
                       value="social"
+                      name="interets[]"
                     />
                     <span class="text-sm text-white/80"
                       >Activités Sociales</span
@@ -487,6 +496,7 @@
                       type="checkbox"
                       class="form-checkbox h-5 w-5 rounded border-white/30 bg-white/10 text-primary focus:ring-primary/50"
                       value="missions"
+                      name="interets[]"
                     />
                     <span class="text-sm text-white/80"
                       >Missions & Évangélisation</span
@@ -499,6 +509,7 @@
                       type="checkbox"
                       class="form-checkbox h-5 w-5 rounded border-white/30 bg-white/10 text-primary focus:ring-primary/50"
                       value="youth"
+                      name="interets[]"
                     />
                     <span class="text-sm text-white/80">Jeunesse & Sports</span>
                   </label>
