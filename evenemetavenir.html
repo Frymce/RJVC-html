@@ -46,11 +46,11 @@
         theme: {
           extend: {
             colors: {
-              primary: "#FFD700",
-              "background-dark": "#0A192F",
-              "background-light": "#F0F0F0",
-              "card-dark": "#172A45",
-              "text-light": "#F0F0F0",
+              primary: "#f9d406",
+              "background-dark": "#111111",
+              "background-light": "#f8f8f5",
+              "surface-dark": "#1a1a1a",
+              "neutral-text": "#F0F0F0",
             },
             fontFamily: {
               display: ["Poppins", "sans-serif"],
@@ -179,131 +179,43 @@
         
         <main class="px-4 sm:px-6 lg:px-8 py-8 md:py-10 flex-1">
           <div class="max-w-7xl mx-auto">
-            <div class="flex flex-col gap-4 mb-6 md:mb-8">
-              <h1
-                class="text-white text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight"
-              >
-                Upcoming Events
+            <!-- Hero Section -->
+            <div class="flex flex-col gap-4 mb-8 md:mb-12 text-center">
+              <h1 class="text-primary text-3xl md:text-4xl lg:text-5xl font-black leading-tight">
+                Événements RJVC
               </h1>
-              <p class="text-text-light/70 text-base md:text-lg">
-                Join us for faith, unity, service, and joy. Find an event that
-                speaks to you.
+              <p class="text-neutral-text/70 text-base md:text-lg max-w-2xl mx-auto">
+                Découvrez nos prochains rassemblements et revivez les moments forts de notre communauté.
               </p>
             </div>
-            
-            <div class="flex flex-col md:flex-row gap-6 md:gap-8">
-              <!-- Calendar Section -->
-              <div class="w-full md:w-2/3 lg:w-3/4">
-                <div class="bg-card-dark p-4 sm:p-6 rounded-xl shadow-lg">
-                  <!-- Calendar Header -->
-                  <div class="flex flex-col sm:flex-row items-center justify-between gap-4 mb-4">
-                    <div class="flex items-center gap-4">
-                      <h3 id="current-month-year" class="text-white text-xl font-bold">October 2024</h3>
-                      <button id="month-selector"
-                        class="text-text-light/80 hover:text-white transition-colors"
-                      >
-                        <i class="fas fa-chevron-down text-2xl"></i>
-                      </button>
-                    </div>
-                    <div class="flex items-center gap-2">
-                      <button id="prev-month"
-                        class="flex size-9 items-center justify-center rounded-full hover:bg-white/10 transition-colors"
-                      >
-                        <i class="fas fa-chevron-left text-xl"></i>
-                      </button>
-                      <button id="today-btn"
-                        class="h-9 px-4 rounded-full text-sm font-semibold border border-white/20 hover:bg-white/10 transition-colors"
-                      >
-                        Today
-                      </button>
-                      <button id="next-month"
-                        class="flex size-9 items-center justify-center rounded-full hover:bg-white/10 transition-colors"
-                      >
-                        <i class="fas fa-chevron-right text-xl"></i>
-                      </button>
-                    </div>
-                  </div>
-                  
-                  <!-- Calendar Grid -->
-                  <div class="grid grid-cols-7 gap-1 text-center text-sm">
-                    <p class="text-text-light/60 font-semibold py-2">SUN</p>
-                    <p class="text-text-light/60 font-semibold py-2">MON</p>
-                    <p class="text-text-light/60 font-semibold py-2">TUE</p>
-                    <p class="text-text-light/60 font-semibold py-2">WED</p>
-                    <p class="text-text-light/60 font-semibold py-2">THU</p>
-                    <p class="text-text-light/60 font-semibold py-2">FRI</p>
-                    <p class="text-text-light/60 font-semibold py-2">SAT</p>
-                    
-                    <!-- Calendar Days will be generated dynamically -->
-                    <div id="calendar-days" class="col-span-7 grid grid-cols-7 gap-1">
-                      <!-- Dynamic content will be inserted here -->
-                    </div>
-                  </div>
+
+            <!-- Événements à Venir -->
+            <section class="mb-12 md:mb-16">
+              <div class="flex items-center gap-3 mb-6">
+                <div class="text-primary">
+                  <i class="fas fa-calendar-alt text-2xl"></i>
                 </div>
+                <h2 class="text-white text-2xl md:text-3xl font-bold">Événements à Venir</h2>
               </div>
               
-              <!-- Sidebar -->
-              <div class="w-full md:w-1/3 lg:w-1/4">
-                <div class="flex flex-col gap-6">
-                  <!-- Search -->
-                  <label class="relative flex flex-col min-w-40 w-full">
-                    <div
-                      class="flex w-full flex-1 items-stretch rounded-full h-12"
-                    >
-                      <div
-                        class="text-text-light/50 flex bg-card-dark items-center justify-center pl-4 rounded-l-full"
-                      >
-                        <i class="fas fa-search text-xl"></i>
-                      </div>
-                      <input
-                        id="search-input"
-                        class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-r-full text-white focus:outline-0 focus:ring-2 focus:ring-primary/50 border-none bg-card-dark h-full placeholder:text-text-light/50 px-4 text-sm"
-                        placeholder="Search events..."
-                        value=""
-                      />
-                    </div>
-                  </label>
-                  
-                  <!-- Event Filters -->
-                  <div class="flex flex-wrap gap-2">
-                    <button id="filter-all"
-                      class="filter-btn flex h-8 shrink-0 items-center justify-center gap-x-2 rounded-full bg-card-dark px-4 hover:bg-white/10 transition-colors"
-                    >
-                      <p class="text-text-light text-sm font-medium">All</p>
-                    </button>
-                    <button id="filter-service"
-                      class="filter-btn flex h-8 shrink-0 items-center justify-center gap-x-2 rounded-full bg-card-dark px-4 hover:bg-white/10 transition-colors"
-                    >
-                      <p class="text-text-light text-sm font-medium">Service</p>
-                    </button>
-                    <button id="filter-training"
-                      class="filter-btn flex h-8 shrink-0 items-center justify-center gap-x-2 rounded-full bg-card-dark px-4 hover:bg-white/10 transition-colors"
-                    >
-                      <p class="text-text-light text-sm font-medium">
-                        Training
-                      </p>
-                    </button>
-                    <button id="filter-social"
-                      class="filter-btn flex h-8 shrink-0 items-center justify-center gap-x-2 rounded-full bg-card-dark px-4 hover:bg-white/10 transition-colors"
-                    >
-                      <p class="text-text-light text-sm font-medium">Social</p>
-                    </button>
-                  </div>
-                  
-                  <div class="border-t border-white/10"></div>
-                  
-                  <!-- Events List -->
-                  <div class="flex flex-col gap-4">
-                    <h4 id="selected-date-title" class="text-lg font-bold text-white">
-                      Events on October 10
-                    </h4>
-                    <div id="events-list" class="flex flex-col gap-4">
-                      <!-- Dynamic events will be inserted here -->
-                    </div>
-                  </div>
-                </div>
+              <div id="upcoming-events" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Les événements à venir seront insérés ici dynamiquement -->
               </div>
-            </div>
+            </section>
+
+            <!-- Événements Passés -->
+            <section>
+              <div class="flex items-center gap-3 mb-6">
+                <div class="text-neutral-text/60">
+                  <i class="fas fa-history text-2xl"></i>
+                </div>
+                <h2 class="text-white text-2xl md:text-3xl font-bold">Événements Passés</h2>
+              </div>
+              
+              <div id="past-events" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Les événements passés seront insérés ici dynamiquement -->
+              </div>
+            </section>
           </div>
         </main>
       </div>
@@ -345,447 +257,272 @@
         }
       });
 
-      // ==================== DYNAMIC CALENDAR FUNCTIONALITY ====================
+      // ==================== EVENTS FUNCTIONALITY ====================
       
-      // Sample events data
-      const eventsData = [
-        {
-          id: 1,
-          title: "Youth Worship Night",
-          date: "2024-10-10",
-          time: "7:00 PM - 9:00 PM",
-          category: "Faith",
-          description: "An evening of praise, worship, and fellowship for all youth.",
-          color: "primary",
-          registered: false
-        },
-        {
-          id: 2,
-          title: "Community Clean-Up",
-          date: "2024-10-10",
-          time: "9:00 AM - 12:00 PM",
-          category: "Service",
-          description: "Join us as we serve our local community by cleaning up the park.",
-          color: "text-light",
-          registered: false
-        },
-        {
-          id: 3,
-          title: "Leadership Training Workshop",
-          date: "2024-10-05",
-          time: "10:00 AM - 2:00 PM",
-          category: "Training",
-          description: "Developing leadership skills for young Christians.",
-          color: "primary",
-          registered: false
-        },
-        {
-          id: 4,
-          title: "Bible Study Group",
-          date: "2024-10-12",
-          time: "6:30 PM - 8:00 PM",
-          category: "Faith",
-          description: "Weekly Bible study and discussion.",
-          color: "primary",
-          registered: false
-        },
-        {
-          id: 5,
-          title: "Youth Social Night",
-          date: "2024-10-19",
-          time: "5:00 PM - 9:00 PM",
-          category: "Social",
-          description: "Games, food, and fellowship for young people.",
-          color: "text-light",
-          registered: false
-        },
-        {
-          id: 6,
-          title: "Mission Planning Meeting",
-          date: "2024-10-25",
-          time: "3:00 PM - 5:00 PM",
-          category: "Service",
-          description: "Planning our upcoming community mission.",
-          color: "text-light",
-          registered: false
+      // Données des événements (seront chargées depuis la base de données)
+      let eventsData = [];
+
+      // Fonction pour charger les événements depuis la base de données
+      async function loadEventsFromDatabase() {
+        try {
+          const response = await fetch('get_events.php');
+          const data = await response.json();
+          
+          if (data.success) {
+            eventsData = data.events;
+            console.log(`Chargement de ${data.total} événements depuis la base de données`);
+            renderEvents();
+          } else {
+            console.error('Erreur:', data.message);
+            // En cas d'erreur, utiliser les données de secours
+            loadFallbackEvents();
+          }
+        } catch (error) {
+          console.error('Erreur de chargement:', error);
+          // En cas d'erreur réseau, utiliser les données de secours
+          loadFallbackEvents();
         }
-      ];
-
-      // Calendar state
-      let currentDate = new Date();
-      let currentYear = currentDate.getFullYear();
-      let currentMonth = currentDate.getMonth();
-      let selectedDate = new Date(2024, 9, 10); // October 10, 2024
-      let activeFilter = "all";
-
-      // DOM Elements
-      const calendarDays = document.getElementById('calendar-days');
-      const currentMonthYear = document.getElementById('current-month-year');
-      const selectedDateTitle = document.getElementById('selected-date-title');
-      const eventsList = document.getElementById('events-list');
-      const searchInput = document.getElementById('search-input');
-      const filterButtons = {
-        all: document.getElementById('filter-all'),
-        service: document.getElementById('filter-service'),
-        training: document.getElementById('filter-training'),
-        social: document.getElementById('filter-social')
-      };
-      const prevMonthBtn = document.getElementById('prev-month');
-      const nextMonthBtn = document.getElementById('next-month');
-      const todayBtn = document.getElementById('today-btn');
-      const monthSelector = document.getElementById('month-selector');
-
-      // Initialize calendar
-      function initCalendar() {
-        renderCalendar();
-        renderEventsForDate(selectedDate);
-        setupEventListeners();
       }
 
-      // Render calendar for current month
-      function renderCalendar() {
-        // Clear previous days
-        calendarDays.innerHTML = '';
-        
-        // Update month/year display
-        const monthNames = [
-          "January", "February", "March", "April", "May", "June",
-          "July", "August", "September", "October", "November", "December"
+      // Données de secours si la base de données n'est pas accessible
+      function loadFallbackEvents() {
+        eventsData = [
+          // Événements à venir
+          {
+            id: 1,
+            title: "Festival de la Joie 2024",
+            date: "2024-08-24",
+            endDate: "2024-08-26",
+            time: "9:00 - 21:00",
+            category: "Formation",
+            location: "Parc des Expositions, Paris",
+            description: "Trois jours de louange, de musique et de partage. Un moment inoubliable pour célébrer notre foi ensemble.",
+            image: "https://lh3.googleusercontent.com/aida-public/AB6AXuCDl3LVWLfbd67P8NHvhe7obdJkEFAKCNrC0u7qnFP3A34-vrcYfV69J-04_sQ_CTblWhVCx4aoJNDy6vdNKpTAVw1a73q8RteH2HTj6p15Pz0z7p-bnZbOgAI2qcs8Qs-pMwm9DOd2A9Qc8AXBbKDMC2um4yISQ8zhbY_gqkeFGaK9cenGpoYLEiX2jt4r9q4Xou8cr7UodgrVoutWgNQ2UvLG3MhbSs54hJB-xBsqbR46nhlpFx5zF1g-1t8_mtGDTP_pib0MFA4",
+            type: "upcoming"
+          },
+          {
+            id: 2,
+            title: "Week-end Leadership",
+            date: "2024-09-15",
+            endDate: "2024-09-15",
+            time: "10:00 - 18:00",
+            category: "Formation",
+            location: "Centre RJVC, Lyon",
+            description: "Une formation intensive pour les jeunes leaders et ceux qui aspirent à servir avec excellence.",
+            image: "https://lh3.googleusercontent.com/aida-public/AB6AXuAsW0Wy4bnP_FsRnBtRY9qZ_rOMGuNKTYQd30HYb6NPONZBamQqb5MNpcoBOFpCc_GsLOmDx9qKLlUn3OU9ycPjqRzugPf7xkRMhxlh2hVmbZbkqfNXBUmhl-OTmngGcwYkP94X4R1Um6JpvsLM184NvOJCq--UhAUz12eMe1E6qqtJHu4LcdF4jPhrO0R4IlW4OmS-Bmi5OhfnBgJVXlJ86_rdjGCC2Z9ipRNK8hKVqKbBuROC_WRf5K1BZri868Z7I7LM4411xg",
+            type: "upcoming"
+          },
+          {
+            id: 3,
+            title: "Convention Annuelle",
+            date: "2024-10-18",
+            endDate: "2024-10-20",
+            time: "9:00 - 20:00",
+            category: "Evenement",
+            location: "Palais des Congrès, Marseille",
+            description: "Le point culminant de notre année. Un rassemblement national pour tous les membres du mouvement RJVC.",
+            image: "https://lh3.googleusercontent.com/aida-public/AB6AXuD7UZknp-1nSOpHq406m9emTC35a28r3t0eCdPUzZO6MrayLQqy8pCFAgWT6ndDH9k8CV8XjVAezNa9iNlnj3-qzmfaS6mmvaY26Z1CaflaanF7niUPjuvI-g4t7HCW4rSIqwNhaaDzJHm4WIJUBjFpUFojzWxbtRITBaq8NgL1HkPvo6ySMcFxSO0uVZlbaGAintMgcnwhHsiVCXEpn4BAzYBdCiHdxx-4lrFCOg4JYD0xgikZ11U-pu7qhEPM7gC2Heu2UF0jJGM",
+            type: "upcoming"
+          },
+          {
+            id: 4,
+            title: "Camp d'été Jeunesse",
+            date: "2024-07-15",
+            endDate: "2024-07-20",
+            time: "Toute la journée",
+            category: "Evenement",
+            location: "Campagne du Beaujolais",
+            description: "Une semaine de retrouvailles, d'activités et de croissance spirituelle au cœur de la nature.",
+            image: "https://lh3.googleusercontent.com/aida-public/AB6AXuAxqjYu5BaI8Ky9-qvJtuDJ0JgxBlwddr5JXTnxXK5NoMYcqIMYLlFZi7jn1OKO_XNO-sVmMtf2EDORThbK3vzLrp5-mXjkVRc2uVuOTKkDXYRGTT7n6oXK4CEQxIWsgTyAChq9bfEVhN61zjEOpjpcpHDH6KWOEwI6ma77bdR93ApmuPxoKIYEOavCWLy_9MOd_IkyNxofZXWNxtVEnKTkTI8lowCfqordD2o0Z82-NSwtRh6gmCjIrUsPTYiDh7J1DYHzdovaTvQ",
+            type: "upcoming"
+          },
+          // Événements passés
+          {
+            id: 5,
+            title: "Mariage de Grâce & David",
+            date: "2024-06-15",
+            endDate: "2024-06-15",
+            time: "15:00 - 23:00",
+            category: "Evenement",
+            location: "Église Saint-Jean, Paris",
+            description: "Une célébration d'amour et de foi au sein de notre communauté.",
+            image: "https://lh3.googleusercontent.com/aida-public/AB6AXuCF_e597GYqq3xGfk58Qn3IkhD0PKBmhOYegKTvapbeAymfEcw7Lf3xb-R_5ghntSt9VQNhPvUfkqacmNnvsxIT7KwGMw3XWqnWJOnjbWy7o60AncG_sMt6AMPwghp5OselID9fBeAz0XoJtKBTYpWR6Nz-Vbq88hZ7TKeMs80apxXiVx8xBEmrBJGRKXb82cIanM5XyJ-qdPSeK0ADWxzAbb16lEgVQZPM-B2c4iQz0--mNoLw3o7kAnb9ZY73-ECpuWVOnJg9LJs",
+            type: "past"
+          },
+          {
+            id: 6,
+            title: "Baptême du petit Léo",
+            date: "2024-05-20",
+            endDate: "2024-05-20",
+            time: "11:00 - 15:00",
+            category: "Evenement",
+            location: "Église Notre-Dame, Lyon",
+            description: "Un moment de joie et de bénédiction pour notre communauté.",
+            image: "https://lh3.googleusercontent.com/aida-public/AB6AXuC0yrFY6TqFLLW107wwE-dK9PJTe3iz6E5dLdzN1Yfws772IIO8L-VRYI1L73ItoR7BjYUaZ_LaFRrExvdKVibhkK9fVWsYxRn2u6DNhE1NVeRQbdWzkmcg_5tLLPHaUMT7vTfzDoIt6mHfmsXURmVWEBRVHMrKaZTf8Fgc1WFvvGsLgbquW1bgDyCKnoRI-2lFl34DRlD9ArLzgAzDkb31FJc3si9PA4Y8o5TXfhZUARUeBcQ1GG2RmA2jmhPYWY5s3UCFoFBv4Rc",
+            type: "past"
+          },
+          {
+            id: 7,
+            title: "Gala de charité 2023",
+            date: "2023-12-10",
+            endDate: "2023-12-10",
+            time: "19:00 - 23:00",
+            category: "Social",
+            location: "Salle des Fêtes, Paris",
+            description: "Une soirée mémorable pour une bonne cause.",
+            image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDcLLhiENycRK7HEeOPiwirMVY7AYTjNbN2kXi802hvu7bpt_5eEfDjGRxpGc7Vx5ICrdXIT7FR-WJW7K-wi8mCA9eIKmT5dSkJnOrHi3vthBfL9FzHEBjOHPAh_Boyzmz__UWZQ7rTr1eoqHO1asO4kkhra9vDeWEAkdbvGJ8H5VAFjlPndB820VQyTg0w-HcCi-Wem91cLeyYMmV1VH1RQDmNhQkNSDDlEo1WFo9m2qI-tfxaJyce3ik9RshDr7dQ39LKXOEaj_w",
+            type: "past"
+          },
+          {
+            id: 8,
+            title: "Fête de la communauté",
+            date: "2023-11-25",
+            endDate: "2023-11-25",
+            time: "14:00 - 20:00",
+            category: "Social",
+            location: "Centre RJVC, Bordeaux",
+            description: "Partage et fraternité au cœur de notre mission.",
+            image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDWU5flRkVfiPRXaSqNeTZlAm-koNUhN3RYQAvC9tL57P6jkvlCgjA37uTvpgBq1DYLgDhs6Op9qOR4EnFZk8yPBqLKyvNUgr9Ui7IjySuhh2129Ju2K6bux2n5V-5p4oTGNs9p5yTgeAVOmYRb7I9FH8GGza3Mxt_TxRRD_-tcw2UjN2LUGiy_iiIts5m7R3mYcRAYKMtPzOEJ4yYpBY2TtPTvhkT0TjNAfmlwWf--XSx77GZJhhhYOhZeR_fzclnH-nO-ooQ_-HM",
+            type: "past"
+          }
         ];
-        currentMonthYear.textContent = `${monthNames[currentMonth]} ${currentYear}`;
-        
-        // Get first day of month
-        const firstDay = new Date(currentYear, currentMonth, 1);
-        const lastDay = new Date(currentYear, currentMonth + 1, 0);
-        const daysInMonth = lastDay.getDate();
-        const startingDay = firstDay.getDay(); // 0 = Sunday
-        
-        // Add empty cells for days before first day of month
-        for (let i = 0; i < startingDay; i++) {
-          const emptyDay = document.createElement('div');
-          emptyDay.className = 'aspect-square text-text-light/40';
-          calendarDays.appendChild(emptyDay);
-        }
-        
-        // Add days of the month
-        const today = new Date();
-        const isCurrentMonth = currentYear === today.getFullYear() && currentMonth === today.getMonth();
-        
-        for (let day = 1; day <= daysInMonth; day++) {
-          const dayDate = new Date(currentYear, currentMonth, day);
-          const dayElement = document.createElement('button');
-          dayElement.className = 'aspect-square flex flex-col items-center justify-center rounded-lg hover:bg-white/5 transition-colors p-1 calendar-day';
-          dayElement.dataset.date = dayDate.toISOString().split('T')[0];
-          dayElement.dataset.day = day;
-          
-          // Check if day has events
-          const dayEvents = getEventsForDate(dayDate);
-          const hasEvents = dayEvents.length > 0;
-          const isToday = isCurrentMonth && day === today.getDate();
-          const isSelected = dayDate.toDateString() === selectedDate.toDateString();
-          
-          // Day number
-          const dayNumber = document.createElement('span');
-          dayNumber.className = 'font-medium';
-          if (isToday) dayNumber.classList.add('text-primary');
-          if (isSelected) {
-            dayNumber.classList.add('font-bold', 'text-primary');
-            dayElement.classList.add('bg-primary/20', 'ring-2', 'ring-primary');
-            dayElement.classList.remove('hover:bg-white/5');
-          }
-          dayNumber.textContent = day;
-          dayElement.appendChild(dayNumber);
-          
-          // Event indicators (dots)
-          if (hasEvents) {
-            const indicators = document.createElement('div');
-            indicators.className = 'flex gap-1 mt-1';
-            
-            // Get unique event colors for this day
-            const eventColors = [...new Set(dayEvents.map(event => event.color))];
-            
-            // Show up to 3 event indicators
-            eventColors.slice(0, 3).forEach(color => {
-              const indicator = document.createElement('div');
-              indicator.className = `size-1.5 rounded-full ${
-                color === 'primary' ? 'bg-primary' : 'bg-white'
-              }`;
-              indicators.appendChild(indicator);
-            });
-            
-            dayElement.appendChild(indicators);
-          }
-          
-          // Add click event
-          dayElement.addEventListener('click', () => {
-            selectDate(dayDate);
-            // Update events list
-            renderEventsForDate(dayDate);
-          });
-          
-          calendarDays.appendChild(dayElement);
-        }
+        renderEvents();
       }
 
-      // Get events for specific date
-      function getEventsForDate(date) {
-        const dateStr = date.toISOString().split('T')[0];
-        let filteredEvents = eventsData.filter(event => event.date === dateStr);
-        
-        // Apply current filter
-        if (activeFilter !== 'all') {
-          filteredEvents = filteredEvents.filter(event => 
-            event.category.toLowerCase() === activeFilter.toLowerCase()
-          );
-        }
-        
-        // Apply search filter
-        if (searchInput.value.trim() !== '') {
-          const searchTerm = searchInput.value.toLowerCase();
-          filteredEvents = filteredEvents.filter(event => 
-            event.title.toLowerCase().includes(searchTerm) ||
-            event.description.toLowerCase().includes(searchTerm) ||
-            event.category.toLowerCase().includes(searchTerm)
-          );
-        }
-        
-        return filteredEvents;
-      }
-
-      // Select a date
-      function selectDate(date) {
-        selectedDate = date;
-        
-        // Remove active class from all days
-        document.querySelectorAll('.calendar-day').forEach(day => {
-          day.classList.remove('bg-primary/20', 'ring-2', 'ring-primary');
-          day.classList.add('hover:bg-white/5');
-          
-          const dayNumber = day.querySelector('span');
-          if (dayNumber) {
-            dayNumber.classList.remove('font-bold', 'text-primary');
-            dayNumber.classList.add('font-medium');
-            // Keep today's color
-            if (!dayNumber.classList.contains('text-primary')) {
-              dayNumber.classList.remove('text-primary');
-            }
-          }
-        });
-        
-        // Add active class to selected day
-        const selectedDayElement = document.querySelector(`[data-date="${date.toISOString().split('T')[0]}"]`);
-        if (selectedDayElement) {
-          selectedDayElement.classList.add('bg-primary/20', 'ring-2', 'ring-primary');
-          selectedDayElement.classList.remove('hover:bg-white/5');
-          
-          const dayNumber = selectedDayElement.querySelector('span');
-          if (dayNumber) {
-            dayNumber.classList.add('font-bold', 'text-primary');
-            dayNumber.classList.remove('font-medium');
-          }
-        }
-      }
-
-      // Render events for selected date
-      function renderEventsForDate(date) {
-        // Update title
+      // Fonction pour formater la date
+      function formatDate(dateStr) {
+        const date = new Date(dateStr);
         const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-        selectedDateTitle.textContent = `Events on ${date.toLocaleDateString('en-US', options)}`;
+        return date.toLocaleDateString('fr-FR', options);
+      }
+
+      // Fonction pour formater l'heure
+      function formatTime(dateStr, time) {
+        if (time === "Toute la journée") return time;
+        return time;
+      }
+
+      // Fonction pour créer une carte d'événement
+      function createEventCard(event) {
+        const card = document.createElement('div');
+        card.className = 'group bg-surface-dark rounded-xl overflow-hidden border border-white/10 hover:border-primary/50 transition-all duration-300 hover:shadow-2xl hover:shadow-primary/10';
         
-        // Clear previous events
-        eventsList.innerHTML = '';
+        const isUpcoming = event.type === 'upcoming';
+        const statusBadge = isUpcoming 
+          ? '<span class="bg-primary/20 text-primary px-2 py-1 rounded-full text-xs font-semibold">À venir</span>'
+          : '<span class="bg-neutral-text/20 text-neutral-text/60 px-2 py-1 rounded-full text-xs font-semibold">Passé</span>';
         
-        // Get events for this date
-        const events = getEventsForDate(date);
-        
-        if (events.length === 0) {
-          const noEvents = document.createElement('div');
-          noEvents.className = 'text-center py-6 text-text-light/50';
-          noEvents.innerHTML = `
-            <i class="fas fa-calendar-times text-4xl mb-3 block"></i>
-            <p>No events scheduled for this date</p>
-          `;
-          eventsList.appendChild(noEvents);
-          return;
-        }
-        
-        // Render each event
-        events.forEach(event => {
-          const eventCard = document.createElement('div');
-          eventCard.className = `bg-card-dark p-4 rounded-lg border-l-4 ${
-            event.color === 'primary' ? 'border-primary' : 'border-text-light'
-          }`;
-          
-          eventCard.innerHTML = `
-            <div class="flex flex-col gap-2">
-              <p class="text-xs font-semibold uppercase tracking-wider ${
-                event.color === 'primary' ? 'text-primary' : 'text-text-light/80'
-              }">
-                ${event.category}
-              </p>
-              <h5 class="font-bold text-white">${event.title}</h5>
-              <p class="text-sm text-text-light/70">${event.time}</p>
-              <p class="text-sm text-text-light/70">${event.description}</p>
-              <div class="flex gap-2 mt-2">
-                <button class="view-details-btn flex-1 text-center text-sm font-semibold rounded-full py-2 ${
-                  event.color === 'primary' ? 'bg-primary/20 text-primary hover:bg-primary/30' : 'bg-white/10 text-white hover:bg-white/20'
-                } transition-colors">
-                  View Details
-                </button>
-                <button class="register-btn flex-1 text-center text-sm font-bold rounded-full py-2 ${
-                  event.registered ? 'bg-green-600 text-white' : 'bg-primary text-[#0A192F]'
-                } hover:opacity-90 transition-opacity" data-event-id="${event.id}">
-                  ${event.registered ? 'Registered ✓' : 'Register Now'}
-                </button>
+        card.innerHTML = `
+          <div class="relative overflow-hidden">
+            <img src="${event.image}" alt="${event.title}" class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300">
+            <div class="absolute top-3 right-3">
+              ${statusBadge}
+            </div>
+            ${isUpcoming ? '<div class="absolute top-3 left-3 bg-primary text-background-dark px-3 py-1 rounded-full text-xs font-bold"><i class="fas fa-calendar mr-1"></i>Nouveau</div>' : ''}
+          </div>
+          <div class="p-6">
+            <div class="flex items-center justify-between mb-3">
+              <span class="text-primary text-sm font-semibold">${event.category}</span>
+              ${isUpcoming ? '<i class="fas fa-star text-yellow-400"></i>' : '<i class="fas fa-check-circle text-green-400"></i>'}
+            </div>
+            <h3 class="text-white text-xl font-bold mb-2 group-hover:text-primary transition-colors">${event.title}</h3>
+            <div class="space-y-2 mb-4">
+              <div class="flex items-center text-neutral-text/70 text-sm">
+                <i class="fas fa-calendar-alt mr-2 text-primary"></i>
+                ${formatDate(event.date)}
+                ${event.endDate && event.endDate !== event.date ? ` - ${formatDate(event.endDate)}` : ''}
+              </div>
+              <div class="flex items-center text-neutral-text/70 text-sm">
+                <i class="fas fa-clock mr-2 text-primary"></i>
+                ${formatTime(event.date, event.time)}
+              </div>
+              <div class="flex items-center text-neutral-text/70 text-sm">
+                <i class="fas fa-map-marker-alt mr-2 text-primary"></i>
+                ${event.location}
               </div>
             </div>
+            <p class="text-neutral-text/70 text-sm mb-4 line-clamp-2">${event.description}</p>
+            <div class="flex gap-3">
+              ${isUpcoming ? `
+                <button class="flex-1 bg-primary text-background-dark py-2 px-4 rounded-lg font-semibold hover:bg-primary/90 transition-colors">
+                  <i class="fas fa-user-plus mr-2"></i>S'inscrire
+                </button>
+                <button class="flex-1 border border-primary/50 text-primary py-2 px-4 rounded-lg font-semibold hover:bg-primary/10 transition-colors">
+                  <i class="fas fa-info-circle mr-2"></i>Détails
+                </button>
+              ` : `
+                <button class="flex-1 bg-surface-dark border border-white/20 text-neutral-text py-2 px-4 rounded-lg font-semibold hover:bg-white/10 transition-colors">
+                  <i class="fas fa-images mr-2"></i>Voir les photos
+                </button>
+                <button class="flex-1 border border-white/20 text-neutral-text py-2 px-4 rounded-lg font-semibold hover:bg-white/10 transition-colors">
+                  <i class="fas fa-play-circle mr-2"></i>Revoir
+                </button>
+              `}
+            </div>
+          </div>
+        `;
+        
+        return card;
+      }
+
+      // Fonction pour trier les événements
+      function sortEvents(events) {
+        return events.sort((a, b) => {
+          const dateA = new Date(a.date);
+          const dateB = new Date(b.date);
+          return dateB - dateA; // Plus récents en premiers
+        });
+      }
+
+      // Fonction pour afficher les événements
+      function renderEvents() {
+        const upcomingContainer = document.getElementById('upcoming-events');
+        const pastContainer = document.getElementById('past-events');
+        
+        // Vider les conteneurs
+        upcomingContainer.innerHTML = '';
+        pastContainer.innerHTML = '';
+        
+        // Séparer et trier les événements
+        const upcomingEvents = sortEvents(eventsData.filter(event => event.type === 'upcoming'));
+        const pastEvents = sortEvents(eventsData.filter(event => event.type === 'past'));
+        
+        // Afficher les événements à venir
+        if (upcomingEvents.length === 0) {
+          upcomingContainer.innerHTML = `
+            <div class="col-span-full text-center py-12">
+              <i class="fas fa-calendar-times text-4xl text-neutral-text/50 mb-4"></i>
+              <p class="text-neutral-text/50 text-lg">Aucun événement à venir pour le moment</p>
+              <p class="text-neutral-text/30 text-sm mt-2">Revenez bientôt pour découvrir nos prochaines activités</p>
+            </div>
           `;
-          
-          eventsList.appendChild(eventCard);
-        });
-        
-        // Add event listeners to buttons
-        document.querySelectorAll('.view-details-btn').forEach(btn => {
-          btn.addEventListener('click', function() {
-            const eventTitle = this.closest('div').querySelector('h5').textContent;
-            alert(`Details for: ${eventTitle}\n\nMore information about this event will be displayed here.`);
+        } else {
+          upcomingEvents.forEach(event => {
+            upcomingContainer.appendChild(createEventCard(event));
           });
-        });
+        }
         
-        document.querySelectorAll('.register-btn').forEach(btn => {
-          btn.addEventListener('click', function() {
-            const eventId = parseInt(this.dataset.eventId);
-            const event = eventsData.find(e => e.id === eventId);
-            
-            if (event) {
-              event.registered = !event.registered;
-              if (event.registered) {
-                this.textContent = 'Registered ✓';
-                this.classList.add('bg-green-600', 'text-white');
-                this.classList.remove('bg-primary', 'text-[#0A192F]');
-              } else {
-                this.textContent = 'Register Now';
-                this.classList.remove('bg-green-600', 'text-white');
-                this.classList.add('bg-primary', 'text-[#0A192F]');
-              }
-              
-              // Update calendar to reflect registration status
-              renderCalendar();
-              selectDate(selectedDate);
-            }
+        // Afficher les événements passés
+        if (pastEvents.length === 0) {
+          pastContainer.innerHTML = `
+            <div class="col-span-full text-center py-12">
+              <i class="fas fa-history text-4xl text-neutral-text/50 mb-4"></i>
+              <p class="text-neutral-text/50 text-lg">Aucun événement passé</p>
+              <p class="text-neutral-text/30 text-sm mt-2">Nos premiers événements arriveront bientôt</p>
+            </div>
+          `;
+        } else {
+          pastEvents.forEach(event => {
+            pastContainer.appendChild(createEventCard(event));
           });
-        });
-      }
-
-      // Filter events by category
-      function setFilter(filter) {
-        activeFilter = filter;
-        
-        // Update filter buttons appearance
-        Object.keys(filterButtons).forEach(key => {
-          const btn = filterButtons[key];
-          if (key === filter) {
-            btn.classList.add('bg-primary/20', 'text-primary');
-            btn.classList.remove('bg-card-dark', 'text-text-light');
-          } else {
-            btn.classList.remove('bg-primary/20', 'text-primary');
-            btn.classList.add('bg-card-dark', 'text-text-light');
-          }
-        });
-        
-        // Re-render events for selected date
-        renderEventsForDate(selectedDate);
-        renderCalendar();
-      }
-
-      // Search events
-      function searchEvents() {
-        renderEventsForDate(selectedDate);
-        renderCalendar();
-      }
-
-      // Navigate to previous month
-      function prevMonth() {
-        currentMonth--;
-        if (currentMonth < 0) {
-          currentMonth = 11;
-          currentYear--;
-        }
-        renderCalendar();
-      }
-
-      // Navigate to next month
-      function nextMonth() {
-        currentMonth++;
-        if (currentMonth > 11) {
-          currentMonth = 0;
-          currentYear++;
-        }
-        renderCalendar();
-      }
-
-      // Go to today
-      function goToToday() {
-        currentDate = new Date();
-        currentYear = currentDate.getFullYear();
-        currentMonth = currentDate.getMonth();
-        selectedDate = new Date(currentYear, currentMonth, currentDate.getDate());
-        renderCalendar();
-        selectDate(selectedDate);
-        renderEventsForDate(selectedDate);
-      }
-
-      // Show month selector
-      function showMonthSelector() {
-        const monthNames = [
-          "January", "February", "March", "April", "May", "June",
-          "July", "August", "September", "October", "November", "December"
-        ];
-        
-        const years = [2023, 2024, 2025];
-        const currentMonthName = monthNames[currentMonth];
-        
-        // Simple implementation - could be enhanced with a proper modal
-        const monthYear = prompt(
-          "Enter month and year (e.g., 'October 2024'):",
-          `${currentMonthName} ${currentYear}`
-        );
-        
-        if (monthYear) {
-          const [monthName, year] = monthYear.split(' ');
-          const monthIndex = monthNames.findIndex(m => 
-            m.toLowerCase() === monthName.toLowerCase()
-          );
-          
-          if (monthIndex !== -1 && !isNaN(year)) {
-            currentMonth = monthIndex;
-            currentYear = parseInt(year);
-            selectedDate = new Date(currentYear, currentMonth, 1);
-            renderCalendar();
-            renderEventsForDate(selectedDate);
-          }
         }
       }
 
-      // Setup event listeners
-      function setupEventListeners() {
-        // Filter buttons
-        Object.keys(filterButtons).forEach(key => {
-          filterButtons[key].addEventListener('click', () => setFilter(key));
-        });
-        
-        // Search input
-        searchInput.addEventListener('input', searchEvents);
-        
-        // Calendar navigation
-        prevMonthBtn.addEventListener('click', prevMonth);
-        nextMonthBtn.addEventListener('click', nextMonth);
-        todayBtn.addEventListener('click', goToToday);
-        monthSelector.addEventListener('click', showMonthSelector);
-      }
-
-      // Initialize when page loads
-      document.addEventListener('DOMContentLoaded', initCalendar);
+      // Initialiser les événements au chargement de la page
+      document.addEventListener('DOMContentLoaded', () => {
+        // Charger les événements depuis la base de données
+        loadEventsFromDatabase();
+      });
     </script>
   </body>
 </html>
